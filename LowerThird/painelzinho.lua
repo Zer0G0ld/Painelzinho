@@ -36,7 +36,7 @@ end
 
 -- Atualiza o arquivo JS com os estados das hotkeys
 function update_hotkeys_js()
-    local output = assert(io.open(script_path() .. '../common/js/hotkeys.js', "w"))
+    local output = assert(io.open(script_path() .. '../js/hotkeys.js', "w"))
 
     for key, _ in pairs(hotkeyLabels) do
         local varName = "hotkey" .. key:gsub("_", "")  -- Formato: hotkeyA_SWITCH_1
