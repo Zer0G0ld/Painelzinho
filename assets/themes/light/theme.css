@@ -1,0 +1,77 @@
+:root {
+  /* Cores principais */
+  --main-color: #2c2c2c; /* texto escuro */
+  --element-radius: 0.2em;
+
+  /* Fundo e painéis */
+  --obs-background: #f5f5f5; /* fundo claro */
+  --obs-panel-border: solid 1px #cccccc;
+
+  /* Botões */
+  --obs-button-background: #2196F3; /* azul vibrante */
+  --obs-button-border: #1a73e8;
+  --obs-button-hover-background: #1769aa;
+  --obs-button-hover-border: #135799;
+  --obs-button-active-background: #0d47a1;
+  --obs-button-color: #fff;
+
+  /* Switch ativo */
+  --obs-switch-active-background: #2196F3;
+
+  /* Campos */
+  --obs-field-background: #ffffff; /* campo branco */
+  --obs-field-background-disable: #e0e0e0;
+  --obs-field-border: solid 1px #cccccc;
+
+  /* Scrollbar */
+  --obs-scrollbar-color: #b0b0b0;
+  --obs-scrollbar-thickness: 8px;
+  --obs-scrollbar-radius: 14px;
+
+  /* Tabs */
+  --obs-tab-background: #e8e8e8;
+  --obs-tab-border: #cccccc;
+  --obs-tab-active-background: #d0d0d0;
+  --obs-tab-active-border: #999999;
+  --obs-tabs-separator: #cccccc;
+
+  /* Background alternativo */
+  --alt-preview-background: linear-gradient(
+    135deg,
+    #ffffff 0%,  #ffffff 8%,
+    #f0f0f0 10%, #f0f0f0 18%, 
+    #ffffff 20%, #ffffff 28%, 
+    #f0f0f0 30%, #f0f0f0 38%, 
+    #ffffff 40%, #ffffff 48%, 
+    #f0f0f0 50%, #f0f0f0 58%, 
+    #ffffff 60%, #ffffff 68%, 
+    #f0f0f0 70%, #f0f0f0 78%, 
+    #ffffff 80%, #ffffff 88%, 
+    #f0f0f0 90%, #f0f0f0 98%, 
+    #ffffff 100%
+  );
+}
+
+/* Fixes e ajustes */
+
+select {
+  background-position: right 4px center;
+}
+
+#alt-1-name-appearance, #alt-1-info-appearance,
+#alt-2-name-appearance, #alt-2-info-appearance,
+#alt-3-name-appearance, #alt-3-info-appearance,
+#alt-4-name-appearance, #alt-4-info-appearance {
+  padding-left: 2px;
+}
+
+#alt-1-name-color, #alt-1-info-color,
+#alt-2-name-color, #alt-2-info-color,
+#alt-3-name-color, #alt-3-info-color,
+#alt-4-name-color, #alt-4-info-color,
+#alt-1-style-color-1, #alt-1-style-color-2,
+#alt-2-style-color-1, #alt-2-style-color-2,
+#alt-3-style-color-1, #alt-3-style-color-2,
+#alt-4-style-color-1, #alt-4-style-color-2 {
+  margin: 3px;
+}

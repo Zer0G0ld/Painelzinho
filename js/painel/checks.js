@@ -3,36 +3,49 @@ function checkSwitches() {
   const masterActive = masterSwitch.checked;
   const mainContent = document.getElementById("alt-main-config-content");
 
-  // Atualiza classe do conteúdo principal
   mainContent.classList.toggle("active", masterActive);
 
-  // Função auxiliar para lidar com cada switch
+  // Função para ativar/desativar conteúdo com classes 'active'/'inactive'
+  function setContentState(contentEl, isActive) {
+    if (isActive) {
+      contentEl.classList.add("active");
+      contentEl.classList.remove("inactive");
+    } else {
+      contentEl.classList.add("inactive");
+      contentEl.classList.remove("active");
+    }
+  }
+
+  // Função para resetar classes (remover todas)
+  function resetContentState(contentEl) {
+    contentEl.className = "";
+  }
+
   function handleSwitch(num) {
     const switchEl = document.getElementById(`lower-thirds-switch${num}`);
     const contentEl = document.getElementById(`alt-${num}-config-content`);
 
-    // Variáveis dinâmicas que você deve garantir que existem no escopo
-    const activeTime = window[`alt_${num}_active_time_monitor`];
-    const inactiveTime = window[`alt_${num}_inactive_time_monitor`];
-    const name = window[`alt_${num}_name`];
-    const info = window[`alt_${num}_info`];
-    const autoload = window[`alt_${num}_autoload`];
+    // Pega valores globais de forma segura
+    const activeTime = Number(window[`alt_${num}_active_time_monitor`] ?? -1);
+    const inactiveTime = Number(window[`alt_${num}_inactive_time_monitor`] ?? -1);
+    const name = window[`alt_${num}_name`] || "";
+    const info = window[`alt_${num}_info`] || "";
+    const autoload = Boolean(window[`alt_${num}_autoload`]);
+    const waitingTime = window[`alt_${num}_waiting_time`] || 0;
+    const turnOff = Boolean(window[`alt_${num}_turnoff`]);
     const jumpNextFlagKey = `alt_${num}_jumpnext`;
-    const waitingTime = window[`alt_${num}_waiting_time`];
-    const turnOff = window[`alt_${num}_turnoff`];
 
-    // A flag de controle que você deve garantir existir (boolean) no escopo global
+    const jumpNextFlag = Boolean(window[jumpNextFlagKey]);
+
     if (masterActive) {
       if (switchEl.checked) {
         if (activeTime >= 0 && inactiveTime === 0 && name && info) {
-          contentEl.classList.add("active");
-          contentEl.classList.remove("inactive");
+          setContentState(contentEl, true);
           window[jumpNextFlagKey] = true;
         } else {
-          contentEl.classList.remove("active");
-          contentEl.classList.add("inactive");
+          setContentState(contentEl, false);
 
-          if (autoload && window[jumpNextFlagKey]) {
+          if (autoload && jumpNextFlag) {
             window[jumpNextFlagKey] = false;
             jumpNextSlot(
               `#alt-${num}-memory-slots`,
@@ -44,8 +57,9 @@ function checkSwitches() {
           }
         }
       } else {
-        contentEl.className = "";
-        if (turnOff && autoload && window[jumpNextFlagKey]) {
+        resetContentState(contentEl);
+
+        if (turnOff && autoload && jumpNextFlag) {
           window[jumpNextFlagKey] = false;
           jumpNextSlot(
             `#alt-${num}-memory-slots`,
@@ -57,17 +71,15 @@ function checkSwitches() {
         }
       }
     } else {
-      // Quando o master está OFF
+      // master OFF
       if (switchEl.checked) {
-        contentEl.classList.add("inactive");
-        contentEl.classList.remove("active");
+        setContentState(contentEl, false);
       } else {
-        contentEl.className = "";
+        resetContentState(contentEl);
       }
     }
   }
 
-  // Aplica para os 4 switches
   for (let i = 1; i <= 4; i++) {
     handleSwitch(i);
   }
