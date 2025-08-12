@@ -1,318 +1,263 @@
-/**
- *
- * DEFAULT VALUES
- *
- */
-const default_style = 1;
-const default_size = 24;
-const default_margin_h = 4;
-const default_margin_v = 4;
+const DEFAULTS = {
+  style: 1,
+  size: 24,
+  margin: { horizontal: 4, vertical: 4 },
+  inverseRatio: 9,
+  lineSpacing: 0,
+  logo: { enabled: true, sizePx: 0, sizeEm: 3.5 },
+  shadow: { enabled: false, amount: 5, amountEm: 0.5 },
+  background: true,
+  colors: {
+    primary1: '#D54141',
+    primary2: '#222222',
+    border1: '#D54141',
+    border2: '#222222',
+    name: '#F2F2F2',
+    info: '#8A8A8A',
+  },
+  corners: 0,
+  borderThickness: { enabled: false, amount: 0 },
+  name: { transform: true, weight: true },
+  info: { transform: false, weight: false }
+};
 
-const default_inverse_ratio = 9;
-const default_line_spacing = 0;
-
-const default_logo = true;
-const default_logo_size = 0;
-const default_logo_size_em = 3.5;
-const default_shadow = false;
-const default_shadow_amount = 5;
-const default_shadow_amount_em = 0.5;
-const default_background = true;
-const default_style_color_1 = '#D54141';
-const default_style_color_2 = '#222222';
-
-const default_corners = 0;
-const default_border_thickness = false;
-const default_border_thickness_amount = 0;
-const default_border_color = false;
-const default_style_color_3 = '#D54141';
-const default_style_color_4 = '#222222';
-
-const default_name_transform = true;
-const default_name_weight = true;
-const default_name_color = '#F2F2F2';
-
-const default_info_transform = false;
-const default_info_weight = false;
-const default_info_color = '#8A8A8A';
+function getDefaultValuesMap(defaults) {
+  return {
+    'style': defaults.style,
+    'size': defaults.size,
+    'margin-h': defaults.margin.horizontal,
+    'margin-v': defaults.margin.vertical,
+    'inverse-ratio': defaults.inverseRatio,
+    'line-spacing': defaults.lineSpacing,
+    'logo': defaults.logo.enabled,
+    'logo-size': defaults.logo.sizePx,
+    'shadow': defaults.shadow.enabled,
+    'shadow-amount': defaults.shadow.amount,
+    'background': defaults.background,
+    'style-color-1': defaults.colors.primary1,
+    'style-color-2': defaults.colors.primary2,
+    'corners': defaults.corners,
+    'border-thickness': defaults.borderThickness.enabled,
+    'border-thickness-amount': defaults.borderThickness.amount,
+    'border-color': false, // ou pode colocar no DEFAULTS se quiser
+    'style-color-3': defaults.colors.border1,
+    'style-color-4': defaults.colors.border2,
+    'name-transform': defaults.name.transform,
+    'name-weight': defaults.name.weight,
+    'name-color': defaults.colors.name,
+    'info-transform': defaults.info.transform,
+    'info-weight': defaults.info.weight,
+    'info-color': defaults.colors.info,
+  };
+}
 
 function loadDefaultValues() {
-	$("[id^=alt-][id$=-style]").val(default_style);
-	$("[id^=alt-][id$=-size]").val(default_size);
-	$("[id^=alt-][id$=-margin-h]").val(default_margin_h);
-	$("[id^=alt-][id$=-margin-v]").val(default_margin_v);
-
-	$("[id^=alt-][id$=-inverse-ratio]").val(default_inverse_ratio);
-	$("[id^=alt-][id$=-line-spacing]").val(default_line_spacing);
-
-	$("[id^=alt-][id$=-logo]").prop('checked', default_logo);
-	$("[id^=alt-][id$=-logo-size]").val(default_logo_size);
-	$("[id^=alt-][id$=-shadow]").prop('checked', default_shadow);
-	$("[id^=alt-][id$=-shadow-amount]").val(default_shadow_amount);
-	$("[id^=alt-][id$=-background]").val('checked', default_background);
-	$("[id^=alt-][id$=-style-color-1]").val(default_style_color_1);
-	$("[id^=alt-][id$=-style-color-2]").val(default_style_color_2);
-
-	$("[id^=alt-][id$=-corners]").val(default_corners);
-	$("[id^=alt-][id$=-border-thickness]").prop('checked', default_border_thickness);
-	$("[id^=alt-][id$=-border-thickness-amount]").val(default_border_thickness_amount);
-	$("[id^=alt-][id$=-border-color]").prop('checked', default_border_color);
-	$("[id^=alt-][id$=-style-color-3]").val(default_style_color_3);
-	$("[id^=alt-][id$=-style-color-4]").val(default_style_color_4);
-
-	$("[id^=alt-][id$=-name-transform]").prop('checked', default_name_transform);
-	$("[id^=alt-][id$=-name-weight]").prop('checked', default_name_weight);
-	$("[id^=alt-][id$=-name-color]").val(default_name_color);
-
-	$("[id^=alt-][id$=-info-transform]").prop('checked', default_info_transform);
-	$("[id^=alt-][id$=-info-weight]").prop('checked', default_info_weight);
-	$("[id^=alt-][id$=-info-color]").val(default_info_color);
+  const defaultValuesMap = getDefaultValuesMap(DEFAULTS);
+  Object.entries(defaultValuesMap).forEach(([suffix, value]) => {
+    const selector = `[id^=alt-][id$=-${suffix}]`;
+    if (typeof value === 'boolean') {
+      $(selector).prop('checked', value);
+    } else {
+      $(selector).val(value);
+    }
+  });
 }
 
+const broadcastChannels = {
+  send: new BroadcastChannel('obs-lower-thirds-channel'),
+  receive: new BroadcastChannel('obs-lower-thirds-channel2'),
+  fonts: new BroadcastChannel('obs-lower-thirds-fonts'),
+};
 
-var bc = new BroadcastChannel('obs-lower-thirds-channel'); //Send to browser source
-var bcr = new BroadcastChannel('obs-lower-thirds-channel2'); //Receives from the source
-var bcf = new BroadcastChannel('obs-lower-thirds-fonts'); //Send custom fonts
+let slotDeleted = false;
+let newFontToSend;
 
+const alternates = {
+  alt_1: {},
+  alt_2: {},
+  alt_3: {},
+  alt_4: {}
+};
 
-var slotDeleted = false;
+// Inicializar propriedades padrão para cada alt
+['alt_1', 'alt_2', 'alt_3', 'alt_4'].forEach(alt => {
+  alternates[alt] = {
+    activeTimeMonitor: null,
+    inactiveTimeMonitor: null,
+    autoload: null,
+    jumpnext: null,
+    autotrigger: null,
+    oneshot: null,
+    lockActive: null,
+    logoDefault: `../logos/logo_${alt.split('_')[1]}.png`,  // exemplo: logo_1.png
+    style: default_style,
+    inverseRatio: default_inverse_ratio,
+    nameSize: null,
+    infoSize: null,
+    size: null,
+    lineSpacing: null,
+    marginH: null,
+    marginV: null,
+    shadows: null,
+    font: null,
+    logoSize: null,
+    shadowAmount: null,
+    corners: null,
+    borderThicknessAmount: null,
+    turnOff: false,
+  };
+});
 
-var new_font_to_send;
+// Hotkeys podem ser agrupadas também em objetos para facilitar o gerenciamento
+const hotkeysOld = {
+  masterSwitch: hotkeyMasterSwitch,
+  switch1: hotkeySwitch1,
+  switch2: hotkeySwitch2,
+  switch3: hotkeySwitch3,
+  switch4: hotkeySwitch4,
+  alt1Slots: [
+    hotkeyAlt1Slot1,
+    hotkeyAlt1Slot2,
+    hotkeyAlt1Slot3,
+    hotkeyAlt1Slot4,
+    hotkeyAlt1Slot5,
+    hotkeyAlt1Slot6,
+    hotkeyAlt1Slot7,
+    hotkeyAlt1Slot8,
+    hotkeyAlt1Slot9,
+    hotkeyAlt1Slot10,
+  ],
+  alt2Slots: [
+    hotkeyAlt2Slot1,
+    hotkeyAlt2Slot2,
+    hotkeyAlt2Slot3,
+    hotkeyAlt2Slot4,
+    hotkeyAlt2Slot5,
+    hotkeyAlt2Slot6,
+    hotkeyAlt2Slot7,
+    hotkeyAlt2Slot8,
+    hotkeyAlt2Slot9,
+    hotkeyAlt2Slot10,
+  ],
+  alt3Slots: [
+    hotkeyAlt3Slot1,
+    hotkeyAlt3Slot2,
+    hotkeyAlt3Slot3,
+    hotkeyAlt3Slot4,
+    hotkeyAlt3Slot5,
+    hotkeyAlt3Slot6,
+    hotkeyAlt3Slot7,
+    hotkeyAlt3Slot8,
+    hotkeyAlt3Slot9,
+    hotkeyAlt3Slot10,
+  ],
+  alt4Slots: [
+    hotkeyAlt4Slot1,
+    hotkeyAlt4Slot2,
+    hotkeyAlt4Slot3,
+    hotkeyAlt4Slot4,
+    hotkeyAlt4Slot5,
+    hotkeyAlt4Slot6,
+    hotkeyAlt4Slot7,
+    hotkeyAlt4Slot8,
+    hotkeyAlt4Slot9,
+    hotkeyAlt4Slot10,
+  ],
+};
 
-var alt_1_active_time_monitor;
-var alt_1_inactive_time_monitor;
-var alt_2_active_time_monitor;
-var alt_2_inactive_time_monitor;
-var alt_3_active_time_monitor;
-var alt_3_inactive_time_monitor;
-var alt_4_active_time_monitor;
-var alt_4_inactive_time_monitor;
+// Accordion handlers podem ficar igual, mas sugeriria usar event delegation e evitar loops for manual
+document.querySelectorAll('.accordion').forEach(el =>
+  el.addEventListener('click', function() {
+    this.classList.toggle('active');
+    const hidable = this.nextElementSibling;
+    if (hidable.style.maxHeight) {
+      hidable.style.maxHeight = null;
+    } else {
+      hidable.style.maxHeight = hidable.scrollHeight + 'px';
+    }
+  })
+);
 
+document.querySelectorAll('.more').forEach(el =>
+  el.addEventListener('click', function() {
+    this.classList.toggle('active');
+    const hideMore = this.nextElementSibling;
+    if (hideMore.style.maxHeight) {
+      hideMore.style.maxHeight = null;
+    } else {
+      hideMore.style.maxHeight = hideMore.scrollHeight + 'px';
 
-var alt_1_autoload;
-var alt_1_jumpnext;
-var alt_2_autoload;
-var alt_2_jumpnext;
-var alt_3_autoload;
-var alt_3_jumpnext;
-var alt_4_autoload;
-var alt_4_jumpnext;
-
-var alt_1_autotrigger;
-var alt_2_autotrigger;
-var alt_3_autotrigger;
-var alt_4_autotrigger;
-
-var global_oneshot;
-var alt_1_oneshot;
-var alt_2_oneshot;
-var alt_3_oneshot;
-var alt_4_oneshot;
-
-var global_lock_active;
-var alt_1_lock_active;
-var alt_2_lock_active;
-var alt_3_lock_active;
-var alt_4_lock_active;
-
-var alt_1_logo_default = "../logos/logo_1.png";
-var alt_2_logo_default = "../logos/logo_2.png";
-var alt_3_logo_default = "../logos/logo_3.png";
-var alt_4_logo_default = "../logos/logo_4.png";
-
-var alt_1_style = default_style;
-var alt_1_inverse_ratio = default_inverse_ratio;
-var alt_1_name_size;
-var alt_1_info_size;
-var alt_1_size;
-var alt_1_line_spacing;
-var alt_1_margin_h;
-var alt_1_margin_v;
-var alt_1_shadows;
-var alt_1_font;
-var alt_1_logo_size;
-var alt_1_shadow_amount;
-var alt_1_corners;
-var alt_1_border_thickness_amount;
-
-var alt_1_corners;
-var alt_1_border_thickness_amount;
-
-var alt_2_style = default_style;
-var alt_2_inverse_ratio = default_inverse_ratio;
-var alt_2_name_size;
-var alt_2_info_size;
-var alt_2_size;
-var alt_2_line_spacing;
-var alt_2_margin_h;
-var alt_2_margin_v;
-var alt_2_shadows;
-var alt_2_font;
-var alt_2_logo_size;
-var alt_2_shadow_amount;
-var alt_2_corners;
-var alt_2_border_thickness_amount;
-
-var alt_3_style = default_style;
-var alt_3_inverse_ratio = default_inverse_ratio;
-var alt_3_name_size;
-var alt_3_info_size;
-var alt_3_size;
-var alt_3_line_spacing;
-var alt_3_margin_h;
-var alt_3_margin_v;
-var alt_3_shadows;
-var alt_3_font;
-var alt_3_logo_size;
-var alt_3_shadow_amount;
-var alt_3_corners;
-var alt_3_border_thickness_amount;
-
-var alt_4_style = default_style;
-var alt_4_inverse_ratio = default_inverse_ratio;
-var alt_4_name_size;
-var alt_4_info_size;
-var alt_4_size;
-var alt_4_line_spacing;
-var alt_4_margin_h;
-var alt_4_margin_v;
-var alt_4_shadows;
-var alt_4_font;
-var alt_4_logo_size;
-var alt_4_shadow_amount;
-var alt_4_corners;
-var alt_4_border_thickness_amount;
-
-var hotkeyMasterSwitchOld = hotkeyMasterSwitch;
-var hotkeySwitch1Old = hotkeySwitch1;
-var hotkeySwitch2Old = hotkeySwitch2;
-var hotkeySwitch3Old = hotkeySwitch3;
-var hotkeySwitch4Old = hotkeySwitch4;
-
-var hotkeyAlt1Slot1Old = hotkeyAlt1Slot1;
-var hotkeyAlt1Slot2Old = hotkeyAlt1Slot2;
-var hotkeyAlt1Slot3Old = hotkeyAlt1Slot3;
-var hotkeyAlt1Slot4Old = hotkeyAlt1Slot4;
-var hotkeyAlt1Slot5Old = hotkeyAlt1Slot5;
-var hotkeyAlt1Slot6Old = hotkeyAlt1Slot6;
-var hotkeyAlt1Slot7Old = hotkeyAlt1Slot7;
-var hotkeyAlt1Slot8Old = hotkeyAlt1Slot8;
-var hotkeyAlt1Slot9Old = hotkeyAlt1Slot9;
-var hotkeyAlt1Slot10Old = hotkeyAlt1Slot10;
-
-var hotkeyAlt2Slot1Old = hotkeyAlt2Slot1;
-var hotkeyAlt2Slot2Old = hotkeyAlt2Slot2;
-var hotkeyAlt2Slot3Old = hotkeyAlt2Slot3;
-var hotkeyAlt2Slot4Old = hotkeyAlt2Slot4;
-var hotkeyAlt2Slot5Old = hotkeyAlt2Slot5;
-var hotkeyAlt2Slot6Old = hotkeyAlt2Slot6;
-var hotkeyAlt2Slot7Old = hotkeyAlt2Slot7;
-var hotkeyAlt2Slot8Old = hotkeyAlt2Slot8;
-var hotkeyAlt2Slot9Old = hotkeyAlt2Slot9;
-var hotkeyAlt2Slot10Old = hotkeyAlt2Slot10;
-
-var hotkeyAlt3Slot1Old = hotkeyAlt3Slot1;
-var hotkeyAlt3Slot2Old = hotkeyAlt3Slot2;
-var hotkeyAlt3Slot3Old = hotkeyAlt3Slot3;
-var hotkeyAlt3Slot4Old = hotkeyAlt3Slot4;
-var hotkeyAlt3Slot5Old = hotkeyAlt3Slot5;
-var hotkeyAlt3Slot6Old = hotkeyAlt3Slot6;
-var hotkeyAlt3Slot7Old = hotkeyAlt3Slot7;
-var hotkeyAlt3Slot8Old = hotkeyAlt3Slot8;
-var hotkeyAlt3Slot9Old = hotkeyAlt3Slot9;
-var hotkeyAlt3Slot10Old = hotkeyAlt3Slot10;
-
-var hotkeyAlt4Slot1Old = hotkeyAlt4Slot1;
-var hotkeyAlt4Slot2Old = hotkeyAlt4Slot2;
-var hotkeyAlt4Slot3Old = hotkeyAlt4Slot3;
-var hotkeyAlt4Slot4Old = hotkeyAlt4Slot4;
-var hotkeyAlt4Slot5Old = hotkeyAlt4Slot5;
-var hotkeyAlt4Slot6Old = hotkeyAlt4Slot6;
-var hotkeyAlt4Slot7Old = hotkeyAlt4Slot7;
-var hotkeyAlt4Slot8Old = hotkeyAlt4Slot8;
-var hotkeyAlt4Slot9Old = hotkeyAlt4Slot9;
-var hotkeyAlt4Slot10Old = hotkeyAlt4Slot10;
-
-var alt_1_turnoff = false;
-var alt_2_turnoff = false;
-var alt_3_turnoff = false;
-var alt_4_turnoff = false;
-
-var acc = document.getElementsByClassName("accordion");
-for (var i = 0; i < acc.length; i++) {
-	acc[i].onclick = function () {
-		this.classList.toggle("active");
-		var hidable = this.nextElementSibling;
-		if (hidable.style.maxHeight) {
-			hidable.style.maxHeight = null;
-		} else {
-			hidable.style.maxHeight = hidable.scrollHeight + "px";
-		}
-	}
-}
-
-var more = document.getElementsByClassName("more");
-for (var i = 0; i < more.length; i++) {
-	more[i].onclick = function () {
-		this.classList.toggle("active");
-		var hideMore = this.nextElementSibling;
-		if (hideMore.style.maxHeight) {
-			hideMore.style.maxHeight = null;
-		} else {
-			hideMore.style.maxHeight = hideMore.scrollHeight + "px";
-
-			//Increase the heigh of the main settings panel
-			var hidable = document.getElementById("global-configuration").style.maxHeight;
-			hidable = Number(hidable.replace(/px/g, ''));
-			document.getElementById("global-configuration").style.maxHeight = hidable + hideMore.scrollHeight + "px";
-		}
-	}
-}
+      const globalConfig = document.getElementById('global-configuration');
+      let currentHeight = parseInt(globalConfig.style.maxHeight) || 0;
+      globalConfig.style.maxHeight = currentHeight + hideMore.scrollHeight + 'px';
+    }
+  })
+);
 
 function updateMoreMaxHeight() {
-	const element = document.getElementsByClassName("more")[0];
-	if ($('#more-settings').css('max-height') != "0px") {
-		var hideMore = element.nextElementSibling;
-		hideMore.style.maxHeight = hideMore.scrollHeight + "px";
+  const element = document.querySelector('.more');
+  if ($('#more-settings').css('max-height') !== "0px") {
+    const hideMore = element.nextElementSibling;
+    hideMore.style.maxHeight = hideMore.scrollHeight + 'px';
 
-		//Increase the heigh of the main settings panel
-		var hidable = document.getElementById("global-configuration").style.maxHeight;
-		hidable = Number(hidable.replace(/px/g, ''));
-		document.getElementById("global-configuration").style.maxHeight = hidable + hideMore.scrollHeight + "px";
-	}
+    const globalConfig = document.getElementById('global-configuration');
+    let currentHeight = parseInt(globalConfig.style.maxHeight) || 0;
+    globalConfig.style.maxHeight = currentHeight + hideMore.scrollHeight + 'px';
+  }
 }
+
 
 ////////////////////
 
-//Load the theme style
-var theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark';
-$('head').append('<link rel="stylesheet" href="../common/css/themes/' + theme + '/theme.css"/>');
+// Carrega o tema salvo no localStorage ou usa 'dark' como padrão
+let theme = localStorage.getItem('theme') || 'dark';
+
+// Insere a folha de estilo do tema no head
+const themeLinkId = 'theme-css-link'; // id para controle do link no head
+function loadThemeLink(themeName) {
+  // Se já existir o link, só atualiza o href
+  let existingLink = document.getElementById(themeLinkId);
+  if (existingLink) {
+    existingLink.href = `../common/css/themes/${themeName}/theme.css`;
+  } else {
+    // Cria o link e adiciona ao head
+    const link = document.createElement('link');
+    link.id = themeLinkId;
+    link.rel = 'stylesheet';
+    link.href = `../common/css/themes/${themeName}/theme.css`;
+    document.head.appendChild(link);
+  }
+}
+loadThemeLink(theme);
 
 function changeTheme(newTheme) {
-	$('link[href="../common/css/themes/' + theme + '/theme.css"]').remove();
-	var head = document.getElementsByTagName('head')[0];
-	var link = document.createElement('link');
-	link.rel = "stylesheet";
-	link.href = "../common/css/themes/" + newTheme + "/theme.css";
-	head.appendChild(link);
-	theme = newTheme;
+  if (newTheme === theme) return; // evita recarregar se for o mesmo tema
+
+  loadThemeLink(newTheme);
+  theme = newTheme;
+  localStorage.setItem('theme', newTheme);
 }
 
-//Theme options to settings
 var themes = ['acri', 'dark', 'rachni'];
+var $themeSelect = $('#alt-main-config-content #theme');
 
-$.each(themes, function (i) {
-	var $selected = '';
+themes.forEach(themeName => {
+  const $option = $('<option></option>')
+    .val(themeName)
+    .text(themeName);
+  if (themeName === theme) {
+    $option.prop('selected', true);
+  }
+  $themeSelect.append($option);
+});
 
-	if (themes[i] == theme) {
-		$selected = 'selected';
-	}
-
-	$('#alt-main-config-content #theme').append('<option name="' + themes[i] + '"' + $selected + '>' + themes[i] + '</option>');
+$themeSelect.on('change', function() {
+	const selectedTheme = $(this).val();
+	changeTheme(selectedTheme);
 });
 
 //////////////////
-
+// Continuar refatoração apartir daqui!!!
 //Font options to settings
 var fontlist_names = ["'Open Sans', sans-serif", "'Poppins', sans-serif", "'Raleway', sans-serif", "'Anonymous Pro', monospace", "'Patua One', cursive", "'Abril Fatface', cursive", "'Lora', serif", "'Cookie', cursive", "'Oleo Script', cursive", "'Kalam', cursive", "'Fredoka One', cursive"];
 var fontlist_urls = [];
