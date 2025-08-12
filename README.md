@@ -75,6 +75,6 @@ Pull requests são bem-vindos! Envie ideias, temas ou melhorias. Vamos construir
 
 ## 🙋‍♂️ Autor
 
-Feito com carinho por **[Seu Nome ou Nick]**  
-🛠️ GitHub: [github.com/seu-usuario](https://github.com/Zer0G0ld)
+Feito com carinho por **[Zer0G0ld]**  
+🛠️ GitHub: [github.com/Zer0G0ld](https://github.com/Zer0G0ld)
 
