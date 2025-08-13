@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <!-- Cabeçalho e dependências -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>Painel de Controle</title>
+        <link rel="stylesheet" href="../common/css/style-control_panel.css">
+        <link rel="stylesheet" href="../common/css/cp-icons.css">
+        <script src="../common/js/jquery.js"></script>
+        <script src="../common/js/jscolor.js"></script>
+        <script src="../common/js/hotkeys.js"></script>
+        <script src="../common/js/jquery-ui.js"></script>
+    </head>
+    <body class="painelzinhos-panel panel">
+        <div id="alt-panel" class="static-panel-top" style="margin-bottom: 0px">
+
+            <!-- Configurações principais -->
+            <div id="alt-main-config-content">
+                <!-- Interruptor principal -->
+                <label class="switch">
+                    <input class="checkbox-storable" type="checkbox" id="painelzinhos-masterswitch">
+                    <span class="slider round"></span>
+                </label>
+                <!-- Título principal -->
+                <div class="main-title">
+                    <div class="main-icon icon icon-settings"></div>
+                    <div>Configurações principais</div>
+                </div>
+                <label class="accordion"></label>
+                <!-- Configurações globais -->
+                <div id="global-configuration" class="hidable">
+                    <!-- Tempos globais -->
+                    <div id="time-options">
+                        <div class="settings-title">Tempos Globais</div>
+                        <div class="settings-inputs">
+                            <input class="storable" id="global-animation-time" type="number" placeholder="in-out" tabindex="1">
+                            <input class="storable" id="global-active-time" type="number" placeholder="active"  tabindex="2">
+                            <label class="config-btn lock-input">
+                                <input class="checkbox-storable" type="checkbox" id="global-lock-active">
+                                <div class="icon-btn icon icon-lock"></div>
+                            </label>
+                            <input class="storable" id="global-inactive-time" type="number" placeholder="inactive" tabindex="3">
+                            <label class="config-btn lock-input">
+                                <input class="checkbox-storable" type="checkbox" id="global-oneshot">
+                                <div class="icon-btn icon icon-oneshot"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <label class="more"><div class="icon icon-angle-down"></div></label>
+                    <!-- Mais configurações -->
+                    <div id="more-settings" class="hide-more">
+                        <!-- Abas de configuração -->
+                        <div class="tab">
+                            <button id="defaultTab" class="tablinks" onclick="openTab(this, 'appearance')">Aparência</button>
+                            <button class="tablinks" onclick="openTab(this, 'customs')">Personalizações</button>
+                            <button class="tablinks" onclick="openTab(this, 'system')">Sistema</button>
+                        </div>
+                        <!-- Aba Aparência -->
+                        <div id="tab-appearance" class="tabcontent">
+                            <!-- Tema -->
+                            <div id="theme-options">
+                                <div class="settings-title">Tema</div>
+                                <div class="settings-inputs">
+                                    <select name="theme" id="theme" class="select-settings-storable" onchange="changeTheme(this.value)"></select>
+                                </div>
+                            </div>
+                            <!-- Opções padrão -->
+                            <div class="default-options">
+                                <div class="settings-title"></div>
+                                <div class="settings-inputs">
+                                    <label><input class="checkbox-storable" type="checkbox" id="set-preview">Ativar janela de visualização</label>
+                                    <label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Ocultar números dos slots de memória</label>
+                                    <label><input class="checkbox-storable" type="checkbox" id="set-switch-position">Interruptores à esquerda</label>
+                                    <label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Mostrar dicas de ferramentas com o conteúdo armazenado</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Aba Personalizações -->
+                        <div id="tab-customs" class="tabcontent">
+                            <!-- Fonte personalizada -->
+                            <div id="fonts-options">
+                                <div class="settings-title">Fonte personalizada</div>
+                                <div class="settings-inputs">
+                                    <input id="new-font-name" placeholder="Font Family" tabindex="51">
+                                    <input id="new-font-url" placeholder="@import url" tabindex="52">
+                                    <div id="add-new-font" class="add"><div class="icon icon-plus-square"></div></div>
+                                </div>
+                            </div>
+                            <!-- Lista de fontes personalizadas -->
+                            <div id="custom-font-list">
+                                <ul></ul>
+                            </div>
+                            <!-- Logotipos padrão -->
+                            <div class="logos-options">
+                                <div class="settings-title">Logotipos padrão</div>
+                                <div class="settings-inputs">
+                                    <!-- Logotipos dos painelzinhos -->
+                                    <div class="logo-container default" onclick="openLogoPopup('alt-1-logo-default', 'alt-1-logo-default')">
+                                        <div class="logo-numbers">1</div>
+                                        <img id="alt-1-logo-default" class="logo-storable alt-logo-default">
+                                    </div>
+                                    <div class="logo-container default" onclick="openLogoPopup('alt-2-logo-default', 'alt-2-logo-default')">
+                                        <div class="logo-numbers">2</div>
+                                        <img id="alt-2-logo-default" class="logo-storable alt-logo-default">
+                                    </div>
+                                    <div class="logo-container default" onclick="openLogoPopup('alt-3-logo-default', 'alt-3-logo-default')">
+                                        <div class="logo-numbers">3</div>
+                                        <img id="alt-3-logo-default" class="logo-storable alt-logo-default">
+                                    </div>
+                                    <div class="logo-container default" onclick="openLogoPopup('alt-4-logo-default', 'alt-4-logo-default')">
+                                        <div class="logo-numbers">4</div>
+                                        <img id="alt-4-logo-default" class="logo-storable alt-logo-default">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Aba Sistema -->
+                        <div id="tab-system" class="tabcontent">
+                            <!-- Backup e reset -->
+                            <div class="bottom-options">
+                                <div class="settings-title">Dados de backup</div>
+                                <div class="settings-inputs">
+                                    <div class="import-file-btn">
+                                        <label for="importFile">Importar</label>
+                                        <input id="importFile" type="file"/>
+                                    </div>
+                                    <div class="btn-settings" onclick="exportData()">Exportar</div>
+                                    <div class="btn-settings" onclick="openResetPopup()">Redefinir</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painéis dos painelzinhos -->
+            <div id="sortable">
+                <!-- Painelzinho 1 -->
+                <div class="sortees" id="alt_1">
+                    <!-- ...conteúdo do painelzinho 1... -->
+                </div>
+                <!-- Painelzinho 2 -->
+                <div class="sortees" id="alt_2">
+                    <!-- ...conteúdo do painelzinho 2... -->
+                </div>
+                <!-- Painelzinho 3 -->
+                <div class="sortees" id="alt_3">
+                    <!-- ...conteúdo do painelzinho 3... -->
+                </div>
+                <!-- Painelzinho 4 -->
+                <div class="sortees" id="alt_4">
+                    <!-- ...conteúdo do painelzinho 4... -->
+                </div>
+            </div>
+
+            <!-- Popup seleção de imagem -->
+            <div id="select-image" class="center hide">
+                <!-- ...conteúdo do popup de imagem... -->
+            </div>
+
+            <!-- Popup exportação de dados -->
+            <div id="export-data" class="center hide">
+                <!-- ...conteúdo do popup de exportação... -->
+            </div>
+
+            <!-- Popup reset de configurações -->
+            <div id="reset-all" class="center hide">
+                <!-- ...conteúdo do popup de reset... -->
+            </div>
+
+            <!-- Lista de arquivos -->
+            <div id='fileNames'></div>
+
+            <!-- Preview dos painelzinhos -->
+            <div id="alt-preview" class="active">
+                <label><div class="icon icon-search"></div></label>
+                <div id="toggle-preview" class="active"><div class="icon icon-chevron-down"></div></div>
+                <div class="embed-container">
+                    <iframe id="myiframe" src="./browser-source.html?mode=preview" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Script principal do painel -->
+        <script src="./js/control-panel.js"></script>
+    </body>
+</html>

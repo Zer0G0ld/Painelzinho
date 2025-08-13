@@ -1,6 +1,6 @@
 /*********************************
-**	Animated Lower Thirds v1.6	**
-**	Author: NoeAL				**
+**	Animated Painelzinhos v1.6	**
+**	Author: Zer0G0ld			**
 *********************************/
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
@@ -48,7 +48,7 @@ body {
 
 /*******************************/
 
-.lower-thirds {
+.painelzinhos {
 	display: flex;
 	justify-content: center;
 }
@@ -342,20 +342,20 @@ body {
 	animation: cubic-bezier(0.19, 0.76, 0.32, 1) 1 reverse both;
 	/*animation-duration: var(--animation-time);*/
 }
-#lower-third-1.animation-in > div:first-child img,
-#lower-third-1.animation-out > div:first-child img {
+#painelzinho-1.animation-in > div:first-child img,
+#painelzinho-1.animation-out > div:first-child img {
 	animation-duration: var(--alt-1-animation-time);
 }
-#lower-third-2.animation-in > div:first-child img,
-#lower-third-2.animation-out > div:first-child img {
+#painelzinho-2.animation-in > div:first-child img,
+#painelzinho-2.animation-out > div:first-child img {
 	animation-duration: var(--alt-2-animation-time);
 }
-#lower-third-3.animation-in > div:first-child img,
-#lower-third-3.animation-out > div:first-child img {
+#painelzinho-3.animation-in > div:first-child img,
+#painelzinho-3.animation-out > div:first-child img {
 	animation-duration: var(--alt-3-animation-time);
 }
-#lower-third-4.animation-in > div:first-child img,
-#lower-third-4.animation-out > div:first-child img {
+#painelzinho-4.animation-in > div:first-child img,
+#painelzinho-4.animation-out > div:first-child img {
 	animation-duration: var(--alt-4-animation-time);
 }
 /*left*/
@@ -385,20 +385,20 @@ body {
 .animation-out > div:nth-child(4) {
 	animation: cubic-bezier(0.19, 0.76, 0.32, 1) 1 reverse both;
 }
-#lower-third-1.animation-in > div:nth-child(1), #lower-third-1.animation-in > div:nth-child(2), #lower-third-1.animation-in > div:nth-child(4),
-#lower-third-1.animation-out > div:nth-child(1), #lower-third-1.animation-out > div:nth-child(2), #lower-third-1.animation-out > div:nth-child(4) {
+#painelzinho-1.animation-in > div:nth-child(1), #painelzinho-1.animation-in > div:nth-child(2), #painelzinho-1.animation-in > div:nth-child(4),
+#painelzinho-1.animation-out > div:nth-child(1), #painelzinho-1.animation-out > div:nth-child(2), #painelzinho-1.animation-out > div:nth-child(4) {
 	animation-duration: var(--alt-1-animation-time);
 }
-#lower-third-2.animation-in > div:nth-child(1), #lower-third-2.animation-in > div:nth-child(2), #lower-third-2.animation-in > div:nth-child(4),
-#lower-third-2.animation-out > div:nth-child(1), #lower-third-2.animation-out > div:nth-child(2), #lower-third-2.animation-out > div:nth-child(4) {
+#painelzinho-2.animation-in > div:nth-child(1), #painelzinho-2.animation-in > div:nth-child(2), #painelzinho-2.animation-in > div:nth-child(4),
+#painelzinho-2.animation-out > div:nth-child(1), #painelzinho-2.animation-out > div:nth-child(2), #painelzinho-2.animation-out > div:nth-child(4) {
 	animation-duration: var(--alt-2-animation-time);
 }
-#lower-third-3.animation-in > div:nth-child(1), #lower-third-3.animation-in > div:nth-child(2), #lower-third-3.animation-in > div:nth-child(4),
-#lower-third-3.animation-out > div:nth-child(1),#lower-third-3.animation-out > div:nth-child(2), #lower-third-3.animation-out > div:nth-child(4) {
+#painelzinho-3.animation-in > div:nth-child(1), #painelzinho-3.animation-in > div:nth-child(2), #painelzinho-3.animation-in > div:nth-child(4),
+#painelzinho-3.animation-out > div:nth-child(1),#painelzinho-3.animation-out > div:nth-child(2), #painelzinho-3.animation-out > div:nth-child(4) {
 	animation-duration: var(--alt-3-animation-time);
 }
-#lower-third-4.animation-in > div:nth-child(1), #lower-third-4.animation-in > div:nth-child(2), #lower-third-4.animation-in > div:nth-child(4),
-#lower-third-4.animation-out > div:nth-child(1), #lower-third-4.animation-out > div:nth-child(2), #lower-third-4.animation-out > div:nth-child(4) {
+#painelzinho-4.animation-in > div:nth-child(1), #painelzinho-4.animation-in > div:nth-child(2), #painelzinho-4.animation-in > div:nth-child(4),
+#painelzinho-4.animation-out > div:nth-child(1), #painelzinho-4.animation-out > div:nth-child(2), #painelzinho-4.animation-out > div:nth-child(4) {
 	animation-duration: var(--alt-4-animation-time);
 }
 /*left*/
@@ -436,20 +436,20 @@ body {
 .animation-out > .text-content > div:nth-child(2) div {
 	animation: cubic-bezier(0.19, 0.76, 0.32, 1) 1 reverse both;
 }
-#lower-third-1.animation-in > .text-content > div:first-child div, #lower-third-1.animation-in > .text-content > div:nth-child(2) div,
-#lower-third-1.animation-out > .text-content > div:first-child div, #lower-third-1.animation-out > .text-content > div:nth-child(2) div {
+#painelzinho-1.animation-in > .text-content > div:first-child div, #painelzinho-1.animation-in > .text-content > div:nth-child(2) div,
+#painelzinho-1.animation-out > .text-content > div:first-child div, #painelzinho-1.animation-out > .text-content > div:nth-child(2) div {
 	animation-duration: var(--alt-1-animation-time);
 }
-#lower-third-2.animation-in > .text-content > div:first-child div, #lower-third-2.animation-in > .text-content > div:nth-child(2) div,
-#lower-third-2.animation-out > .text-content > div:first-child div, #lower-third-2.animation-out > .text-content > div:nth-child(2) div {
+#painelzinho-2.animation-in > .text-content > div:first-child div, #painelzinho-2.animation-in > .text-content > div:nth-child(2) div,
+#painelzinho-2.animation-out > .text-content > div:first-child div, #painelzinho-2.animation-out > .text-content > div:nth-child(2) div {
 	animation-duration: var(--alt-2-animation-time);
 }
-#lower-third-3.animation-in > .text-content > div:first-child div, #lower-third-3.animation-in > .text-content > div:nth-child(2) div,
-#lower-third-3.animation-out > .text-content > div:first-child div, #lower-third-3.animation-out > .text-content > div:nth-child(2) div {
+#painelzinho-3.animation-in > .text-content > div:first-child div, #painelzinho-3.animation-in > .text-content > div:nth-child(2) div,
+#painelzinho-3.animation-out > .text-content > div:first-child div, #painelzinho-3.animation-out > .text-content > div:nth-child(2) div {
 	animation-duration: var(--alt-3-animation-time);
 }
-#lower-third-4.animation-in > .text-content > div:first-child div, #lower-third-4.animation-in > .text-content > div:nth-child(2) div,
-#lower-third-4.animation-out > .text-content > div:first-child div, #lower-third-4.animation-out > .text-content > div:nth-child(2) div {
+#painelzinho-4.animation-in > .text-content > div:first-child div, #painelzinho-4.animation-in > .text-content > div:nth-child(2) div,
+#painelzinho-4.animation-out > .text-content > div:first-child div, #painelzinho-4.animation-out > .text-content > div:nth-child(2) div {
 	animation-duration: var(--alt-4-animation-time);
 }
 /*left*/
@@ -496,68 +496,68 @@ body {
     overflow: hidden;
     transition: height 0.1s;
 }
-#lower-third-1.alt{
+#painelzinho-1.alt{
 	font-size: var(--alt-1-size);
 }
-#lower-third-2.alt{
+#painelzinho-2.alt{
 	font-size: var(--alt-2-size);
 }
-#lower-third-3.alt{
+#painelzinho-3.alt{
 	font-size: var(--alt-3-size);
 }
-#lower-third-4.alt{
+#painelzinho-4.alt{
 	font-size: var(--alt-4-size);
 }
 
-#lower-third-1.left{
+#painelzinho-1.left{
     left: var(--alt-1-margin-h);
     bottom: var(--alt-1-margin-v);
 }
-#lower-third-1.right{
+#painelzinho-1.right{
     flex-direction: row-reverse;
     right: var(--alt-1-margin-h);
     bottom: var(--alt-1-margin-v);
 }
-#lower-third-1.center{
+#painelzinho-1.center{
 	bottom: var(--alt-1-margin-v);
 }
 
-#lower-third-2.left{
+#painelzinho-2.left{
     left: var(--alt-2-margin-h);
     bottom: var(--alt-2-margin-v);
 }
-#lower-third-2.right{
+#painelzinho-2.right{
     flex-direction: row-reverse;
     right: var(--alt-2-margin-h);
     bottom: var(--alt-2-margin-v);
 }
-#lower-third-2.center{
+#painelzinho-2.center{
 	bottom: var(--alt-2-margin-v);
 }
 
-#lower-third-3.left{
+#painelzinho-3.left{
     left: var(--alt-3-margin-h);
     bottom: var(--alt-3-margin-v);
 }
-#lower-third-3.right{
+#painelzinho-3.right{
     flex-direction: row-reverse;
     right: var(--alt-3-margin-h);
     bottom: var(--alt-3-margin-v);
 }
-#lower-third-3.center{
+#painelzinho-3.center{
 	bottom: var(--alt-3-margin-v);
 }
 
-#lower-third-4.left{
+#painelzinho-4.left{
     left: var(--alt-4-margin-h);
     bottom: var(--alt-4-margin-v);
 }
-#lower-third-4.right{
+#painelzinho-4.right{
     flex-direction: row-reverse;
     right: var(--alt-4-margin-h);
     bottom: var(--alt-4-margin-v);
 }
-#lower-third-4.center{
+#painelzinho-4.center{
 	bottom: var(--alt-4-margin-v);
 }
 
@@ -571,36 +571,36 @@ body {
 .center > .text-content > .text-mask {
 	text-align: center;
 }
-#lower-third-1 > div.text-content > div:first-child {
+#painelzinho-1 > div.text-content > div:first-child {
     height: calc(var(--alt-1-name-size) + 0.25em);
     margin-bottom: var(--alt-1-line-spacing);
     transition: margin 0.1s;
 }
-#lower-third-1 > div.text-content > div:nth-child(2) {
+#painelzinho-1 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-1-info-size) + 0.25em);
 }
-#lower-third-2 > div.text-content > div:first-child {
+#painelzinho-2 > div.text-content > div:first-child {
     height: calc(var(--alt-2-name-size) + 0.25em);
     margin-bottom: var(--alt-2-line-spacing);
     transition: margin 0.1s;
 }
-#lower-third-2 > div.text-content > div:nth-child(2) {
+#painelzinho-2 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-2-info-size) + 0.25em);
 }
-#lower-third-3 > div.text-content > div:first-child {
+#painelzinho-3 > div.text-content > div:first-child {
     height: calc(var(--alt-3-name-size) + 0.25em);
     margin-bottom: var(--alt-3-line-spacing);
     transition: margin 0.1s;
 }
-#lower-third-3 > div.text-content > div:nth-child(2) {
+#painelzinho-3 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-3-info-size) + 0.25em);
 }
-#lower-third-4 > div.text-content > div:first-child {
+#painelzinho-4 > div.text-content > div:first-child {
     height: calc(var(--alt-4-name-size) + 0.25em);
     margin-bottom: var(--alt-4-line-spacing);
     transition: margin 0.1s;
 }
-#lower-third-4 > div.text-content > div:nth-child(2) {
+#painelzinho-4 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-4-info-size) + 0.25em);
 }
 
@@ -611,7 +611,7 @@ body {
     transition: font-size 0.1s;
     padding: 0 0.2rem;
 }
-#lower-third-1 > div.text-content > div:first-child div {
+#painelzinho-1 > div.text-content > div:first-child div {
 	font-family: var(--alt-1-font);
 	font-size: var(--alt-1-name-size);
     font-weight: var(--alt-1-name-weight);
@@ -619,7 +619,7 @@ body {
     color: var(--alt-1-name-color);
     text-shadow : var(--alt-1-shadows);
 }
-#lower-third-2 > div.text-content > div:first-child div {
+#painelzinho-2 > div.text-content > div:first-child div {
 	font-family: var(--alt-2-font);
 	font-size: var(--alt-2-name-size);
     font-weight: var(--alt-2-name-weight);
@@ -627,7 +627,7 @@ body {
     color: var(--alt-2-name-color);
     text-shadow : var(--alt-2-shadows);
 }
-#lower-third-3 > div.text-content > div:first-child div {
+#painelzinho-3 > div.text-content > div:first-child div {
 	font-family: var(--alt-3-font);
 	font-size: var(--alt-3-name-size);
     font-weight: var(--alt-3-name-weight);
@@ -635,7 +635,7 @@ body {
     color: var(--alt-3-name-color);
     text-shadow : var(--alt-3-shadows);
 }
-#lower-third-4 > div.text-content > div:first-child div {
+#painelzinho-4 > div.text-content > div:first-child div {
 	font-family: var(--alt-4-font);
 	font-size: var(--alt-4-name-size);
     font-weight: var(--alt-4-name-weight);
@@ -651,7 +651,7 @@ body {
     transition: font-size 0.1s;
     padding: 0 0.2rem;
 }
-#lower-third-1 > div.text-content > div:nth-child(2) div {
+#painelzinho-1 > div.text-content > div:nth-child(2) div {
     font-family: var(--alt-1-font);
     font-size: var(--alt-1-info-size);
     font-weight: var(--alt-1-info-weight);
@@ -659,7 +659,7 @@ body {
     color: var(--alt-1-info-color);
     text-shadow : var(--alt-1-shadows);	
 }
-#lower-third-2 > div.text-content > div:nth-child(2) div {
+#painelzinho-2 > div.text-content > div:nth-child(2) div {
     font-family: var(--alt-2-font);
     font-size: var(--alt-2-info-size);
     font-weight: var(--alt-2-info-weight);
@@ -667,7 +667,7 @@ body {
     color: var(--alt-2-info-color);
     text-shadow : var(--alt-2-shadows);	
 }
-#lower-third-3 > div.text-content > div:nth-child(2) div {
+#painelzinho-3 > div.text-content > div:nth-child(2) div {
     font-family: var(--alt-3-font);
     font-size: var(--alt-3-info-size);
     font-weight: var(--alt-3-info-weight);
@@ -675,7 +675,7 @@ body {
     color: var(--alt-3-info-color);
     text-shadow : var(--alt-3-shadows);	
 }
-#lower-third-4 > div.text-content > div:nth-child(2) div {
+#painelzinho-4 > div.text-content > div:nth-child(2) div {
     font-family: var(--alt-4-font);
     font-size: var(--alt-4-info-size);
     font-weight: var(--alt-4-info-weight);
@@ -734,20 +734,20 @@ body {
     height: 3.5em;
 }
 
-#lower-third-1.style-1 > .graph-1 {
+#painelzinho-1.style-1 > .graph-1 {
     background: var(--alt-1-style-color-1);
     /* box-shadow : var(--alt-1-shadows);	 */
     box-shadow : var(--alt-1-shadows-graph);
 }
-#lower-third-2.style-1 > .graph-1 {
+#painelzinho-2.style-1 > .graph-1 {
     background: var(--alt-2-style-color-1);
     box-shadow : var(--alt-2-shadows-graph);
 }
-#lower-third-3.style-1 > .graph-1 {
+#painelzinho-3.style-1 > .graph-1 {
     background: var(--alt-3-style-color-1);
     box-shadow : var(--alt-3-shadows-graph);
 }
-#lower-third-4.style-1 > .graph-1 {
+#painelzinho-4.style-1 > .graph-1 {
     background: var(--alt-4-style-color-1);
     box-shadow : var(--alt-4-shadows-graph);
 }
@@ -771,7 +771,7 @@ body {
 	padding: 1em 400%;	Full with background */
 }
 
-#lower-third-1.style-1 > .graph-2 {
+#painelzinho-1.style-1 > .graph-2 {
 	background: var(--alt-1-style-color-2);
 	opacity: var(--alt-1-background);
 	border: solid var(--alt-1-border_thickness_amount);
@@ -780,7 +780,7 @@ body {
 	box-shadow: var(--alt-1-shadows-graph);
 
 }
-#lower-third-2.style-1 > .graph-2 {
+#painelzinho-2.style-1 > .graph-2 {
 	background: var(--alt-2-style-color-2);
 	opacity: var(--alt-2-background);
 	border: solid var(--alt-2-border_thickness_amount);
@@ -788,7 +788,7 @@ body {
 	border-radius: calc(var(--alt-2-corners) * 1.1);
 	box-shadow: var(--alt-2-shadows-graph);		
 }
-#lower-third-3.style-1 > .graph-2 {
+#painelzinho-3.style-1 > .graph-2 {
 	background: var(--alt-3-style-color-2);
 	opacity: var(--alt-3-background);
 	border: solid var(--alt-3-border_thickness_amount);
@@ -796,7 +796,7 @@ body {
 	border-radius: calc(var(--alt-3-corners) * 1.1);
 	box-shadow: var(--alt-3-shadows-graph);
 }
-#lower-third-4.style-1 > .graph-2 {
+#painelzinho-4.style-1 > .graph-2 {
 	background: var(--alt-4-style-color-2);
 	opacity: var(--alt-4-background);	
 	border: solid var(--alt-4-border_thickness_amount);
@@ -819,20 +819,20 @@ body {
 
 /*****Style 2*****/
 
-#lower-third-1.style-2 > div.text-content > div:first-child {
+#painelzinho-1.style-2 > div.text-content > div:first-child {
 	/* height: calc(var(--alt-1-name-size) + 1rem); */
 	height: calc(var(--alt-1-name-size) + 1.2rem);
     padding: 0 0.2rem 0 0;
 }
-#lower-third-2.style-2 > div.text-content > div:first-child {
+#painelzinho-2.style-2 > div.text-content > div:first-child {
 	height: calc(var(--alt-2-name-size) + 1rem);
 	padding: 0 0.2rem 0 0;
 }
-#lower-third-3.style-2 > div.text-content > div:first-child {
+#painelzinho-3.style-2 > div.text-content > div:first-child {
 	height: calc(var(--alt-3-name-size) + 1rem);
 	padding: 0 0.2rem 0 0;
 }
-#lower-third-4.style-2 > div.text-content > div:first-child {
+#painelzinho-4.style-2 > div.text-content > div:first-child {
 	height: calc(var(--alt-4-name-size) + 1rem);
 	padding: 0 0.2rem 0 0;
 }
@@ -850,7 +850,7 @@ body {
 	left: 0;	
 }
 
-#lower-third-1.style-2 > div.text-content > div:first-child div::after {
+#painelzinho-1.style-2 > div.text-content > div:first-child div::after {
 	background: var(--alt-1-style-color-1);
 	/* opacity: var(--alt-1-background); */
 	box-sizing: border-box;
@@ -859,7 +859,7 @@ body {
 	border-radius: var(--alt-1-corners);
 	box-shadow: var(--alt-1-shadows-graph);
 }
-#lower-third-2.style-2 > div.text-content > div:first-child div::after {
+#painelzinho-2.style-2 > div.text-content > div:first-child div::after {
 	background: var(--alt-2-style-color-1);
 	/* opacity: var(--alt-2-background); */
 	box-sizing: border-box;
@@ -868,7 +868,7 @@ body {
 	border-radius: var(--alt-2-corners);
 	box-shadow: var(--alt-2-shadows-graph);
 }
-#lower-third-3.style-2 > div.text-content > div:first-child div::after {
+#painelzinho-3.style-2 > div.text-content > div:first-child div::after {
 	background: var(--alt-3-style-color-1);
 	/* opacity: var(--alt-3-background); */
 	box-sizing: border-box;
@@ -877,7 +877,7 @@ body {
 	border-radius: var(--alt-3-corners);
 	box-shadow: var(--alt-3-shadows-graph);
 }
-#lower-third-4.style-2 > div.text-content > div:first-child div::after {
+#painelzinho-4.style-2 > div.text-content > div:first-child div::after {
 	background: var(--alt-4-style-color-1);
 	/* opacity: var(--alt-4-background); */
 	box-sizing: border-box;
@@ -887,19 +887,19 @@ body {
 	box-shadow: var(--alt-4-shadows-graph);
 }
 
-#lower-third-1.style-2 > div.text-content > div:nth-child(2) {
+#painelzinho-1.style-2 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-1-info-size) + 1.2rem);
     padding: 0 0.2rem 0 0;
 }
-#lower-third-2.style-2 > div.text-content > div:nth-child(2) {
+#painelzinho-2.style-2 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-2-info-size) + 1rem);
 	padding: 0 0.2rem 0 0;
 }
-#lower-third-3.style-2 > div.text-content > div:nth-child(2) {
+#painelzinho-3.style-2 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-3-info-size) + 1rem);
 	padding: 0 0.2rem 0 0;
 }
-#lower-third-4.style-2 > div.text-content > div:nth-child(2) {
+#painelzinho-4.style-2 > div.text-content > div:nth-child(2) {
 	height: calc(var(--alt-4-info-size) + 1rem);
 	padding: 0 0.2rem 0 0;
 }
@@ -921,7 +921,7 @@ body {
 	left: 0;
 }
 
-#lower-third-1.style-2 > div.text-content > div:nth-child(2) div::after {
+#painelzinho-1.style-2 > div.text-content > div:nth-child(2) div::after {
     background: var(--alt-1-style-color-2);
 	/* opacity: var(--alt-1-background); */
 	box-sizing: border-box;
@@ -930,7 +930,7 @@ body {
 	border-radius: var(--alt-1-corners);
 	box-shadow: var(--alt-1-shadows-graph);
 }
-#lower-third-2.style-2 > div.text-content > div:nth-child(2) div::after {
+#painelzinho-2.style-2 > div.text-content > div:nth-child(2) div::after {
     background: var(--alt-2-style-color-2);
 	/* opacity: var(--alt-2-background); */
 	box-sizing: border-box;
@@ -939,7 +939,7 @@ body {
 	border-radius: var(--alt-2-corners);
 	box-shadow: var(--alt-2-shadows-graph);
 }
-#lower-third-3.style-2 > div.text-content > div:nth-child(2) div::after {
+#painelzinho-3.style-2 > div.text-content > div:nth-child(2) div::after {
     background: var(--alt-3-style-color-2);
 	/* opacity: var(--alt-3-background); */
 	box-sizing: border-box;
@@ -948,7 +948,7 @@ body {
 	border-radius: var(--alt-3-corners);
 	box-shadow: var(--alt-3-shadows-graph);
 }
-#lower-third-4.style-2 > div.text-content > div:nth-child(2) div::after {
+#painelzinho-4.style-2 > div.text-content > div:nth-child(2) div::after {
     background: var(--alt-4-style-color-2);
 	/* opacity: var(--alt-4-background); */
 	box-sizing: border-box;
@@ -1001,25 +1001,25 @@ body {
 	margin-right: -6em;
 }
 
-#lower-third-1.style-3 > .graph-1 {
+#painelzinho-1.style-3 > .graph-1 {
     background: var(--alt-1-style-color-1);
 	box-shadow: var(--alt-1-shadows-graph);
 	border: var(--alt-1-border_thickness_amount) solid var(--alt-1-style-color-3);
 	border-radius: calc(var(--alt-1-corners) * 1.1);
 }
-#lower-third-2.style-3 > .graph-1 {
+#painelzinho-2.style-3 > .graph-1 {
     background: var(--alt-2-style-color-1);
 	box-shadow: var(--alt-2-shadows-graph);
 	border: var(--alt-2-border_thickness_amount) solid var(--alt-2-style-color-3);
 	border-radius: calc(var(--alt-2-corners) * 1.1);
 }
-#lower-third-3.style-3 > .graph-1 {
+#painelzinho-3.style-3 > .graph-1 {
     background: var(--alt-3-style-color-1);
 	box-shadow: var(--alt-3-shadows-graph);
 	border: var(--alt-3-border_thickness_amount) solid var(--alt-3-style-color-3);
 	border-radius: calc(var(--alt-3-corners) * 1.1);
 }
-#lower-third-4.style-3 > .graph-1 {
+#painelzinho-4.style-3 > .graph-1 {
     background: var(--alt-4-style-color-1);
 	box-shadow: var(--alt-4-shadows-graph);
 	border: var(--alt-4-border_thickness_amount) solid var(--alt-4-style-color-3);
@@ -1036,41 +1036,41 @@ body {
 	height: calc(100% - 0.5em);
 }
 
-#lower-third-1.style-3 > .graph-2 {
+#painelzinho-1.style-3 > .graph-2 {
 	background: var(--alt-1-style-color-2);
 	box-shadow: var(--alt-1-shadows-graph);
 	opacity: var(--alt-1-background);
     border: var(--alt-1-border_thickness_amount) solid var(--alt-1-style-color-4);
 }
-#lower-third-2.style-3 > .graph-2 {
+#painelzinho-2.style-3 > .graph-2 {
 	background: var(--alt-2-style-color-2);
 	box-shadow: var(--alt-2-shadows-graph);
 	opacity: var(--alt-2-background);
     border: var(--alt-2-border_thickness_amount) solid var(--alt-2-style-color-4);
 }
-#lower-third-3.style-3 > .graph-2 {
+#painelzinho-3.style-3 > .graph-2 {
 	background: var(--alt-3-style-color-2);
 	box-shadow: var(--alt-3-shadows-graph);
 	opacity: var(--alt-3-background);
     border: var(--alt-3-border_thickness_amount) solid var(--alt-3-style-color-4);
 }
-#lower-third-4.style-3 > .graph-2 {
+#painelzinho-4.style-3 > .graph-2 {
 	background: var(--alt-4-style-color-2);
 	box-shadow: var(--alt-4-shadows-graph);
 	opacity: var(--alt-4-background);
     border: var(--alt-4-border_thickness_amount) solid var(--alt-4-style-color-4);
 }
 
-#lower-third-1.style-3.left > .graph-2 {
+#painelzinho-1.style-3.left > .graph-2 {
 	border-radius: 0 var(--alt-1-corners) var(--alt-1-corners) 0;
 }
-#lower-third-2.style-3.left > .graph-2 {
+#painelzinho-2.style-3.left > .graph-2 {
 	border-radius: 0 var(--alt-2-corners) var(--alt-2-corners) 0;
 }
-#lower-third-3.style-3.left > .graph-2 {
+#painelzinho-3.style-3.left > .graph-2 {
 	border-radius: 0 var(--alt-3-corners) var(--alt-3-corners) 0;
 }
-#lower-third-4.style-3.left > .graph-2 {
+#painelzinho-4.style-3.left > .graph-2 {
 	border-radius: 0 var(--alt-4-corners) var(--alt-4-corners) 0;
 }
 .style-3.left > .graph-2 {
@@ -1078,16 +1078,16 @@ body {
 	border-left: 0;
 }
 
-#lower-third-1.style-3.right > .graph-2 {
+#painelzinho-1.style-3.right > .graph-2 {
 	border-radius: var(--alt-1-corners) 0 0 var(--alt-1-corners);
 }
-#lower-third-2.style-3.right > .graph-2 {
+#painelzinho-2.style-3.right > .graph-2 {
 	border-radius: var(--alt-2-corners) 0 0 var(--alt-2-corners);
 }
-#lower-third-3.style-3.right > .graph-2 {
+#painelzinho-3.style-3.right > .graph-2 {
 	border-radius: var(--alt-3-corners) 0 0 var(--alt-3-corners);
 }
-#lower-third-4.style-3.right > .graph-2 {
+#painelzinho-4.style-3.right > .graph-2 {
 	border-radius: var(--alt-4-corners) 0 0 var(--alt-4-corners);
 }
 .style-3.right > .graph-2 {
@@ -1167,19 +1167,19 @@ body {
 
 
 /*Uncomment to invert vertical position*/
-/* #lower-third-1 {
+/* #painelzinho-1 {
 	top: var(--alt-1-margin-v);
 	bottom: unset!important;
 }
-#lower-third-2 {
+#painelzinho-2 {
 	top: var(--alt-2-margin-v);
 	bottom: unset!important;
 }
-#lower-third-3 {
+#painelzinho-3 {
 	top: var(--alt-3-margin-v);
 	bottom: unset!important;
 }
-#lower-third-4 {
+#painelzinho-4 {
 	top: var(--alt-4-margin-v);
 	bottom: unset!important;
 } */
@@ -1199,7 +1199,7 @@ body {
 	align-items: center;
 	display: flex;
 }
-#lower-third-1.style-3 > .logo {
+#painelzinho-1.style-3 > .logo {
     background: var(--alt-1-style-color-1);
 	box-shadow: var(--alt-1-shadows);
 	opacity: var(--alt-1-background);

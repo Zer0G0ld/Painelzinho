@@ -13,17 +13,17 @@ local hotkeyStates = {}  -- Armazena o estado ON/OFF de cada hotkey
 -- Gerar nomes legíveis dos hotkeys para o OBS
 local hotkeyLabels = {
     A_SWITCH_0_main = "Main Switch",
-    A_SWITCH_1 = "Lower Third Switch #1",
-    A_SWITCH_2 = "Lower Third Switch #2",
-    A_SWITCH_3 = "Lower Third Switch #3",
-    A_SWITCH_4 = "Lower Third Switch #4"
+    A_SWITCH_1 = "Painelzinho Switch #1",
+    A_SWITCH_2 = "Painelzinho Switch #2",
+    A_SWITCH_3 = "Painelzinho Switch #3",
+    A_SWITCH_4 = "Painelzinho Switch #4"
 }
 
 -- Gera automaticamente os hotkeys LT1_SLT01 até LT4_SLT10
 for alt = 1, 4 do
     for slot = 1, 10 do
         local key = string.format("LT%d_SLT%02d", alt, slot)
-        local label = string.format("Load Slot #%d on LT#%d", slot, alt)
+        local label = string.format("Slot de carga #%d em LT#%d", slot, alt)
         hotkeyLabels[key] = label
     end
 end
@@ -106,12 +106,12 @@ function script_update(settings)
 end
 
 function script_description()
-    return "Control the switches of the lower thirds with hotkeys"
+    return "Controle os interruptores dos terços inferiores com teclas de atalho"
 end
 
 function script_properties()
     local props = obs.obs_properties_create()
-    obs.obs_properties_add_bool(props, "debug", "Enable debug output")
+    obs.obs_properties_add_bool(props, "debug", "Ativar saída de depuração")
     return props
 end
 

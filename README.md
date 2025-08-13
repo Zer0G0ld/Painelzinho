@@ -1,14 +1,14 @@
-# 🧃 Painelzinho – Lower Thirds Animado para OBS
+# 🧃 Painelzinho – Painelzinhos Animado para OBS
 
-O **Painelzinho** é um plugin leve e personalizável para o OBS Studio que permite adicionar _lower thirds_ animados (barras informativas) com controle total por um painel dockável dentro do OBS.
+O **Painelzinho** é um plugin leve e personalizável para o OBS Studio que permite adicionar _Painelzinhos_ animados (barras informativas) com controle total por um painel dockável dentro do OBS.
 
-Inspirado em projetos como o *Animated Lower Thirds*, mas com uma pegada única, visual mais moderno, suporte a temas e melhorias pensadas para streamers e produtores de conteúdo em PT-BR e além.
+Inspirado em projetos como o *Animated Painelzinhos*, mas com uma pegada única, visual mais moderno, suporte a temas e melhorias pensadas para streamers e produtores de conteúdo em PT-BR e além.
 
 ---
 
 ## ✨ Funcionalidades
 
-- 🎬 Lower thirds animados com estilos variados
+- 🎬 Painelzinhos animados com estilos variados
 - 🎛️ Painel de controle dockável no OBS (HTML/CSS/JS)
 - 🎨 Suporte a temas personalizados (dark, light, etc)
 - 🔠 Personalização de texto, cores, ícones e logos

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 	<head>
-		<!--Animated Lower Thirds v1.6-->
-		<!--Author: NoeAL-->
+		<!--Animated Painelzinhos v1.6-->
+		<!--Author: Zer0G0ld-->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<title>Lower Thirds Control Panel</title>
+		<title>Painel de Controle</title>
 		<link rel="stylesheet" href="../common/css/style-control_panel.css">
 		<link rel="stylesheet" href="../common/css/cp-icons.css">
 		<script src="../common/js/jquery.js"></script>
@@ -14,122 +14,226 @@
 		<script src="../common/js/hotkeys.js"></script>
 		<script src="../common/js/jquery-ui.js"></script>
 	</head>
-	<body class="lower-thirds-panel panel">
+	<body class="painelzinhos-panel panel">
 		<div id="alt-panel" class="static-panel-top" style="margin-bottom: 0px">
-			
-			<div id="alt-main-config-content"> <!--// Main Settings//-->
-				<label class="switch">
-				<input class="checkbox-storable" type="checkbox" id="lower-thirds-masterswitch"> <!--"checked" to active switch-->
-				<span class="slider round"></span>
-				</label>
-				<div class="main-title">
-					<div class="main-icon icon icon-settings"></div>
-					<div>Main settings</div>					
-				</div>
-				<label class="accordion"></label>
-				<div id="global-configuration" class="hidable">
-					<div id="time-options">
-						<div class="settings-title">Global Times</div>
-						<div class="settings-inputs">
-							<input class="storable" id="global-animation-time" type="number" placeholder="in-out" tabindex="1">
-							<input class="storable" id="global-active-time" type="number" placeholder="active"  tabindex="2">
-							<label class="config-btn lock-input">
-								<input class="checkbox-storable" type="checkbox" id="global-lock-active">
-								<div class="icon-btn icon icon-lock"></div>
-							</label>
-							<input class="storable" id="global-inactive-time" type="number" placeholder="inactive" tabindex="3">
-							<label class="config-btn lock-input">
-								<input class="checkbox-storable" type="checkbox" id="global-oneshot">
-								<div class="icon-btn icon icon-oneshot"></div>
-							</label>
-						</div>
-					</div>
-					<label class="more"><div class="icon icon-angle-down"></div></label>
-					<div id="more-settings" class="hide-more">
-						<div class="tab">
-							<button id="defaultTab" class="tablinks" onclick="openTab(this, 'appearance')">Appearance</button>
-							<button class="tablinks" onclick="openTab(this, 'customs')">Customs</button>
-							<button class="tablinks" onclick="openTab(this, 'system')">System</button>
-						</div>
-						<!-- Tab content -->
-						<div id="tab-appearance" class="tabcontent" >
-							<div id="theme-options">
-								<div class="settings-title">Theme</div>
-								<div class="settings-inputs">
-									<select name="theme" id="theme" class="select-settings-storable" onchange="changeTheme(this.value)"></select>
-								</div>
-							</div>
-							<div class="default-options">
-								<div class="settings-title"></div>
-								<div class="settings-inputs">
-									<label><input class="checkbox-storable" type="checkbox" id="set-preview">Enable preview window</label>
-									<label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Hide numbers of the memory slots</label>
-									<label><input class="checkbox-storable" type="checkbox" id="set-switch-position">Switches on the left</label>
-									<label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Show tooltips with the stored content</label>
-								</div>
-							</div>
-						</div>
 
-						<div id="tab-customs" class="tabcontent" >
-							<div id="fonts-options">
-								<div class="settings-title">Custom Font</div>
-								<div class="settings-inputs">
-									<input id="new-font-name" placeholder="Font Family" tabindex="51">
-									<input id="new-font-url" placeholder="@import url" tabindex="52">
-									<div id="add-new-font" class="add"><div class="icon icon-plus-square"></div></div>
-								</div>
-							</div>
-							<div id="custom-font-list">
-								<ul>
-									<!--custom fonts-->
-								</ul>
-							</div>
-							<div class="logos-options">
-								<div class="settings-title">Default Logos</div>
-								<div class="settings-inputs">
-									<div class="logo-container default" onclick="openLogoPopup('alt-1-logo-default', 'alt-1-logo-default')">
-										<div class="logo-numbers">1</div>
-										<img id="alt-1-logo-default" class="logo-storable alt-logo-default" >
-									</div>
-									<div class="logo-container default" onclick="openLogoPopup('alt-2-logo-default', 'alt-2-logo-default')">
-										<div class="logo-numbers">2</div>
-										<img id="alt-2-logo-default" class="logo-storable alt-logo-default" >
-									</div>
-									<div class="logo-container default" onclick="openLogoPopup('alt-3-logo-default', 'alt-3-logo-default')">
-										<div class="logo-numbers">3</div>
-										<img id="alt-3-logo-default" class="logo-storable alt-logo-default" >
-									</div>
-									<div class="logo-container default" onclick="openLogoPopup('alt-4-logo-default', 'alt-4-logo-default')">
-										<div class="logo-numbers">4</div>
-										<img id="alt-4-logo-default" class="logo-storable alt-logo-default" >
-									</div>
-								</div>
-							</div>
-						</div>
+			<div id="alt-main-config-content">
+    <!-- Switch principal -->
+    <label class="switch">
+        <input class="checkbox-storable" type="checkbox" id="painelzinhos-masterswitch">
+        <span class="slider round"></span>
+    </label>
 
-						<div id="tab-system" class="tabcontent" >
-							<div class="bottom-options">
-								<div class="settings-title">Backup Data</div>
-								<div class="settings-inputs">
-									<div class="import-file-btn">
-										<label for="importFile">Import</label>
-										<input id="importFile" type="file"/>
-									</div>
-									<!-- <input type="text" id="dataInput"> -->
-									<div class="btn-settings" onclick="exportData()">Export</div>
-									<div class="btn-settings" onclick="openResetPopup()">Reset</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+    <!-- Título -->
+    <div class="main-title">
+        <div class="main-icon icon icon-settings"></div>
+        <div>Configurações principais</div>					
+    </div>
+    <label class="accordion"></label>
 
+    <div id="global-configuration" class="hidable">
+        <!-- Tempos globais -->
+        <div id="time-options" class="settings-block">
+            <div class="settings-title">Tempos Globais</div>
+            <div class="settings-inputs">
+                <input class="storable" id="global-animation-time" type="number" placeholder="in-out" tabindex="1">
+                <input class="storable" id="global-active-time" type="number" placeholder="active" tabindex="2">
+                <label class="config-btn lock-input">
+                    <input class="checkbox-storable" type="checkbox" id="global-lock-active">
+                    <div class="icon-btn icon icon-lock"></div>
+                </label>
+                <input class="storable" id="global-inactive-time" type="number" placeholder="inactive" tabindex="3">
+                <label class="config-btn lock-input">
+                    <input class="checkbox-storable" type="checkbox" id="global-oneshot">
+                    <div class="icon-btn icon icon-oneshot"></div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Mais configurações -->
+        <label class="more"><div class="icon icon-angle-down"></div></label>
+        <div id="more-settings" class="hide-more">
+            <!-- Tabs -->
+            <div class="tab">
+                <button id="defaultTab" class="tablinks" onclick="openTab(this, 'appearance')">Aparência</button>
+                <button class="tablinks" onclick="openTab(this, 'customs')">Personalizações</button>
+                <button class="tablinks" onclick="openTab(this, 'system')">Sistema</button>
+            </div>
+
+            <!-- Aparência -->
+            <div id="tab-appearance" class="tabcontent">
+                <div id="theme-options" class="settings-block">
+                    <div class="settings-title">Tema</div>
+                    <div class="settings-inputs">
+                        <select name="theme" id="theme" class="select-settings-storable" onchange="changeTheme(this.value)"></select>
+                    </div>
+                </div>
+
+                <div class="default-options settings-block">
+                    <div class="settings-inputs">
+                        <label><input class="checkbox-storable" type="checkbox" id="set-preview">Ativar janela de visualização</label>
+                        <label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Ocultar números dos slots</label>
+                        <label><input class="checkbox-storable" type="checkbox" id="set-switch-position">Interruptores à esquerda</label>
+                        <label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Mostrar dicas de ferramentas</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personalizações -->
+            <div id="tab-customs" class="tabcontent">
+                <div id="fonts-options" class="settings-block">
+                    <div class="settings-title">Fonte personalizada</div>
+                    <div class="settings-inputs">
+                        <input id="new-font-name" placeholder="Font Family" tabindex="51">
+                        <input id="new-font-url" placeholder="@import url" tabindex="52">
+                        <div id="add-new-font" class="add"><div class="icon icon-plus-square"></div></div>
+                    </div>
+                </div>
+                <div id="custom-font-list"><ul></ul></div>
+
+                <div class="logos-options settings-block">
+                    <div class="settings-title">Logotipos padrão</div>
+                    <div class="settings-inputs" id="default-logos"></div>
+                </div>
+            </div>
+
+            <!-- Sistema -->
+            <div id="tab-system" class="tabcontent">
+                <div class="bottom-options settings-block">
+                    <div class="settings-title">Dados de backup</div>
+                    <div class="settings-inputs">
+                        <div class="import-file-btn">
+                            <label for="importFile">Importar</label>
+                            <input id="importFile" type="file"/>
+                        </div>
+                        <div class="btn-settings" onclick="exportData()">Exportar</div>
+                        <div class="btn-settings" onclick="openResetPopup()">Redefinir</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Template para gerar logos via JS -->
+<template id="logo-template">
+    <div class="logo-container default">
+        <div class="logo-numbers"></div>
+        <img class="logo-storable alt-logo-default">
+    </div>
+</template>
+//<div id="alt-main-config-content">
+    <!-- Switch principal -->
+    <label class="switch">
+        <input class="checkbox-storable" type="checkbox" id="painelzinhos-masterswitch">
+        <span class="slider round"></span>
+    </label>
+
+    <!-- Título -->
+    <div class="main-title">
+        <div class="main-icon icon icon-settings"></div>
+        <div>Configurações principais</div>					
+    </div>
+    <label class="accordion"></label>
+
+    <div id="global-configuration" class="hidable">
+        <!-- Tempos globais -->
+        <div id="time-options" class="settings-block">
+            <div class="settings-title">Tempos Globais</div>
+            <div class="settings-inputs">
+                <input class="storable" id="global-animation-time" type="number" placeholder="in-out" tabindex="1">
+                <input class="storable" id="global-active-time" type="number" placeholder="active" tabindex="2">
+                <label class="config-btn lock-input">
+                    <input class="checkbox-storable" type="checkbox" id="global-lock-active">
+                    <div class="icon-btn icon icon-lock"></div>
+                </label>
+                <input class="storable" id="global-inactive-time" type="number" placeholder="inactive" tabindex="3">
+                <label class="config-btn lock-input">
+                    <input class="checkbox-storable" type="checkbox" id="global-oneshot">
+                    <div class="icon-btn icon icon-oneshot"></div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Mais configurações -->
+        <label class="more"><div class="icon icon-angle-down"></div></label>
+        <div id="more-settings" class="hide-more">
+            <!-- Tabs -->
+            <div class="tab">
+                <button id="defaultTab" class="tablinks" onclick="openTab(this, 'appearance')">Aparência</button>
+                <button class="tablinks" onclick="openTab(this, 'customs')">Personalizações</button>
+                <button class="tablinks" onclick="openTab(this, 'system')">Sistema</button>
+            </div>
+
+            <!-- Aparência -->
+            <div id="tab-appearance" class="tabcontent">
+                <div id="theme-options" class="settings-block">
+                    <div class="settings-title">Tema</div>
+                    <div class="settings-inputs">
+                        <select name="theme" id="theme" class="select-settings-storable" onchange="changeTheme(this.value)"></select>
+                    </div>
+                </div>
+
+                <div class="default-options settings-block">
+                    <div class="settings-inputs">
+                        <label><input class="checkbox-storable" type="checkbox" id="set-preview">Ativar janela de visualização</label>
+                        <label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Ocultar números dos slots</label>
+                        <label><input class="checkbox-storable" type="checkbox" id="set-switch-position">Interruptores à esquerda</label>
+                        <label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Mostrar dicas de ferramentas</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personalizações -->
+            <div id="tab-customs" class="tabcontent">
+                <div id="fonts-options" class="settings-block">
+                    <div class="settings-title">Fonte personalizada</div>
+                    <div class="settings-inputs">
+                        <input id="new-font-name" placeholder="Font Family" tabindex="51">
+                        <input id="new-font-url" placeholder="@import url" tabindex="52">
+                        <div id="add-new-font" class="add"><div class="icon icon-plus-square"></div></div>
+                    </div>
+                </div>
+                <div id="custom-font-list"><ul></ul></div>
+
+                <div class="logos-options settings-block">
+                    <div class="settings-title">Logotipos padrão</div>
+                    <div class="settings-inputs" id="default-logos"></div>
+                </div>
+            </div>
+
+            <!-- Sistema -->
+            <div id="tab-system" class="tabcontent">
+                <div class="bottom-options settings-block">
+                    <div class="settings-title">Dados de backup</div>
+                    <div class="settings-inputs">
+                        <div class="import-file-btn">
+                            <label for="importFile">Importar</label>
+                            <input id="importFile" type="file"/>
+                        </div>
+                        <div class="btn-settings" onclick="exportData()">Exportar</div>
+                        <div class="btn-settings" onclick="openResetPopup()">Redefinir</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Template para gerar logos via JS -->
+<template id="logo-template">
+    <div class="logo-container default">
+        <div class="logo-numbers"></div>
+        <img class="logo-storable alt-logo-default">
+    </div>
+</template>
+<!-- AQUI -->
+			<!-- Painéis dos painelzinhos -->
 			<div id="sortable">
-				<div class="sortees" id="alt_1"> <!--// Lower Third 1//-->
+				<div class="sortees" id="alt_1"> <!--// Painel 1//-->
 					<div id="alt-1-config-content">
 						<label class="switch">
-						<input class="checkbox-storable" type="checkbox" id="lower-thirds-switch1">
+						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch1">
 						<span class="slider round"></span>
 						</label>
 						<label class="config-btn preview-btn">
@@ -138,7 +242,7 @@
 						</label>
 						<div class="drag-handle">
 							<div class="alt-number-icon">1</div>
-							<div id="alt-1-title" class="renameable title-storable">Lower Third 1</div>
+							<div id="alt-1-title" class="renameable title-storable">Painelzinho 1</div>
 						</div>
 						<label class="accordion"></label>
 						<div class="hidable">
@@ -362,10 +466,10 @@
 					</div>
 				</div>
 
-				<div class="sortees" id="alt_2"> <!--// Lower Third 2//-->
+				<div class="sortees" id="alt_2"> <!--// Painelzinho 2//-->
 					<div id="alt-2-config-content">
 						<label class="switch">
-						<input class="checkbox-storable" type="checkbox" id="lower-thirds-switch2">
+						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch2">
 						<span class="slider round"></span>
 						</label>
 						<label class="config-btn preview-btn">
@@ -374,7 +478,7 @@
 						</label>
 						<div class="drag-handle">
 							<div class="alt-number-icon">2</div>
-							<div id="alt-2-title" class="renameable title-storable">Lower Third 2</div>
+							<div id="alt-2-title" class="renameable title-storable">Painelzinho 2</div>
 						</div>
 						<label class="accordion"></label>
 						<div class="hidable">
@@ -440,7 +544,7 @@
 									<div class="font-config group">
 										<div class="input-icon icon icon-font"></div>
 										<select id="alt-2-font" class="font-storable">
-											<!--Fonts list-->
+											<!--Lista de fontes-->
 										</select>
 									</div>
 								</div>
@@ -598,10 +702,10 @@
 					</div>
 				</div>
 
-				<div class="sortees" id="alt_3"> <!--// Lower Third 3//-->
+				<div class="sortees" id="alt_3"> <!--// Painelzinho 3//-->
 					<div id="alt-3-config-content">
 						<label class="switch">
-						<input class="checkbox-storable" type="checkbox" id="lower-thirds-switch3">
+						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch3">
 						<span class="slider round"></span>
 						</label>
 						<label class="config-btn preview-btn">
@@ -610,7 +714,7 @@
 						</label>
 						<div class="drag-handle">
 							<div class="alt-number-icon">3</div>
-							<div id="alt-3-title" class="renameable title-storable">Lower Third 3</div>
+							<div id="alt-3-title" class="renameable title-storable">Painelzinho 3</div>
 						</div>
 						<label class="accordion"></label>
 						<div class="hidable">
@@ -676,7 +780,7 @@
 									<div class="font-config group">
 										<div class="input-icon icon icon-font"></div>
 										<select id="alt-3-font" class="font-storable">
-											<!--Fonts list-->
+											<!--Lista de fontes-->
 										</select>
 									</div>
 								</div>
@@ -834,10 +938,10 @@
 					</div>
 				</div>
 
-				<div class="sortees" id="alt_4"> <!--// Lower Third 4//-->
+				<div class="sortees" id="alt_4"> <!--// Painelzinho 4//-->
 					<div id="alt-4-config-content">
 						<label class="switch">
-						<input class="checkbox-storable" type="checkbox" id="lower-thirds-switch4">
+						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch4">
 						<span class="slider round"></span>
 						</label>
 						<label class="config-btn preview-btn">
@@ -846,7 +950,7 @@
 						</label>
 						<div class="drag-handle">
 							<div class="alt-number-icon">4</div>
-							<div id="alt-4-title" class="renameable title-storable">Lower Third 4</div>
+							<div id="alt-4-title" class="renameable title-storable">Painelzinho 4</div>
 						</div>
 						<label class="accordion"></label>
 						<div class="hidable">
@@ -912,7 +1016,7 @@
 									<div class="font-config group">
 										<div class="input-icon icon icon-font"></div>
 										<select id="alt-4-font" class="font-storable">
-											<!--Fonts list-->
+											<!--Lista de fontes-->
 										</select>
 									</div>
 								</div>
@@ -1071,12 +1175,12 @@
 				</div>
 
 			</div>
-
+			<!-- Popup seleção de imagem -->
 			<div id="select-image" class="center hide" >
 				<div class="select-image-bg" onclick="cancelLogoPopup()"></div>
 				<div class="form-input">
 					<div class="file-btns">
-						<label for="logo-file">Choose image</label>
+						<label for="logo-file">Escolha a imagem</label>
 						<input type="file" id="logo-file" accept="image/*" onchange="showPreview(this);">
 						<div class="btn-remove" onclick="removeLogoPopup()"><div class="icon-btn icon icon-trash"></div></div>
 					</div>
@@ -1085,18 +1189,18 @@
 					</div>
 					<div class="file-btns">
 						<div class="btn-ok" onclick="okLogoPopup()">Ok</div>
-						<div class="btn-cancel" onclick="cancelLogoPopup()">Cancel</div>
+						<div class="btn-cancel" onclick="cancelLogoPopup()">Cancelar</div>
 					</div>
 				</div>
 			</div>
-
+			<!-- Popup exportação de dados -->
 			<div id="export-data" class="center hide" >
 				<div class="export-data-bg" onclick="okExportPopup()"></div>
 				<div class="form-input">
 					<div>
-						<h1>Copied to clipboard</h1>
-						<p>For security reasons, the exported data has been copied to the clipboard. Please paste it into a text editor (e.g. Notepad) and save it as a TXT file.</p>
-						<p>If you prefer, you can copy it manually:</p>
+						<h1>Copiado para a área de transferência</h1>
+						<p>Por motivos de segurança, os dados exportados foram copiados para a área de transferência. Cole-os em um editor de texto (por exemplo, Bloco de Notas) e salve-o como um arquivo TXT.</p>
+						<p>Se preferir, você pode copiá-lo manualmente:</p>
 						<textarea id="dataInput" rows="4" cols="50" onclick="this.focus();this.select()"></textarea>
 					</div>
 					<div class="export-btns">
@@ -1104,23 +1208,23 @@
 					</div>
 				</div>
 			</div>
-
+			<!-- Popup reset de configurações -->
 			<div id="reset-all" class="center hide" >
 				<div class="reset-all-bg" onclick="cancelResetPopup()"></div>
 				<div class="form-input">
 					<div>
-						<h1>Reset all settings</h1>
-						<p>You are going to reset all configuration and memory slots ¿Are you sure?</p>
+						<h1>Redefinir todas as configurações</h1>
+						<p>Você está prestes a redefinir todas as configurações e slots de memória. Você tem certeza?</p>
 					</div>
 					<div class="reset-btns">
 						<div class="btn-ok-reset" onclick="okResetPopup()">Ok</div>
-						<div class="btn-cancel" onclick="cancelResetPopup()">Cancel</div>
+						<div class="btn-cancel" onclick="cancelResetPopup()">Cancelar</div>
 					</div>
 				</div>
 			</div>
-
+			<!-- Lista de arquivos -->
 			<div id='fileNames'> </div>
-
+			<!-- Preview dos painelzinhos -->
 			<div id="alt-preview" class="active">
 				<label><div class="icon icon-search"></div></label>
 				<div id="toggle-preview" class="active"><div class="icon icon-chevron-down"></div></div>
@@ -1130,8 +1234,9 @@
 			</div>
 
 		</div>
-
+		<!-- Script principal do painel -->
 		<script src="./js/control-panel.js"></script>
+		<script src="./js/controlUtils/defaults.js"></script>
 
 	</body>
 </html>

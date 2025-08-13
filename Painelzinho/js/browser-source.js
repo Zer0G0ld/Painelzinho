@@ -98,11 +98,11 @@ function animationOut(id) {
 // =======================
 
 // =======================
-// 4. Controle de Tempo dos Lower Thirds - INÍCIO
+// 4. Controle de Tempo dos Painelzinhos - INÍCIO
 // =======================
 
 const lowerThirds = {
-  "lower-third-1": {
+  "painelzinho-1": {
     c: 0,
     d: 0,
     t: null,
@@ -114,7 +114,7 @@ const lowerThirds = {
     activeTime: alt_1_active_time,
     inactiveTime: alt_1_inactive_time,
   },
-  "lower-third-2": {
+  "painelzinho-2": {
     c: 0,
     d: 0,
     t: null,
@@ -126,7 +126,7 @@ const lowerThirds = {
     activeTime: alt_2_active_time,
     inactiveTime: alt_2_inactive_time,
   },
-  "lower-third-3": {
+  "painelzinho-3": {
     c: 0,
     d: 0,
     t: null,
@@ -138,7 +138,7 @@ const lowerThirds = {
     activeTime: alt_3_active_time,
     inactiveTime: alt_3_inactive_time,
   },
-  "lower-third-4": {
+  "painelzinho-4": {
     c: 0,
     d: 0,
     t: null,
@@ -211,7 +211,7 @@ function stopTimeCount(id) {
 }
 
 // =======================
-// 4. Controle de Tempo dos Lower Thirds - FIM
+// 4. Controle de Tempo dos Painelzinhos - FIM
 // =======================
 
 // =======================
@@ -328,7 +328,7 @@ bcp.onmessage = (ev) => {
       switch_val = preview;
     }
 
-    const lowerThirdId = `lower-third-${i}`;
+    const lowerThirdId = `painelzinho-${i}`;
     const el = document.getElementById(lowerThirdId);
 
     if (switch_val === "false" || !name.length || !info.length) {
@@ -556,10 +556,10 @@ bcf.onmessage = (ev) => {
 
 function function_send() {
   const times = [
-    [lowerThirds["lower-third-1"].c, lowerThirds["lower-third-1"].d],
-    [lowerThirds["lower-third-2"].c, lowerThirds["lower-third-2"].d],
-    [lowerThirds["lower-third-3"].c, lowerThirds["lower-third-3"].d],
-    [lowerThirds["lower-third-4"].c, lowerThirds["lower-third-4"].d],
+    [lowerThirds["painelzinho-1"].c, lowerThirds["painelzinho-1"].d],
+    [lowerThirds["painelzinho-2"].c, lowerThirds["painelzinho-2"].d],
+    [lowerThirds["painelzinho-3"].c, lowerThirds["painelzinho-3"].d],
+    [lowerThirds["painelzinho-4"].c, lowerThirds["painelzinho-4"].d],
   ];
 
   function ajustaTempo(t) {
