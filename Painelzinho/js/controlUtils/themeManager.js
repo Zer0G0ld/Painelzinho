@@ -27,7 +27,7 @@ function changeTheme(newTheme) {
 function initThemeSelector() {
   loadThemeLink(theme);
 
-  const themes = ["acri", "dark", "rachni"];
+  const themes = ["acri", "dark", "rachni", "zer0"];
   const $themeSelect = $("#alt-main-config-content #theme");
 
   themes.forEach((themeName) => {

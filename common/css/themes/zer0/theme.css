@@ -1,0 +1,30 @@
+:root {
+  --main-color: #e6e6e6;
+  --element-radius: 0.4em;
+  
+  --obs-background: #0d0d0d;
+  --obs-button-background: #1a1a1a;
+  --obs-button-border: none;
+  --obs-button-hover-background: #00ffe0;
+  --obs-button-hover-border: none;
+  --obs-button-active-background: #ff007f;
+  --obs-switch-active-background: #00ffe0;
+  --obs-button-color: #e6e6e6;
+
+  --obs-field-background: #1a1a1a;
+  --obs-field-background-disable: #333333;
+  --obs-field-border: solid 1px #00ffe0;
+
+  --obs-panel-border: solid 1px #00ffe0;
+
+  --obs-scrollbar-color: #00ffe0;
+  --obs-scrollbar-thickness: 8px;
+  --obs-scrollbar-radius: 10px;
+
+  --obs-tab-background: #1a1a1a;
+  --obs-tab-active-background: #00ffe0;
+  --obs-tab-active-border: solid 1px #ff007f;
+  --obs-tabs-separator: #1a1a1a;
+
+  --alt-preview-background: radial-gradient(circle at top left, #00ffe0, #ff007f);
+}

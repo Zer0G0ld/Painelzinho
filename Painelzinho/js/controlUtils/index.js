@@ -9,7 +9,7 @@ export * from './core/storage';
 
 // fonts
 export * from './fonts/fontsUI';
-export * from './fonts/fontsUI';
+export * from './fonts/fonts-manager';
 
 // /ui
 export * from './ui/accordion';

@@ -37,7 +37,7 @@ Inspirado em projetos como o *Animated Lower Thirds*, mas com uma pegada única,
 
 ## 📁 Estrutura
 
-Tudo explicado melhor aqui [PROJECT_STRUCTURE](./docs/Estrutura_Projeto.md)
+Tudo explicado melhor aqui [Estrutura do Projeto](./docs/Estrutura_Projeto.md)
 
 ```bash
 
