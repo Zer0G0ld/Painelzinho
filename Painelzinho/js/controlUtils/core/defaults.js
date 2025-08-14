@@ -62,3 +62,5 @@ function loadDefaultValues() {
     }
   });
 }
+
+export { DEFAULTS, getDefaultValuesMap, loadDefaultValues };

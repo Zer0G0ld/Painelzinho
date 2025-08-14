@@ -1,5 +1,5 @@
 // appearance.js
-export function getAppearance() {
+function getAppearance() {
   [1,2,3,4].forEach(i => {
     window[`alt_${i}_style`] = $(`#alt-${i}-style`).val() || default_style;
     $(`#alt-${i}-style`).val(window[`alt_${i}_style`]);
@@ -22,7 +22,7 @@ export function getAppearance() {
   styleRestrictions();
 }
 
-export function styleRestrictions() {
+function styleRestrictions() {
   [1,2,3,4].forEach(i => {
     const styleValue = window[`alt_${i}_style`];
     const alignCenter = document.getElementById(`alt-${i}-align-center`);
@@ -56,3 +56,5 @@ export function styleRestrictions() {
     }
   });
 }
+
+export { getAppearance, styleRestrictions };

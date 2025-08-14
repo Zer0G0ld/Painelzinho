@@ -2,13 +2,13 @@
 import { hotkeySwitches, checkMemorySlots } from './hotkeys-core.js';
 
 // Alterna checkbox e dispara .change()
-export function toggleCheckbox(id) {
+function toggleCheckbox(id) {
   const $chk = $(`#${id}`);
   $chk.prop('checked', !$chk.prop('checked')).change();
 }
 
 // Checagem principal dos hotkeys
-export function checkHotkeys() {
+function checkHotkeys() {
   // Checa switches de painel
   hotkeySwitches.forEach(({ hotkey, oldHotkey, id }) => {
     if (window[hotkey] !== window[oldHotkey]) {
@@ -20,3 +20,5 @@ export function checkHotkeys() {
   // Checa memory slots
   checkMemorySlots();
 }
+
+export { checkHotkeys, toggleCheckbox };

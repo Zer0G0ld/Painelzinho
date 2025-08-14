@@ -1,7 +1,7 @@
-export let slotDeleted = false;
-export let newFontToSend;
+let slotDeleted = false;
+let newFontToSend;
 
-export const alternates = {};
+const alternates = {};
 ["alt_1", "alt_2", "alt_3", "alt_4"].forEach((alt) => {
   alternates[alt] = {
     activeTimeMonitor: null,
@@ -29,3 +29,5 @@ export const alternates = {};
     turnOff: false,
   };
 });
+
+export { slotDeleted, newFontToSend, alternates };

@@ -175,3 +175,5 @@ function saveData() {
     $(this).siblings(".slot-storable").change();
   });
 }
+
+export { getLocalStorage, writeLocalStorage, exportData, loadData, saveData };

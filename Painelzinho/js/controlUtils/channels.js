@@ -1,12 +1,12 @@
 // channels.js
-export const broadcastChannels = {
+const broadcastChannels = {
   send: new BroadcastChannel("obs-painelzinho-channel"),
   receive: new BroadcastChannel("obs-painelzinho-channel2"),
   fonts: new BroadcastChannel("obs-painelzinho-fonts"),
 };
 
 // Inicializa listener para receber dados do browser-source.js
-export function initChannelListeners(refreshData, checkSwitches, function_send_font) {
+function initChannelListeners(refreshData, checkSwitches, function_send_font) {
   broadcastChannels.receive.onmessage = function(ev) {
     const received_data = ev.data;
 
@@ -33,3 +33,6 @@ export function initChannelListeners(refreshData, checkSwitches, function_send_f
     checkSwitches();
   };
 }
+
+
+export { broadcastChannels, initChannelListeners };

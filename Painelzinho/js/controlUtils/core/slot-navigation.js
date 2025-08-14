@@ -1,5 +1,5 @@
 // Função para pular para o próximo slot armazenado
-export function jumpNextSlot(memory_slot, name, info, logo, alt_waiting_time) {
+function jumpNextSlot(memory_slot, name, info, logo, alt_waiting_time) {
   let find_next = false;
   let find_first = false;
   let first_stored_slot;
@@ -75,3 +75,5 @@ export function jumpNextSlot(memory_slot, name, info, logo, alt_waiting_time) {
     });
   }
 }
+
+export { jumpNextSlot };

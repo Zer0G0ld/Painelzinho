@@ -1,4 +1,4 @@
-export function initAccordionHandlers() {
+function initAccordionHandlers() {
   document.querySelectorAll(".accordion").forEach((el) =>
     el.addEventListener("click", function () {
       this.classList.toggle("active");
@@ -23,7 +23,7 @@ export function initAccordionHandlers() {
   );
 }
 
-export function updateMoreMaxHeight() {
+function updateMoreMaxHeight() {
   const element = document.querySelector(".more");
   if ($("#more-settings").css("max-height") !== "0px") {
     const hideMore = element.nextElementSibling;
@@ -34,3 +34,5 @@ export function updateMoreMaxHeight() {
     globalConfig.style.maxHeight = currentHeight + hideMore.scrollHeight + "px";
   }
 }
+
+export { initAccordionHandlers, updateMoreMaxHeight };

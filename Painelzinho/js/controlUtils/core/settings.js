@@ -1,7 +1,7 @@
 // settings.js
-import { broadcastChannels } from './channels.js';
+import { broadcastChannels } from '../channels.js';
 
-export function function_send() {
+function function_send() {
   const global_lock_active = !!document.getElementById("global-lock-active").checked;
 
   for (let i = 1; i <= 4; i++) {
@@ -23,3 +23,5 @@ export function function_send() {
 
   broadcastChannels.send.postMessage(data);
 }
+
+export { function_send };

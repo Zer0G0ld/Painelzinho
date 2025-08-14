@@ -1,11 +1,11 @@
 // popup-logos.js
 
 // ==================== RESET POPUP ====================
-export function openResetPopup() {
+function openResetPopup() {
   document.getElementById("reset-all").classList.remove("hide");
 }
 
-export function okResetPopup() {
+function okResetPopup() {
   localStorage.clear(); // Limpa todos os dados
 
   // Restaurar logos padrões
@@ -22,21 +22,21 @@ export function okResetPopup() {
   location.reload();
 }
 
-export function cancelResetPopup() {
+function cancelResetPopup() {
   document.getElementById("reset-all").classList.add("hide");
 }
 
 // ==================== EXPORT POPUP ====================
-export function openExportPopup() {
+function openExportPopup() {
   document.getElementById("export-data").classList.remove("hide");
 }
 
-export function okExportPopup() {
+function okExportPopup() {
   document.getElementById("export-data").classList.add("hide");
 }
 
 // ==================== LOGO POPUP ====================
-export function showPreview(element) {
+function showPreview(element) {
   if (element.files.length > 0) {
     const src = URL.createObjectURL(element.files[0]);
     const preview = document.getElementById("logo-file-preview");
@@ -46,7 +46,7 @@ export function showPreview(element) {
   }
 }
 
-export function openLogoPopup(logo, logo_default) {
+function openLogoPopup(logo, logo_default) {
   document.getElementById("select-image").classList.remove("hide");
   document.getElementById("file-preview").classList.remove("no-image");
 
@@ -63,7 +63,7 @@ export function openLogoPopup(logo, logo_default) {
   $(".btn-remove").css("display", logo === logo_default ? "none" : "block");
 }
 
-export function okLogoPopup(logo, logo_default) {
+function okLogoPopup(logo, logo_default) {
   const srcFile = document.getElementById("logo-file").files[0];
   const popupPreview = $("#logo-file-preview").attr("src");
   const preview = document.getElementById(logo);
@@ -86,11 +86,11 @@ export function okLogoPopup(logo, logo_default) {
   document.getElementById("select-image").classList.add("hide");
 }
 
-export function cancelLogoPopup() {
+function cancelLogoPopup() {
   document.getElementById("select-image").classList.add("hide");
 }
 
-export function removeLogoPopup() {
+function removeLogoPopup() {
   const preview = document.getElementById("logo-file-preview");
   document.getElementById("file-preview").classList.add("no-image");
   $("#logo-file").val("");
@@ -99,7 +99,7 @@ export function removeLogoPopup() {
 }
 
 // ==================== CHECK LOGOS ====================
-export function checkLogos() {
+function checkLogos() {
   $(".alt-logo-preview").each(function () {
     const checkLogoId = $(this).attr("id");
     const checkDefaultLogoId = checkLogoId.replace("-preview", "-default");
@@ -109,3 +109,5 @@ export function checkLogos() {
     else $(this).removeClass("default");
   });
 }
+
+export { openResetPopup, okResetPopup, cancelResetPopup, openExportPopup, okExportPopup, showPreview, openLogoPopup, okLogoPopup, cancelLogoPopup, removeLogoPopup, checkLogos };

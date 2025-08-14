@@ -1,5 +1,5 @@
 // slots.js
-export function loadSlot(name, info, logo, name_to_load, info_to_load, logo_to_load, alt_waiting_time, from_hotkey = true) {
+function loadSlot(name, info, logo, name_to_load, info_to_load, logo_to_load, alt_waiting_time, from_hotkey = true) {
   setTimeout(() => {
     const default_logo = logo.replace("-preview", "-default");
     const default_logo_value = $(default_logo).attr("src");
@@ -22,7 +22,7 @@ export function loadSlot(name, info, logo, name_to_load, info_to_load, logo_to_l
 }
 
 // Limpar inputs
-export function cleanInputs(slotNum) {
+function cleanInputs(slotNum) {
   $(`#alt-${slotNum}-name:text`).val("").change();
   $(`#alt-${slotNum}-info:text`).val("").change();
   const alt_logo_default = $(`#alt-${slotNum}-logo-default`).attr("src");
@@ -33,3 +33,5 @@ export function cleanInputs(slotNum) {
 [1,2,3,4].forEach(i => {
   $(`#alt-${i}-clean-inputs`).click(() => cleanInputs(i));
 });
+
+export { loadSlot, cleanInputs };

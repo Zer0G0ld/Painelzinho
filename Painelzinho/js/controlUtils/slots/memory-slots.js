@@ -1,6 +1,6 @@
 // memory-slots.js
 
-export function checkSlots(memory_slot, name, info, logo) {
+function checkSlots(memory_slot, name, info, logo) {
   $("ul" + memory_slot + " li").each(function () {
     const slotEl = document.getElementById($(this).attr("id"));
     const nameEl = $(this).children(".stored-name");
@@ -35,7 +35,7 @@ export function checkSlots(memory_slot, name, info, logo) {
   });
 }
 
-export function memorySlotsSystem(memory_slot, name, info, logo) {
+function memorySlotsSystem(memory_slot, name, info, logo) {
   let slot_id, name_id, info_id, logo_id, default_logo, is_default_logo;
   
   $("ul" + memory_slot + " li")
@@ -99,9 +99,11 @@ export function memorySlotsSystem(memory_slot, name, info, logo) {
 }
 
 // Inicialização de todos os memory slots
-export function initMemorySlots() {
+function initMemorySlots() {
   memorySlotsSystem("#alt-1-memory-slots", "#alt-1-name", "#alt-1-info", "#alt-1-logo-preview");
   memorySlotsSystem("#alt-2-memory-slots", "#alt-2-name", "#alt-2-info", "#alt-2-logo-preview");
   memorySlotsSystem("#alt-3-memory-slots", "#alt-3-name", "#alt-3-info", "#alt-3-logo-preview");
   memorySlotsSystem("#alt-4-memory-slots", "#alt-4-name", "#alt-4-info", "#alt-4-logo-preview");
 }
+
+export { checkSlots, memorySlotsSystem, initMemorySlots };

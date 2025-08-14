@@ -1,5 +1,5 @@
 // Hotkeys podem ser agrupadas também em objetos para facilitar o gerenciamento
-export const hotkeysOld = {
+const hotkeysOld = {
   masterSwitch: hotkeyMasterSwitch,
   switch1: hotkeySwitch1,
   switch2: hotkeySwitch2,
@@ -54,3 +54,5 @@ export const hotkeysOld = {
     hotkeyAlt4Slot10,
   ],
 };
+
+export { hotkeysOld };

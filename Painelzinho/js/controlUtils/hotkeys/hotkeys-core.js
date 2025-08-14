@@ -1,7 +1,7 @@
 // hotkeys-core.js
 
 // Reload do hotkeys.js atualizado pelo Lua
-export function updateHotkeys() {
+function updateHotkeys() {
   const src = "../common/js/hotkeys.js";
   $('script[src="' + src + '"]').remove();
   const head = document.getElementsByTagName("head")[0];
@@ -11,7 +11,7 @@ export function updateHotkeys() {
 }
 
 // Dados de switches e memory slots
-export const hotkeySwitches = [
+const hotkeySwitches = [
   { hotkey: "hotkeyMasterSwitch", oldHotkey: "hotkeyMasterSwitchOld", id: "painelzinhos-masterswitch" },
   { hotkey: "hotkeySwitch1", oldHotkey: "hotkeySwitch1Old", id: "painelzinhos-switch1" },
   { hotkey: "hotkeySwitch2", oldHotkey: "hotkeySwitch2Old", id: "painelzinhos-switch2" },
@@ -19,7 +19,7 @@ export const hotkeySwitches = [
   { hotkey: "hotkeySwitch4", oldHotkey: "hotkeySwitch4Old", id: "painelzinhos-switch4" },
 ];
 
-export const memorySlots = [
+const memorySlots = [
   {
     prefix: "#alt-1",
     hotkeys: Array.from({length:10}, (_,i) => ({
@@ -55,7 +55,7 @@ export const memorySlots = [
 ];
 
 // Função genérica para processar memory slots
-export function checkMemorySlots() {
+function checkMemorySlots() {
   memorySlots.forEach(slotGroup => {
     slotGroup.hotkeys.forEach(({ hotkey, oldHotkey, index }) => {
       if (window[hotkey] !== window[oldHotkey]) {
@@ -73,3 +73,4 @@ export function checkMemorySlots() {
     });
   });
 }
+export { updateHotkeys, checkMemorySlots, hotkeySwitches, memorySlots };
