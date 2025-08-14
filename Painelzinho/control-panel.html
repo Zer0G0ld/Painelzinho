@@ -1,1242 +1,1713 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-	<head>
-		<!--Animated Painelzinhos v1.6-->
-		<!--Author: Zer0G0ld-->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<title>Painel de Controle</title>
-		<link rel="stylesheet" href="../common/css/style-control_panel.css">
-		<link rel="stylesheet" href="../common/css/cp-icons.css">
-		<script src="../common/js/jquery.js"></script>
-		<script src="../common/js/jscolor.js"></script>
-		<script src="../common/js/hotkeys.js"></script>
-		<script src="../common/js/jquery-ui.js"></script>
-	</head>
-	<body class="painelzinhos-panel panel">
-		<div id="alt-panel" class="static-panel-top" style="margin-bottom: 0px">
 
-			<div id="alt-main-config-content">
-    <!-- Switch principal -->
-    <label class="switch">
-        <input class="checkbox-storable" type="checkbox" id="painelzinhos-masterswitch">
-        <span class="slider round"></span>
-    </label>
+<head>
+	<!--Animated Painelzinhos v1.6-->
+	<!--Author: Zer0G0ld-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Painel de Controle</title>
+	<!--<link rel="stylesheet" href="../common/css/style-control_panel.css">-->
+	<link rel="stylesheet" href="../common/css/purified/style-control_panel.css">
+	<link rel="stylesheet" href="../common/css/cp-icons.css">
+	<script src="../common/js/jquery.js"></script>
+	<script src="../common/js/jscolor.js"></script>
+	<script src="../common/js/hotkeys.js"></script>
+	<script src="../common/js/jquery-ui.js"></script>
+</head>
 
-    <!-- Título -->
-    <div class="main-title">
-        <div class="main-icon icon icon-settings"></div>
-        <div>Configurações principais</div>					
-    </div>
-    <label class="accordion"></label>
+<body class="painelzinhos-panel panel">
+	<div id="alt-panel" class="static-panel-top" style="margin-bottom: 0px">
 
-    <div id="global-configuration" class="hidable">
-        <!-- Tempos globais -->
-        <div id="time-options" class="settings-block">
-            <div class="settings-title">Tempos Globais</div>
-            <div class="settings-inputs">
-                <input class="storable" id="global-animation-time" type="number" placeholder="in-out" tabindex="1">
-                <input class="storable" id="global-active-time" type="number" placeholder="active" tabindex="2">
-                <label class="config-btn lock-input">
-                    <input class="checkbox-storable" type="checkbox" id="global-lock-active">
-                    <div class="icon-btn icon icon-lock"></div>
-                </label>
-                <input class="storable" id="global-inactive-time" type="number" placeholder="inactive" tabindex="3">
-                <label class="config-btn lock-input">
-                    <input class="checkbox-storable" type="checkbox" id="global-oneshot">
-                    <div class="icon-btn icon icon-oneshot"></div>
-                </label>
-            </div>
-        </div>
+		<div id="alt-main-config-content">
+			<!-- Switch principal -->
+			<label class="switch">
+				<input class="checkbox-storable" type="checkbox" id="painelzinhos-masterswitch">
+				<span class="slider round"></span>
+			</label>
 
-        <!-- Mais configurações -->
-        <label class="more"><div class="icon icon-angle-down"></div></label>
-        <div id="more-settings" class="hide-more">
-            <!-- Tabs -->
-            <div class="tab">
-                <button id="defaultTab" class="tablinks" onclick="openTab(this, 'appearance')">Aparência</button>
-                <button class="tablinks" onclick="openTab(this, 'customs')">Personalizações</button>
-                <button class="tablinks" onclick="openTab(this, 'system')">Sistema</button>
-            </div>
+			<!-- Título -->
+			<div class="main-title">
+				<div class="main-icon icon icon-settings"></div>
+				<div>Configurações principais</div>
+			</div>
+			<label class="accordion"></label>
 
-            <!-- Aparência -->
-            <div id="tab-appearance" class="tabcontent">
-                <div id="theme-options" class="settings-block">
-                    <div class="settings-title">Tema</div>
-                    <div class="settings-inputs">
-                        <select name="theme" id="theme" class="select-settings-storable" onchange="changeTheme(this.value)"></select>
-                    </div>
-                </div>
+			<div id="global-configuration" class="hidable">
+				<!-- Tempos globais -->
+				<div id="time-options" class="settings-block">
+					<div class="settings-title">Tempos Globais</div>
+					<div class="settings-inputs">
+						<input class="storable" id="global-animation-time" type="number" placeholder="in-out"
+							tabindex="1">
+						<input class="storable" id="global-active-time" type="number" placeholder="active" tabindex="2">
+						<label class="config-btn lock-input">
+							<input class="checkbox-storable" type="checkbox" id="global-lock-active">
+							<div class="icon-btn icon icon-lock"></div>
+						</label>
+						<input class="storable" id="global-inactive-time" type="number" placeholder="inactive"
+							tabindex="3">
+						<label class="config-btn lock-input">
+							<input class="checkbox-storable" type="checkbox" id="global-oneshot">
+							<div class="icon-btn icon icon-oneshot"></div>
+						</label>
+					</div>
+				</div>
 
-                <div class="default-options settings-block">
-                    <div class="settings-inputs">
-                        <label><input class="checkbox-storable" type="checkbox" id="set-preview">Ativar janela de visualização</label>
-                        <label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Ocultar números dos slots</label>
-                        <label><input class="checkbox-storable" type="checkbox" id="set-switch-position">Interruptores à esquerda</label>
-                        <label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Mostrar dicas de ferramentas</label>
-                    </div>
-                </div>
-            </div>
+				<!-- Mais configurações -->
+				<label class="more">
+					<div class="icon icon-angle-down"></div>
+				</label>
+				<div id="more-settings" class="hide-more">
+					<!-- Tabs -->
+					<div class="tab">
+						<button id="defaultTab" class="tablinks"
+							onclick="openTab(this, 'appearance')">Aparência</button>
+						<button class="tablinks" onclick="openTab(this, 'customs')">Personalizações</button>
+						<button class="tablinks" onclick="openTab(this, 'system')">Sistema</button>
+					</div>
 
-            <!-- Personalizações -->
-            <div id="tab-customs" class="tabcontent">
-                <div id="fonts-options" class="settings-block">
-                    <div class="settings-title">Fonte personalizada</div>
-                    <div class="settings-inputs">
-                        <input id="new-font-name" placeholder="Font Family" tabindex="51">
-                        <input id="new-font-url" placeholder="@import url" tabindex="52">
-                        <div id="add-new-font" class="add"><div class="icon icon-plus-square"></div></div>
-                    </div>
-                </div>
-                <div id="custom-font-list"><ul></ul></div>
+					<!-- Aparência -->
+					<div id="tab-appearance" class="tabcontent">
+						<div id="theme-options" class="settings-block">
+							<div class="settings-title">Tema</div>
+							<div class="settings-inputs">
+								<select name="theme" id="theme" class="select-settings-storable"
+									onchange="changeTheme(this.value)"></select>
+							</div>
+						</div>
 
-                <div class="logos-options settings-block">
-                    <div class="settings-title">Logotipos padrão</div>
-                    <div class="settings-inputs" id="default-logos"></div>
-                </div>
-            </div>
+						<div class="default-options settings-block">
+							<div class="settings-inputs">
+								<label><input class="checkbox-storable" type="checkbox" id="set-preview">Ativar janela
+									de visualização</label>
+								<label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Ocultar
+									números dos slots</label>
+								<label><input class="checkbox-storable" type="checkbox"
+										id="set-switch-position">Interruptores à esquerda</label>
+								<label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Mostrar dicas
+									de ferramentas</label>
+							</div>
+						</div>
+					</div>
 
-            <!-- Sistema -->
-            <div id="tab-system" class="tabcontent">
-                <div class="bottom-options settings-block">
-                    <div class="settings-title">Dados de backup</div>
-                    <div class="settings-inputs">
-                        <div class="import-file-btn">
-                            <label for="importFile">Importar</label>
-                            <input id="importFile" type="file"/>
-                        </div>
-                        <div class="btn-settings" onclick="exportData()">Exportar</div>
-                        <div class="btn-settings" onclick="openResetPopup()">Redefinir</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+					<!-- Personalizações -->
+					<div id="tab-customs" class="tabcontent">
+						<div id="fonts-options" class="settings-block">
+							<div class="settings-title">Fonte personalizada</div>
+							<div class="settings-inputs">
+								<input id="new-font-name" placeholder="Font Family" tabindex="51">
+								<input id="new-font-url" placeholder="@import url" tabindex="52">
+								<div id="add-new-font" class="add">
+									<div class="icon icon-plus-square"></div>
+								</div>
+							</div>
+						</div>
+						<div id="custom-font-list">
+							<ul></ul>
+						</div>
 
-<!-- Template para gerar logos via JS -->
-<template id="logo-template">
-    <div class="logo-container default">
-        <div class="logo-numbers"></div>
-        <img class="logo-storable alt-logo-default">
-    </div>
-</template>
-//<div id="alt-main-config-content">
-    <!-- Switch principal -->
-    <label class="switch">
-        <input class="checkbox-storable" type="checkbox" id="painelzinhos-masterswitch">
-        <span class="slider round"></span>
-    </label>
+						<div class="logos-options settings-block">
+							<div class="settings-title">Logotipos padrão</div>
+							<div class="settings-inputs" id="default-logos"></div>
+						</div>
+					</div>
 
-    <!-- Título -->
-    <div class="main-title">
-        <div class="main-icon icon icon-settings"></div>
-        <div>Configurações principais</div>					
-    </div>
-    <label class="accordion"></label>
+					<!-- Sistema -->
+					<div id="tab-system" class="tabcontent">
+						<div class="bottom-options settings-block">
+							<div class="settings-title">Dados de backup</div>
+							<div class="settings-inputs">
+								<div class="import-file-btn">
+									<label for="importFile">Importar</label>
+									<input id="importFile" type="file" />
+								</div>
+								<div class="btn-settings" onclick="exportData()">Exportar</div>
+								<div class="btn-settings" onclick="openResetPopup()">Redefinir</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div id="global-configuration" class="hidable">
-        <!-- Tempos globais -->
-        <div id="time-options" class="settings-block">
-            <div class="settings-title">Tempos Globais</div>
-            <div class="settings-inputs">
-                <input class="storable" id="global-animation-time" type="number" placeholder="in-out" tabindex="1">
-                <input class="storable" id="global-active-time" type="number" placeholder="active" tabindex="2">
-                <label class="config-btn lock-input">
-                    <input class="checkbox-storable" type="checkbox" id="global-lock-active">
-                    <div class="icon-btn icon icon-lock"></div>
-                </label>
-                <input class="storable" id="global-inactive-time" type="number" placeholder="inactive" tabindex="3">
-                <label class="config-btn lock-input">
-                    <input class="checkbox-storable" type="checkbox" id="global-oneshot">
-                    <div class="icon-btn icon icon-oneshot"></div>
-                </label>
-            </div>
-        </div>
+		<!-- Template para gerar logos via JS -->
+		<template id="logo-template">
+			<div class="logo-container default">
+				<div class="logo-numbers"></div>
+				<img class="logo-storable alt-logo-default">
+			</div>
+		</template>
+		//<div id="alt-main-config-content">
+			<!-- Switch principal -->
+			<label class="switch">
+				<input class="checkbox-storable" type="checkbox" id="painelzinhos-masterswitch">
+				<span class="slider round"></span>
+			</label>
 
-        <!-- Mais configurações -->
-        <label class="more"><div class="icon icon-angle-down"></div></label>
-        <div id="more-settings" class="hide-more">
-            <!-- Tabs -->
-            <div class="tab">
-                <button id="defaultTab" class="tablinks" onclick="openTab(this, 'appearance')">Aparência</button>
-                <button class="tablinks" onclick="openTab(this, 'customs')">Personalizações</button>
-                <button class="tablinks" onclick="openTab(this, 'system')">Sistema</button>
-            </div>
+			<!-- Título -->
+			<div class="main-title">
+				<div class="main-icon icon icon-settings"></div>
+				<div>Configurações principais</div>
+			</div>
+			<label class="accordion"></label>
 
-            <!-- Aparência -->
-            <div id="tab-appearance" class="tabcontent">
-                <div id="theme-options" class="settings-block">
-                    <div class="settings-title">Tema</div>
-                    <div class="settings-inputs">
-                        <select name="theme" id="theme" class="select-settings-storable" onchange="changeTheme(this.value)"></select>
-                    </div>
-                </div>
+			<div id="global-configuration" class="hidable">
+				<!-- Tempos globais -->
+				<div id="time-options" class="settings-block">
+					<div class="settings-title">Tempos Globais</div>
+					<div class="settings-inputs">
+						<input class="storable" id="global-animation-time" type="number" placeholder="in-out"
+							tabindex="1">
+						<input class="storable" id="global-active-time" type="number" placeholder="active" tabindex="2">
+						<label class="config-btn lock-input">
+							<input class="checkbox-storable" type="checkbox" id="global-lock-active">
+							<div class="icon-btn icon icon-lock"></div>
+						</label>
+						<input class="storable" id="global-inactive-time" type="number" placeholder="inactive"
+							tabindex="3">
+						<label class="config-btn lock-input">
+							<input class="checkbox-storable" type="checkbox" id="global-oneshot">
+							<div class="icon-btn icon icon-oneshot"></div>
+						</label>
+					</div>
+				</div>
 
-                <div class="default-options settings-block">
-                    <div class="settings-inputs">
-                        <label><input class="checkbox-storable" type="checkbox" id="set-preview">Ativar janela de visualização</label>
-                        <label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Ocultar números dos slots</label>
-                        <label><input class="checkbox-storable" type="checkbox" id="set-switch-position">Interruptores à esquerda</label>
-                        <label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Mostrar dicas de ferramentas</label>
-                    </div>
-                </div>
-            </div>
+				<!-- Mais configurações -->
+				<label class="more">
+					<div class="icon icon-angle-down"></div>
+				</label>
+				<div id="more-settings" class="hide-more">
+					<!-- Tabs -->
+					<div class="tab">
+						<button id="defaultTab" class="tablinks"
+							onclick="openTab(this, 'appearance')">Aparência</button>
+						<button class="tablinks" onclick="openTab(this, 'customs')">Personalizações</button>
+						<button class="tablinks" onclick="openTab(this, 'system')">Sistema</button>
+					</div>
 
-            <!-- Personalizações -->
-            <div id="tab-customs" class="tabcontent">
-                <div id="fonts-options" class="settings-block">
-                    <div class="settings-title">Fonte personalizada</div>
-                    <div class="settings-inputs">
-                        <input id="new-font-name" placeholder="Font Family" tabindex="51">
-                        <input id="new-font-url" placeholder="@import url" tabindex="52">
-                        <div id="add-new-font" class="add"><div class="icon icon-plus-square"></div></div>
-                    </div>
-                </div>
-                <div id="custom-font-list"><ul></ul></div>
+					<!-- Aparência -->
+					<div id="tab-appearance" class="tabcontent">
+						<div id="theme-options" class="settings-block">
+							<div class="settings-title">Tema</div>
+							<div class="settings-inputs">
+								<select name="theme" id="theme" class="select-settings-storable"
+									onchange="changeTheme(this.value)"></select>
+							</div>
+						</div>
 
-                <div class="logos-options settings-block">
-                    <div class="settings-title">Logotipos padrão</div>
-                    <div class="settings-inputs" id="default-logos"></div>
-                </div>
-            </div>
+						<div class="default-options settings-block">
+							<div class="settings-inputs">
+								<label><input class="checkbox-storable" type="checkbox" id="set-preview">Ativar janela
+									de visualização</label>
+								<label><input class="checkbox-storable" type="checkbox" id="set-slot-numbers">Ocultar
+									números dos slots</label>
+								<label><input class="checkbox-storable" type="checkbox"
+										id="set-switch-position">Interruptores à esquerda</label>
+								<label><input class="checkbox-storable" type="checkbox" id="set-tooltips">Mostrar dicas
+									de ferramentas</label>
+							</div>
+						</div>
+					</div>
 
-            <!-- Sistema -->
-            <div id="tab-system" class="tabcontent">
-                <div class="bottom-options settings-block">
-                    <div class="settings-title">Dados de backup</div>
-                    <div class="settings-inputs">
-                        <div class="import-file-btn">
-                            <label for="importFile">Importar</label>
-                            <input id="importFile" type="file"/>
-                        </div>
-                        <div class="btn-settings" onclick="exportData()">Exportar</div>
-                        <div class="btn-settings" onclick="openResetPopup()">Redefinir</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+					<!-- Personalizações -->
+					<div id="tab-customs" class="tabcontent">
+						<div id="fonts-options" class="settings-block">
+							<div class="settings-title">Fonte personalizada</div>
+							<div class="settings-inputs">
+								<input id="new-font-name" placeholder="Font Family" tabindex="51">
+								<input id="new-font-url" placeholder="@import url" tabindex="52">
+								<div id="add-new-font" class="add">
+									<div class="icon icon-plus-square"></div>
+								</div>
+							</div>
+						</div>
+						<div id="custom-font-list">
+							<ul></ul>
+						</div>
 
-<!-- Template para gerar logos via JS -->
-<template id="logo-template">
-    <div class="logo-container default">
-        <div class="logo-numbers"></div>
-        <img class="logo-storable alt-logo-default">
-    </div>
-</template>
-<!-- AQUI -->
-			<!-- Painéis dos painelzinhos -->
-			<div id="sortable">
-				<div class="sortees" id="alt_1"> <!--// Painel 1//-->
-					<div id="alt-1-config-content">
-						<label class="switch">
+						<div class="logos-options settings-block">
+							<div class="settings-title">Logotipos padrão</div>
+							<div class="settings-inputs" id="default-logos"></div>
+						</div>
+					</div>
+
+					<!-- Sistema -->
+					<div id="tab-system" class="tabcontent">
+						<div class="bottom-options settings-block">
+							<div class="settings-title">Dados de backup</div>
+							<div class="settings-inputs">
+								<div class="import-file-btn">
+									<label for="importFile">Importar</label>
+									<input id="importFile" type="file" />
+								</div>
+								<div class="btn-settings" onclick="exportData()">Exportar</div>
+								<div class="btn-settings" onclick="openResetPopup()">Redefinir</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Template para gerar logos via JS -->
+		<template id="logo-template">
+			<div class="logo-container default">
+				<div class="logo-numbers"></div>
+				<img class="logo-storable alt-logo-default">
+			</div>
+		</template>
+		<!-- AQUI -->
+		<!-- Painéis dos painelzinhos -->
+		<div id="sortable">
+			<div class="sortees" id="alt_1"> <!--// Painel 1//-->
+				<div id="alt-1-config-content">
+					<label class="switch">
 						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch1">
 						<span class="slider round"></span>
-						</label>
-						<label class="config-btn preview-btn">
-							<input class="checkbox-storable" type="checkbox" id="alt-1-preview">
-							<div class="icon-btn icon icon-search"></div>
-						</label>
-						<div class="drag-handle">
-							<div class="alt-number-icon">1</div>
-							<div id="alt-1-title" class="renameable title-storable">Painelzinho 1</div>
-						</div>
-						<label class="accordion"></label>
-						<div class="hidable">
-							<div class="grid-container">
-								<div class="grid-row">
-									<div>
-										<div class="align-toggle">
-										<input class="radio-storable" id="alt-1-align-left" name="alt-1-align" type="radio" value="left" checked/>
-										<label for="alt-1-align-left" onclick=""><div class="icon icon-aling-left"></div></label>
-										<input class="radio-storable" id="alt-1-align-center" name="alt-1-align" type="radio" value="center" />
-										<label for="alt-1-align-center" onclick=""><div class="icon icon-aling-center"></div></label>
-										<input class="radio-storable" id="alt-1-align-right" name="alt-1-align" type="radio" value="right" />
-										<label for="alt-1-align-right" onclick=""><div class="icon icon-aling-right"></div></label>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-paint-brush"></div>
-										<div class="number-input">
-											<input id="alt-1-style" class="storable" min="1" max="3" name="quantity" value="1" type="number" placeholder="1" readonly>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-size"></div>
-										<div class="number-input">
-											<input id="alt-1-size" class="storable" min="10" max="50" name="quantity" value="24" type="number" placeholder="24">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>							
-									<div class="margin-config group">
-										<div class="input-icon icon icon-position"></div>
-										<div class="number-input">
-											<input id="alt-1-margin-h" class="storable" min="0" max="100" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-										<div class="number-input input-no-icon">
-											<input id="alt-1-margin-v" class="storable" min="0" max="55" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+					</label>
+					<label class="config-btn preview-btn">
+						<input class="checkbox-storable" type="checkbox" id="alt-1-preview">
+						<div class="icon-btn icon icon-search"></div>
+					</label>
+					<div class="drag-handle">
+						<div class="alt-number-icon">1</div>
+						<div id="alt-1-title" class="renameable title-storable">Painelzinho 1</div>
+					</div>
+					<label class="accordion"></label>
+					<div class="hidable">
+						<div class="grid-container">
+							<div class="grid-row">
+								<div>
+									<div class="align-toggle">
+										<input class="radio-storable" id="alt-1-align-left" name="alt-1-align"
+											type="radio" value="left" checked />
+										<label for="alt-1-align-left" onclick="">
+											<div class="icon icon-aling-left"></div>
+										</label>
+										<input class="radio-storable" id="alt-1-align-center" name="alt-1-align"
+											type="radio" value="center" />
+										<label for="alt-1-align-center" onclick="">
+											<div class="icon icon-aling-center"></div>
+										</label>
+										<input class="radio-storable" id="alt-1-align-right" name="alt-1-align"
+											type="radio" value="right" />
+										<label for="alt-1-align-right" onclick="">
+											<div class="icon icon-aling-right"></div>
+										</label>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-text-height"></div>
-											<div class="number-input">
-											<input id="alt-1-inverse-ratio" class="storable" min="0" max="10" name="quantity" value="9" type="number" placeholder="9">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-line-spacing"></div>
-											<div class="number-input">
-											<input id="alt-1-line-spacing" class="storable" min="-5" max="5" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>									
-									<div class="font-config group">
-										<div class="input-icon icon icon-font"></div>
-										<select id="alt-1-font" class="font-storable">
-											<!--Fonts list-->
-										</select>
+								<div>
+									<div class="input-icon icon icon-paint-brush"></div>
+									<div class="number-input">
+										<input id="alt-1-style" class="storable" min="1" max="3" name="quantity"
+											value="1" type="number" placeholder="1" readonly>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-1-logo" checked>
-											<div class="icon-btn icon icon-image"></div>
-										</label>									
-										<div class="number-input">
-											<input id="alt-1-logo-size" class="storable" min="-10" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>										
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-1-shadows">
-											<div class="icon-btn icon icon-shadow"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-1-shadow-amount" class="storable" min="1" max="10" name="quantity" value="5" type="number" placeholder="5">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-1-background" checked>
-											<div class="icon-btn icon icon-fill-drip"></div>
-										</label>
-										<div id="alt-1-style-color-appearance" class="fill-color-appearance">
-											<div class="tool-tittle">Clr 1</div>
-											<input class="storable" id="alt-1-style-color-1" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 2</div>
-											<input class="storable" id="alt-1-style-color-2" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
+								<div>
+									<div class="input-icon icon icon-size"></div>
+									<div class="number-input">
+										<input id="alt-1-size" class="storable" min="10" max="50" name="quantity"
+											value="24" type="number" placeholder="24">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-corner"></div>
-										<div class="number-input">
-											<input id="alt-1-corners" class="storable" min="0" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+								<div class="margin-config group">
+									<div class="input-icon icon icon-position"></div>
+									<div class="number-input">
+										<input id="alt-1-margin-h" class="storable" min="0" max="100" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-1-border" id="alt-1-border-thickness">
-											<div class="icon-btn icon icon-thickness"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-1-border-thickness-amount" class="storable" min="1" max="10" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-1-border" id="alt-1-border-color">
-											<div class="icon-btn icon icon-pen"></div>
-										</label>
-										<div id="alt-1-style-border-color-appearance" class="border-color-appearance">
-											<div class="tool-tittle">Clr 3</div>
-											<input class="storable" id="alt-1-style-color-3" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 4</div>
-											<input class="storable" id="alt-1-style-color-4" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
+									<div class="number-input input-no-icon">
+										<input id="alt-1-margin-v" class="storable" min="0" max="55" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
 								</div>
-							</div>					
-						</div>
-						<div class="first-edit-container">
-							<div class="logo-container" onclick="openLogoPopup('alt-1-logo-preview', 'alt-1-logo-default')">
-								<img id="alt-1-logo-preview" class="logo-storable alt-logo-preview" >
 							</div>
-							<div class="textfields-container">
-								<input class="storable" type="text" id="alt-1-name" placeholder="Name" tabindex="4">
-								<div id="alt-1-name-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-1-name-transform" checked>
-										<div class="icon-btn icon small icon-uppercase"></div>
-									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-1-name-weight" checked>
-										<div class="icon-btn icon small icon-bold"></div>
-									</label>
-									<input class="storable" id="alt-1-name-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-text-height"></div>
+									<div class="number-input">
+										<input id="alt-1-inverse-ratio" class="storable" min="0" max="10"
+											name="quantity" value="9" type="number" placeholder="9">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
 								</div>
-								<input class="storable" type="text" id="alt-1-info" placeholder="Info" tabindex="5">
-								<div id="alt-1-info-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-1-info-transform">
-										<div class="icon-btn icon small icon-uppercase"></div>
-									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-1-info-weight">
-										<div class="icon-btn icon small icon-bold"></div>
-									</label>
-									<input class="storable" id="alt-1-info-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-								</div>	
-								<div style="clear:both"></div>
+								<div>
+									<div class="input-icon icon icon-line-spacing"></div>
+									<div class="number-input">
+										<input id="alt-1-line-spacing" class="storable" min="-5" max="5" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div class="font-config group">
+									<div class="input-icon icon icon-font"></div>
+									<select id="alt-1-font" class="font-storable">
+										<!--Fonts list-->
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="panel-bottom">
-							<div id="alt-1-clean-inputs" class="clean"><div class="icon icon-cross"></div></div>
-							<ul id="alt-1-memory-slots">
-								<li id="alt-1-slot-1"><div class="slot-number">1</div><div class="slot-storable stored-name" id="alt-1-name-1"></div><div class="slot-storable stored-info" id="alt-1-info-1"></div><div class="slot-storable stored-logo" id="alt-1-logo-1"></div></li>
-								<li id="alt-1-slot-2"><div class="slot-number">2</div><div class="slot-storable stored-name" id="alt-1-name-2"></div><div class="slot-storable stored-info" id="alt-1-info-2"></div><div class="slot-storable stored-logo" id="alt-1-logo-2"></div></li>
-								<li id="alt-1-slot-3"><div class="slot-number">3</div><div class="slot-storable stored-name" id="alt-1-name-3"></div><div class="slot-storable stored-info" id="alt-1-info-3"></div><div class="slot-storable stored-logo" id="alt-1-logo-3"></div></li>
-								<li id="alt-1-slot-4"><div class="slot-number">4</div><div class="slot-storable stored-name" id="alt-1-name-4"></div><div class="slot-storable stored-info" id="alt-1-info-4"></div><div class="slot-storable stored-logo" id="alt-1-logo-4"></div></li>
-								<li id="alt-1-slot-5"><div class="slot-number">5</div><div class="slot-storable stored-name" id="alt-1-name-5"></div><div class="slot-storable stored-info" id="alt-1-info-5"></div><div class="slot-storable stored-logo" id="alt-1-logo-5"></div></li>
-								<li id="alt-1-slot-6"><div class="slot-number">6</div><div class="slot-storable stored-name" id="alt-1-name-6"></div><div class="slot-storable stored-info" id="alt-1-info-6"></div><div class="slot-storable stored-logo" id="alt-1-logo-6"></div></li>
-								<li id="alt-1-slot-7"><div class="slot-number">7</div><div class="slot-storable stored-name" id="alt-1-name-7"></div><div class="slot-storable stored-info" id="alt-1-info-7"></div><div class="slot-storable stored-logo" id="alt-1-logo-7"></div></li>
-								<li id="alt-1-slot-8"><div class="slot-number">8</div><div class="slot-storable stored-name" id="alt-1-name-8"></div><div class="slot-storable stored-info" id="alt-1-info-8"></div><div class="slot-storable stored-logo" id="alt-1-logo-8"></div></li>
-								<li id="alt-1-slot-9"><div class="slot-number">9</div><div class="slot-storable stored-name" id="alt-1-name-9"></div><div class="slot-storable stored-info" id="alt-1-info-9"></div><div class="slot-storable stored-logo" id="alt-1-logo-9"></div></li>
-								<li id="alt-1-slot-10"><div class="slot-number">10</div><div class="slot-storable stored-name" id="alt-1-name-10"></div><div class="slot-storable stored-info" id="alt-1-info-10"></div><div class="slot-storable stored-logo" id="alt-1-logo-10"></div></li>
-							</ul>
-							<div class="time-bar">
-								<div id="alt-1-active-time-monitor">0</div>
-								<div id="alt-1-inactive-time-monitor">0</div>
+							<div class="grid-row">
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-1-logo" checked>
+										<div class="icon-btn icon icon-image"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-1-logo-size" class="storable" min="-10" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-1-shadows">
+										<div class="icon-btn icon icon-shadow"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-1-shadow-amount" class="storable" min="1" max="10"
+											name="quantity" value="5" type="number" placeholder="5">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-1-background" checked>
+										<div class="icon-btn icon icon-fill-drip"></div>
+									</label>
+									<div id="alt-1-style-color-appearance" class="fill-color-appearance">
+										<div class="tool-tittle">Clr 1</div>
+										<input class="storable" id="alt-1-style-color-1"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 2</div>
+										<input class="storable" id="alt-1-style-color-2"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+									</div>
+								</div>
 							</div>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-1-autotrigger">
-								<div class="icon-btn icon icon-autotrigger"></div>
-							</label>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-1-autoload">
-								<div class="icon-btn icon icon-sync"></div>
-							</label>
-							<label id="alt-1-custom-times" class="accordion">
-								<div class="icon-btn icon icon-clock"></div>
-							</label>
-							<div class="hidable">
-								<div class="alt-time-options">
-									<div class="settings-title">LT1 Times</div>
-									<div class="settings-inputs">
-										<input class="storable" id="alt-1-animation-time" type="number" placeholder="in-out" tabindex="12">
-										<input class="storable" id="alt-1-active-time" type="number" placeholder="active" tabindex="13">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-1-lock-active">
-											<div class="icon-btn icon icon-lock"></div>
-										</label>
-										<input class="storable" id="alt-1-inactive-time" type="number" placeholder="inactive" tabindex="14">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-1-oneshot">
-											<div class="icon-btn icon icon-oneshot"></div>
-										</label>
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-corner"></div>
+									<div class="number-input">
+										<input id="alt-1-corners" class="storable" min="0" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-1-border" id="alt-1-border-thickness">
+										<div class="icon-btn icon icon-thickness"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-1-border-thickness-amount" class="storable" min="1" max="10"
+											name="quantity" value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-1-border" id="alt-1-border-color">
+										<div class="icon-btn icon icon-pen"></div>
+									</label>
+									<div id="alt-1-style-border-color-appearance" class="border-color-appearance">
+										<div class="tool-tittle">Clr 3</div>
+										<input class="storable" id="alt-1-style-color-3"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 4</div>
+										<input class="storable" id="alt-1-style-color-4"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="first-edit-container">
+						<div class="logo-container" onclick="openLogoPopup('alt-1-logo-preview', 'alt-1-logo-default')">
+							<img id="alt-1-logo-preview" class="logo-storable alt-logo-preview">
+						</div>
+						<div class="textfields-container">
+							<input class="storable" type="text" id="alt-1-name" placeholder="Name" tabindex="4">
+							<div id="alt-1-name-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-1-name-transform" checked>
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-1-name-weight" checked>
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-1-name-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<input class="storable" type="text" id="alt-1-info" placeholder="Info" tabindex="5">
+							<div id="alt-1-info-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-1-info-transform">
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-1-info-weight">
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-1-info-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					<div class="panel-bottom">
+						<div id="alt-1-clean-inputs" class="clean">
+							<div class="icon icon-cross"></div>
+						</div>
+						<ul id="alt-1-memory-slots">
+							<li id="alt-1-slot-1">
+								<div class="slot-number">1</div>
+								<div class="slot-storable stored-name" id="alt-1-name-1"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-1"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-1"></div>
+							</li>
+							<li id="alt-1-slot-2">
+								<div class="slot-number">2</div>
+								<div class="slot-storable stored-name" id="alt-1-name-2"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-2"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-2"></div>
+							</li>
+							<li id="alt-1-slot-3">
+								<div class="slot-number">3</div>
+								<div class="slot-storable stored-name" id="alt-1-name-3"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-3"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-3"></div>
+							</li>
+							<li id="alt-1-slot-4">
+								<div class="slot-number">4</div>
+								<div class="slot-storable stored-name" id="alt-1-name-4"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-4"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-4"></div>
+							</li>
+							<li id="alt-1-slot-5">
+								<div class="slot-number">5</div>
+								<div class="slot-storable stored-name" id="alt-1-name-5"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-5"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-5"></div>
+							</li>
+							<li id="alt-1-slot-6">
+								<div class="slot-number">6</div>
+								<div class="slot-storable stored-name" id="alt-1-name-6"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-6"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-6"></div>
+							</li>
+							<li id="alt-1-slot-7">
+								<div class="slot-number">7</div>
+								<div class="slot-storable stored-name" id="alt-1-name-7"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-7"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-7"></div>
+							</li>
+							<li id="alt-1-slot-8">
+								<div class="slot-number">8</div>
+								<div class="slot-storable stored-name" id="alt-1-name-8"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-8"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-8"></div>
+							</li>
+							<li id="alt-1-slot-9">
+								<div class="slot-number">9</div>
+								<div class="slot-storable stored-name" id="alt-1-name-9"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-9"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-9"></div>
+							</li>
+							<li id="alt-1-slot-10">
+								<div class="slot-number">10</div>
+								<div class="slot-storable stored-name" id="alt-1-name-10"></div>
+								<div class="slot-storable stored-info" id="alt-1-info-10"></div>
+								<div class="slot-storable stored-logo" id="alt-1-logo-10"></div>
+							</li>
+						</ul>
+						<div class="time-bar">
+							<div id="alt-1-active-time-monitor">0</div>
+							<div id="alt-1-inactive-time-monitor">0</div>
+						</div>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-1-autotrigger">
+							<div class="icon-btn icon icon-autotrigger"></div>
+						</label>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-1-autoload">
+							<div class="icon-btn icon icon-sync"></div>
+						</label>
+						<label id="alt-1-custom-times" class="accordion">
+							<div class="icon-btn icon icon-clock"></div>
+						</label>
+						<div class="hidable">
+							<div class="alt-time-options">
+								<div class="settings-title">LT1 Times</div>
+								<div class="settings-inputs">
+									<input class="storable" id="alt-1-animation-time" type="number" placeholder="in-out"
+										tabindex="12">
+									<input class="storable" id="alt-1-active-time" type="number" placeholder="active"
+										tabindex="13">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-1-lock-active">
+										<div class="icon-btn icon icon-lock"></div>
+									</label>
+									<input class="storable" id="alt-1-inactive-time" type="number"
+										placeholder="inactive" tabindex="14">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-1-oneshot">
+										<div class="icon-btn icon icon-oneshot"></div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+			</div>
 
-				<div class="sortees" id="alt_2"> <!--// Painelzinho 2//-->
-					<div id="alt-2-config-content">
-						<label class="switch">
+			<div class="sortees" id="alt_2"> <!--// Painelzinho 2//-->
+				<div id="alt-2-config-content">
+					<label class="switch">
 						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch2">
 						<span class="slider round"></span>
-						</label>
-						<label class="config-btn preview-btn">
-							<input class="checkbox-storable" type="checkbox" id="alt-2-preview">
-							<div class="icon-btn icon icon-search"></div>
-						</label>
-						<div class="drag-handle">
-							<div class="alt-number-icon">2</div>
-							<div id="alt-2-title" class="renameable title-storable">Painelzinho 2</div>
-						</div>
-						<label class="accordion"></label>
-						<div class="hidable">
-							<div class="grid-container">
-								<div class="grid-row">
-									<div>
-										<div class="align-toggle">
-										<input class="radio-storable" id="alt-2-align-left" name="alt-2-align" type="radio" value="left" checked/>
-										<label for="alt-2-align-left" onclick=""><div class="icon icon-aling-left"></div></label>
-										<input class="radio-storable" id="alt-2-align-center" name="alt-2-align" type="radio" value="center" />
-										<label for="alt-2-align-center" onclick=""><div class="icon icon-aling-center"></div></label>
-										<input class="radio-storable" id="alt-2-align-right" name="alt-2-align" type="radio" value="right" />
-										<label for="alt-2-align-right" onclick=""><div class="icon icon-aling-right"></div></label>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-paint-brush"></div>
-										<div class="number-input">
-											<input id="alt-2-style" class="storable" min="1" max="3" name="quantity" value="1" type="number" placeholder="1" readonly>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-size"></div>
-										<div class="number-input">
-											<input id="alt-2-size" class="storable" min="10" max="50" name="quantity" value="24" type="number" placeholder="24">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>							
-									<div class="margin-config group">
-										<div class="input-icon icon icon-position"></div>
-										<div class="number-input">
-											<input id="alt-2-margin-h" class="storable" min="0" max="100" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-										<div class="number-input input-no-icon">
-											<input id="alt-2-margin-v" class="storable" min="0" max="55" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+					</label>
+					<label class="config-btn preview-btn">
+						<input class="checkbox-storable" type="checkbox" id="alt-2-preview">
+						<div class="icon-btn icon icon-search"></div>
+					</label>
+					<div class="drag-handle">
+						<div class="alt-number-icon">2</div>
+						<div id="alt-2-title" class="renameable title-storable">Painelzinho 2</div>
+					</div>
+					<label class="accordion"></label>
+					<div class="hidable">
+						<div class="grid-container">
+							<div class="grid-row">
+								<div>
+									<div class="align-toggle">
+										<input class="radio-storable" id="alt-2-align-left" name="alt-2-align"
+											type="radio" value="left" checked />
+										<label for="alt-2-align-left" onclick="">
+											<div class="icon icon-aling-left"></div>
+										</label>
+										<input class="radio-storable" id="alt-2-align-center" name="alt-2-align"
+											type="radio" value="center" />
+										<label for="alt-2-align-center" onclick="">
+											<div class="icon icon-aling-center"></div>
+										</label>
+										<input class="radio-storable" id="alt-2-align-right" name="alt-2-align"
+											type="radio" value="right" />
+										<label for="alt-2-align-right" onclick="">
+											<div class="icon icon-aling-right"></div>
+										</label>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-text-height"></div>
-										<div class="number-input">
-											<input id="alt-2-inverse-ratio" class="storable" min="0" max="10" name="quantity" value="9" type="number" placeholder="9">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-line-spacing"></div>
-										<div class="number-input">
-											<input id="alt-2-line-spacing" class="storable" min="-5" max="5" name="quantity" value="2" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>									
-									<div class="font-config group">
-										<div class="input-icon icon icon-font"></div>
-										<select id="alt-2-font" class="font-storable">
-											<!--Lista de fontes-->
-										</select>
+								<div>
+									<div class="input-icon icon icon-paint-brush"></div>
+									<div class="number-input">
+										<input id="alt-2-style" class="storable" min="1" max="3" name="quantity"
+											value="1" type="number" placeholder="1" readonly>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-2-logo" checked>
-											<div class="icon-btn icon icon-image"></div>
-										</label>									
-										<div class="number-input">
-											<input id="alt-2-logo-size" class="storable" min="-10" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>										
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-2-shadows">
-											<div class="icon-btn icon icon-shadow"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-2-shadow-amount" class="storable" min="1" max="10" name="quantity" value="5" type="number" placeholder="5">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-2-background" checked>
-											<div class="icon-btn icon icon-fill-drip"></div>
-										</label>
-										<div id="alt-2-style-color-appearance" class="fill-color-appearance">
-											<div class="tool-tittle">Clr 1</div>
-											<input class="storable" id="alt-2-style-color-1" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 2</div>
-											<input class="storable" id="alt-2-style-color-2" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
+								<div>
+									<div class="input-icon icon icon-size"></div>
+									<div class="number-input">
+										<input id="alt-2-size" class="storable" min="10" max="50" name="quantity"
+											value="24" type="number" placeholder="24">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-corner"></div>
-										<div class="number-input">
-											<input id="alt-2-corners" class="storable" min="0" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+								<div class="margin-config group">
+									<div class="input-icon icon icon-position"></div>
+									<div class="number-input">
+										<input id="alt-2-margin-h" class="storable" min="0" max="100" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-2-border" id="alt-2-border-thickness">
-											<div class="icon-btn icon icon-thickness"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-2-border-thickness-amount" class="storable" min="1" max="10" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+									<div class="number-input input-no-icon">
+										<input id="alt-2-margin-v" class="storable" min="0" max="55" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-2-border" id="alt-2-border-color">
-											<div class="icon-btn icon icon-pen"></div>
-										</label>
-										<div id="alt-2-style-border-color-appearance" class="border-color-appearance">
-											<div class="tool-tittle">Clr 3</div>
-											<input class="storable" id="alt-2-style-color-3" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 4</div>
-											<input class="storable" id="alt-2-style-color-4" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
-									</div>									
 								</div>
-							</div>					
-						</div>
-						<div class="first-edit-container">
-							<div class="logo-container" onclick="openLogoPopup('alt-2-logo-preview', 'alt-2-logo-default')">
-								<img id="alt-2-logo-preview" class="logo-storable alt-logo-preview" >
 							</div>
-							<div class="textfields-container">
-								<input class="storable" type="text" id="alt-2-name" placeholder="Name" tabindex="6">
-								<div id="alt-2-name-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-2-name-transform" checked>
-										<div class="icon-btn icon small icon-uppercase"></div>
-									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-2-name-weight" checked>
-										<div class="icon-btn icon small icon-bold"></div>
-									</label>
-									<input class="storable" id="alt-2-name-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-text-height"></div>
+									<div class="number-input">
+										<input id="alt-2-inverse-ratio" class="storable" min="0" max="10"
+											name="quantity" value="9" type="number" placeholder="9">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
 								</div>
-								<input class="storable" type="text" id="alt-2-info" placeholder="Info" tabindex="7">
-								<div id="alt-2-info-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-2-info-transform">
-										<div class="icon-btn icon small icon-uppercase"></div>
-									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-2-info-weight">
-										<div class="icon-btn icon small icon-bold"></div>
-									</label>
-									<input class="storable" id="alt-2-info-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-								</div>	
-								<div style="clear:both"></div>
+								<div>
+									<div class="input-icon icon icon-line-spacing"></div>
+									<div class="number-input">
+										<input id="alt-2-line-spacing" class="storable" min="-5" max="5" name="quantity"
+											value="2" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div class="font-config group">
+									<div class="input-icon icon icon-font"></div>
+									<select id="alt-2-font" class="font-storable">
+										<!--Lista de fontes-->
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="panel-bottom">
-							<div id="alt-2-clean-inputs" class="clean"><div class="icon icon-cross"></div></div>
-							<ul id="alt-2-memory-slots">
-								<li id="alt-2-slot-1"><div class="slot-number">1</div><div class="slot-storable stored-name" id="alt-2-name-1"></div><div class="slot-storable stored-info" id="alt-2-info-1"></div><div class="slot-storable stored-logo" id="alt-2-logo-1"></div></li>
-								<li id="alt-2-slot-2"><div class="slot-number">2</div><div class="slot-storable stored-name" id="alt-2-name-2"></div><div class="slot-storable stored-info" id="alt-2-info-2"></div><div class="slot-storable stored-logo" id="alt-2-logo-2"></div></li>
-								<li id="alt-2-slot-3"><div class="slot-number">3</div><div class="slot-storable stored-name" id="alt-2-name-3"></div><div class="slot-storable stored-info" id="alt-2-info-3"></div><div class="slot-storable stored-logo" id="alt-2-logo-3"></div></li>
-								<li id="alt-2-slot-4"><div class="slot-number">4</div><div class="slot-storable stored-name" id="alt-2-name-4"></div><div class="slot-storable stored-info" id="alt-2-info-4"></div><div class="slot-storable stored-logo" id="alt-2-logo-4"></div></li>
-								<li id="alt-2-slot-5"><div class="slot-number">5</div><div class="slot-storable stored-name" id="alt-2-name-5"></div><div class="slot-storable stored-info" id="alt-2-info-5"></div><div class="slot-storable stored-logo" id="alt-2-logo-5"></div></li>
-								<li id="alt-2-slot-6"><div class="slot-number">6</div><div class="slot-storable stored-name" id="alt-2-name-6"></div><div class="slot-storable stored-info" id="alt-2-info-6"></div><div class="slot-storable stored-logo" id="alt-2-logo-6"></div></li>
-								<li id="alt-2-slot-7"><div class="slot-number">7</div><div class="slot-storable stored-name" id="alt-2-name-7"></div><div class="slot-storable stored-info" id="alt-2-info-7"></div><div class="slot-storable stored-logo" id="alt-2-logo-7"></div></li>
-								<li id="alt-2-slot-8"><div class="slot-number">8</div><div class="slot-storable stored-name" id="alt-2-name-8"></div><div class="slot-storable stored-info" id="alt-2-info-8"></div><div class="slot-storable stored-logo" id="alt-2-logo-8"></div></li>
-								<li id="alt-2-slot-9"><div class="slot-number">9</div><div class="slot-storable stored-name" id="alt-2-name-9"></div><div class="slot-storable stored-info" id="alt-2-info-9"></div><div class="slot-storable stored-logo" id="alt-2-logo-9"></div></li>
-								<li id="alt-2-slot-10"><div class="slot-number">10</div><div class="slot-storable stored-name" id="alt-2-name-10"></div><div class="slot-storable stored-info" id="alt-2-info-10"></div><div class="slot-storable stored-logo" id="alt-2-logo-10"></div></li>
-							</ul>
-							<div class="time-bar">
-								<div id="alt-2-active-time-monitor">0</div>
-								<div id="alt-2-inactive-time-monitor">0</div>
+							<div class="grid-row">
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-2-logo" checked>
+										<div class="icon-btn icon icon-image"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-2-logo-size" class="storable" min="-10" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-2-shadows">
+										<div class="icon-btn icon icon-shadow"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-2-shadow-amount" class="storable" min="1" max="10"
+											name="quantity" value="5" type="number" placeholder="5">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-2-background" checked>
+										<div class="icon-btn icon icon-fill-drip"></div>
+									</label>
+									<div id="alt-2-style-color-appearance" class="fill-color-appearance">
+										<div class="tool-tittle">Clr 1</div>
+										<input class="storable" id="alt-2-style-color-1"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 2</div>
+										<input class="storable" id="alt-2-style-color-2"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+									</div>
+								</div>
 							</div>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-2-autotrigger">
-								<div class="icon-btn icon icon-autotrigger"></div>
-							</label>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-2-autoload">
-								<div class="icon-btn icon icon-sync"></div>
-							</label>
-							<label id="alt-2-custom-times" class="accordion">
-								<div class="icon-btn icon icon-clock"></div>
-							</label>
-							<div class="hidable">
-								<div class="alt-time-options">
-									<div class="settings-title">LT2 Times</div>
-									<div class="settings-inputs">
-										<input class="storable" id="alt-2-animation-time" type="number" placeholder="in-out" tabindex="15">
-										<input class="storable" id="alt-2-active-time" type="number" placeholder="active" tabindex="16">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-2-lock-active">
-											<div class="icon-btn icon icon-lock"></div>
-										</label>
-										<input class="storable" id="alt-2-inactive-time" type="number" placeholder="inactive" tabindex="17">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-2-oneshot">
-											<div class="icon-btn icon icon-oneshot"></div>
-										</label>
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-corner"></div>
+									<div class="number-input">
+										<input id="alt-2-corners" class="storable" min="0" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-2-border" id="alt-2-border-thickness">
+										<div class="icon-btn icon icon-thickness"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-2-border-thickness-amount" class="storable" min="1" max="10"
+											name="quantity" value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-2-border" id="alt-2-border-color">
+										<div class="icon-btn icon icon-pen"></div>
+									</label>
+									<div id="alt-2-style-border-color-appearance" class="border-color-appearance">
+										<div class="tool-tittle">Clr 3</div>
+										<input class="storable" id="alt-2-style-color-3"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 4</div>
+										<input class="storable" id="alt-2-style-color-4"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="first-edit-container">
+						<div class="logo-container" onclick="openLogoPopup('alt-2-logo-preview', 'alt-2-logo-default')">
+							<img id="alt-2-logo-preview" class="logo-storable alt-logo-preview">
+						</div>
+						<div class="textfields-container">
+							<input class="storable" type="text" id="alt-2-name" placeholder="Name" tabindex="6">
+							<div id="alt-2-name-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-2-name-transform" checked>
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-2-name-weight" checked>
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-2-name-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<input class="storable" type="text" id="alt-2-info" placeholder="Info" tabindex="7">
+							<div id="alt-2-info-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-2-info-transform">
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-2-info-weight">
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-2-info-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					<div class="panel-bottom">
+						<div id="alt-2-clean-inputs" class="clean">
+							<div class="icon icon-cross"></div>
+						</div>
+						<ul id="alt-2-memory-slots">
+							<li id="alt-2-slot-1">
+								<div class="slot-number">1</div>
+								<div class="slot-storable stored-name" id="alt-2-name-1"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-1"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-1"></div>
+							</li>
+							<li id="alt-2-slot-2">
+								<div class="slot-number">2</div>
+								<div class="slot-storable stored-name" id="alt-2-name-2"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-2"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-2"></div>
+							</li>
+							<li id="alt-2-slot-3">
+								<div class="slot-number">3</div>
+								<div class="slot-storable stored-name" id="alt-2-name-3"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-3"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-3"></div>
+							</li>
+							<li id="alt-2-slot-4">
+								<div class="slot-number">4</div>
+								<div class="slot-storable stored-name" id="alt-2-name-4"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-4"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-4"></div>
+							</li>
+							<li id="alt-2-slot-5">
+								<div class="slot-number">5</div>
+								<div class="slot-storable stored-name" id="alt-2-name-5"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-5"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-5"></div>
+							</li>
+							<li id="alt-2-slot-6">
+								<div class="slot-number">6</div>
+								<div class="slot-storable stored-name" id="alt-2-name-6"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-6"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-6"></div>
+							</li>
+							<li id="alt-2-slot-7">
+								<div class="slot-number">7</div>
+								<div class="slot-storable stored-name" id="alt-2-name-7"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-7"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-7"></div>
+							</li>
+							<li id="alt-2-slot-8">
+								<div class="slot-number">8</div>
+								<div class="slot-storable stored-name" id="alt-2-name-8"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-8"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-8"></div>
+							</li>
+							<li id="alt-2-slot-9">
+								<div class="slot-number">9</div>
+								<div class="slot-storable stored-name" id="alt-2-name-9"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-9"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-9"></div>
+							</li>
+							<li id="alt-2-slot-10">
+								<div class="slot-number">10</div>
+								<div class="slot-storable stored-name" id="alt-2-name-10"></div>
+								<div class="slot-storable stored-info" id="alt-2-info-10"></div>
+								<div class="slot-storable stored-logo" id="alt-2-logo-10"></div>
+							</li>
+						</ul>
+						<div class="time-bar">
+							<div id="alt-2-active-time-monitor">0</div>
+							<div id="alt-2-inactive-time-monitor">0</div>
+						</div>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-2-autotrigger">
+							<div class="icon-btn icon icon-autotrigger"></div>
+						</label>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-2-autoload">
+							<div class="icon-btn icon icon-sync"></div>
+						</label>
+						<label id="alt-2-custom-times" class="accordion">
+							<div class="icon-btn icon icon-clock"></div>
+						</label>
+						<div class="hidable">
+							<div class="alt-time-options">
+								<div class="settings-title">LT2 Times</div>
+								<div class="settings-inputs">
+									<input class="storable" id="alt-2-animation-time" type="number" placeholder="in-out"
+										tabindex="15">
+									<input class="storable" id="alt-2-active-time" type="number" placeholder="active"
+										tabindex="16">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-2-lock-active">
+										<div class="icon-btn icon icon-lock"></div>
+									</label>
+									<input class="storable" id="alt-2-inactive-time" type="number"
+										placeholder="inactive" tabindex="17">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-2-oneshot">
+										<div class="icon-btn icon icon-oneshot"></div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+			</div>
 
-				<div class="sortees" id="alt_3"> <!--// Painelzinho 3//-->
-					<div id="alt-3-config-content">
-						<label class="switch">
+			<div class="sortees" id="alt_3"> <!--// Painelzinho 3//-->
+				<div id="alt-3-config-content">
+					<label class="switch">
 						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch3">
 						<span class="slider round"></span>
-						</label>
-						<label class="config-btn preview-btn">
-							<input class="checkbox-storable" type="checkbox" id="alt-3-preview">
-							<div class="icon-btn icon icon-search"></div>
-						</label>
-						<div class="drag-handle">
-							<div class="alt-number-icon">3</div>
-							<div id="alt-3-title" class="renameable title-storable">Painelzinho 3</div>
-						</div>
-						<label class="accordion"></label>
-						<div class="hidable">
-							<div class="grid-container">
-								<div class="grid-row">
-									<div>
-										<div class="align-toggle">
-										<input class="radio-storable" id="alt-3-align-left" name="alt-3-align" type="radio" value="left" checked/>
-										<label for="alt-3-align-left" onclick=""><div class="icon icon-aling-left"></div></label>
-										<input class="radio-storable" id="alt-3-align-center" name="alt-3-align" type="radio" value="center" />
-										<label for="alt-3-align-center" onclick=""><div class="icon icon-aling-center"></div></label>
-										<input class="radio-storable" id="alt-3-align-right" name="alt-3-align" type="radio" value="right" />
-										<label for="alt-3-align-right" onclick=""><div class="icon icon-aling-right"></div></label>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-paint-brush"></div>
-										<div class="number-input">
-											<input id="alt-3-style" class="storable" min="1" max="3" name="quantity" value="1" type="number" placeholder="1" readonly>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-size"></div>
-										<div class="number-input">
-											<input id="alt-3-size" class="storable" min="10" max="50" name="quantity" value="24" type="number" placeholder="24">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>							
-									<div class="margin-config group">
-										<div class="input-icon icon icon-position"></div>
-										<div class="number-input">
-											<input id="alt-3-margin-h" class="storable" min="0" max="100" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-										<div class="number-input input-no-icon">
-											<input id="alt-3-margin-v" class="storable" min="0" max="55" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+					</label>
+					<label class="config-btn preview-btn">
+						<input class="checkbox-storable" type="checkbox" id="alt-3-preview">
+						<div class="icon-btn icon icon-search"></div>
+					</label>
+					<div class="drag-handle">
+						<div class="alt-number-icon">3</div>
+						<div id="alt-3-title" class="renameable title-storable">Painelzinho 3</div>
+					</div>
+					<label class="accordion"></label>
+					<div class="hidable">
+						<div class="grid-container">
+							<div class="grid-row">
+								<div>
+									<div class="align-toggle">
+										<input class="radio-storable" id="alt-3-align-left" name="alt-3-align"
+											type="radio" value="left" checked />
+										<label for="alt-3-align-left" onclick="">
+											<div class="icon icon-aling-left"></div>
+										</label>
+										<input class="radio-storable" id="alt-3-align-center" name="alt-3-align"
+											type="radio" value="center" />
+										<label for="alt-3-align-center" onclick="">
+											<div class="icon icon-aling-center"></div>
+										</label>
+										<input class="radio-storable" id="alt-3-align-right" name="alt-3-align"
+											type="radio" value="right" />
+										<label for="alt-3-align-right" onclick="">
+											<div class="icon icon-aling-right"></div>
+										</label>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-text-height"></div>
-										<div class="number-input">
-											<input id="alt-3-inverse-ratio" class="storable" min="0" max="10" name="quantity" value="9" type="number" placeholder="9">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-line-spacing"></div>
-										<div class="number-input">
-											<input id="alt-3-line-spacing" class="storable" min="-5" max="5" name="quantity" value="2" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>									
-									<div class="font-config group">
-										<div class="input-icon icon icon-font"></div>
-										<select id="alt-3-font" class="font-storable">
-											<!--Lista de fontes-->
-										</select>
+								<div>
+									<div class="input-icon icon icon-paint-brush"></div>
+									<div class="number-input">
+										<input id="alt-3-style" class="storable" min="1" max="3" name="quantity"
+											value="1" type="number" placeholder="1" readonly>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-3-logo" checked>
-											<div class="icon-btn icon icon-image"></div>
-										</label>									
-										<div class="number-input">
-											<input id="alt-3-logo-size" class="storable" min="-10" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>										
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-3-shadows">
-											<div class="icon-btn icon icon-shadow"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-3-shadow-amount" class="storable" min="1" max="10" name="quantity" value="5" type="number" placeholder="5">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-3-background" checked>
-											<div class="icon-btn icon icon-fill-drip"></div>
-										</label>
-										<div id="alt-3-style-color-appearance" class="fill-color-appearance">
-											<div class="tool-tittle">Clr 1</div>
-											<input class="storable" id="alt-3-style-color-1" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 2</div>
-											<input class="storable" id="alt-3-style-color-2" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
+								<div>
+									<div class="input-icon icon icon-size"></div>
+									<div class="number-input">
+										<input id="alt-3-size" class="storable" min="10" max="50" name="quantity"
+											value="24" type="number" placeholder="24">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
 								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-corner"></div>
-										<div class="number-input">
-											<input id="alt-3-corners" class="storable" min="0" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+								<div class="margin-config group">
+									<div class="input-icon icon icon-position"></div>
+									<div class="number-input">
+										<input id="alt-3-margin-h" class="storable" min="0" max="100" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-3-border" id="alt-3-border-thickness">
-											<div class="icon-btn icon icon-thickness"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-3-border-thickness-amount" class="storable" min="1" max="10" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
+									<div class="number-input input-no-icon">
+										<input id="alt-3-margin-v" class="storable" min="0" max="55" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
 									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-3-border" id="alt-3-border-color">
-											<div class="icon-btn icon icon-pen"></div>
-										</label>
-										<div id="alt-3-style-border-color-appearance" class="border-color-appearance">
-											<div class="tool-tittle">Clr 3</div>
-											<input class="storable" id="alt-3-style-color-3" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 4</div>
-											<input class="storable" id="alt-3-style-color-4" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
-									</div>									
 								</div>
-							</div>					
-						</div>
-						<div class="first-edit-container">
-							<div class="logo-container" onclick="openLogoPopup('alt-3-logo-preview', 'alt-3-logo-default')">
-								<img id="alt-3-logo-preview" class="logo-storable alt-logo-preview" >
 							</div>
-							<div class="textfields-container">
-								<input class="storable" type="text" id="alt-3-name" placeholder="Name" tabindex="8">
-								<div id="alt-3-name-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-3-name-transform" checked>
-										<div class="icon-btn icon small icon-uppercase"></div>
-									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-3-name-weight" checked>
-										<div class="icon-btn icon small icon-bold"></div>
-									</label>
-									<input class="storable" id="alt-3-name-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-text-height"></div>
+									<div class="number-input">
+										<input id="alt-3-inverse-ratio" class="storable" min="0" max="10"
+											name="quantity" value="9" type="number" placeholder="9">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
 								</div>
-								<input class="storable" type="text" id="alt-3-info" placeholder="Info" tabindex="9">
-								<div id="alt-3-info-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-3-info-transform">
-										<div class="icon-btn icon small icon-uppercase"></div>
-									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-3-info-weight">
-										<div class="icon-btn icon small icon-bold"></div>
-									</label>
-									<input class="storable" id="alt-3-info-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-								</div>	
-								<div style="clear:both"></div>
+								<div>
+									<div class="input-icon icon icon-line-spacing"></div>
+									<div class="number-input">
+										<input id="alt-3-line-spacing" class="storable" min="-5" max="5" name="quantity"
+											value="2" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div class="font-config group">
+									<div class="input-icon icon icon-font"></div>
+									<select id="alt-3-font" class="font-storable">
+										<!--Lista de fontes-->
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="panel-bottom">
-							<div id="alt-3-clean-inputs" class="clean"><div class="icon icon-cross"></div></div>
-							<ul id="alt-3-memory-slots">
-								<li id="alt-3-slot-1"><div class="slot-number">1</div><div class="slot-storable stored-name" id="alt-3-name-1"></div><div class="slot-storable stored-info" id="alt-3-info-1"></div><div class="slot-storable stored-logo" id="alt-3-logo-1"></div></li>
-								<li id="alt-3-slot-2"><div class="slot-number">2</div><div class="slot-storable stored-name" id="alt-3-name-2"></div><div class="slot-storable stored-info" id="alt-3-info-2"></div><div class="slot-storable stored-logo" id="alt-3-logo-2"></div></li>
-								<li id="alt-3-slot-3"><div class="slot-number">3</div><div class="slot-storable stored-name" id="alt-3-name-3"></div><div class="slot-storable stored-info" id="alt-3-info-3"></div><div class="slot-storable stored-logo" id="alt-3-logo-3"></div></li>
-								<li id="alt-3-slot-4"><div class="slot-number">4</div><div class="slot-storable stored-name" id="alt-3-name-4"></div><div class="slot-storable stored-info" id="alt-3-info-4"></div><div class="slot-storable stored-logo" id="alt-3-logo-4"></div></li>
-								<li id="alt-3-slot-5"><div class="slot-number">5</div><div class="slot-storable stored-name" id="alt-3-name-5"></div><div class="slot-storable stored-info" id="alt-3-info-5"></div><div class="slot-storable stored-logo" id="alt-3-logo-5"></div></li>
-								<li id="alt-3-slot-6"><div class="slot-number">6</div><div class="slot-storable stored-name" id="alt-3-name-6"></div><div class="slot-storable stored-info" id="alt-3-info-6"></div><div class="slot-storable stored-logo" id="alt-3-logo-6"></div></li>
-								<li id="alt-3-slot-7"><div class="slot-number">7</div><div class="slot-storable stored-name" id="alt-3-name-7"></div><div class="slot-storable stored-info" id="alt-3-info-7"></div><div class="slot-storable stored-logo" id="alt-3-logo-7"></div></li>
-								<li id="alt-3-slot-8"><div class="slot-number">8</div><div class="slot-storable stored-name" id="alt-3-name-8"></div><div class="slot-storable stored-info" id="alt-3-info-8"></div><div class="slot-storable stored-logo" id="alt-3-logo-8"></div></li>
-								<li id="alt-3-slot-9"><div class="slot-number">9</div><div class="slot-storable stored-name" id="alt-3-name-9"></div><div class="slot-storable stored-info" id="alt-3-info-9"></div><div class="slot-storable stored-logo" id="alt-3-logo-9"></div></li>
-								<li id="alt-3-slot-10"><div class="slot-number">10</div><div class="slot-storable stored-name" id="alt-3-name-10"></div><div class="slot-storable stored-info" id="alt-3-info-10"></div><div class="slot-storable stored-logo" id="alt-3-logo-10"></div></li>
-							</ul>
-							<div class="time-bar">
-								<div id="alt-3-active-time-monitor">0</div>
-								<div id="alt-3-inactive-time-monitor">0</div>
+							<div class="grid-row">
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-3-logo" checked>
+										<div class="icon-btn icon icon-image"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-3-logo-size" class="storable" min="-10" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-3-shadows">
+										<div class="icon-btn icon icon-shadow"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-3-shadow-amount" class="storable" min="1" max="10"
+											name="quantity" value="5" type="number" placeholder="5">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-3-background" checked>
+										<div class="icon-btn icon icon-fill-drip"></div>
+									</label>
+									<div id="alt-3-style-color-appearance" class="fill-color-appearance">
+										<div class="tool-tittle">Clr 1</div>
+										<input class="storable" id="alt-3-style-color-1"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 2</div>
+										<input class="storable" id="alt-3-style-color-2"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+									</div>
+								</div>
 							</div>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-3-autotrigger">
-								<div class="icon-btn icon icon-autotrigger"></div>
-							</label>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-3-autoload">
-								<div class="icon-btn icon icon-sync"></div>
-							</label>
-							<label id="alt-3-custom-times" class="accordion">
-								<div class="icon-btn icon icon-clock"></div>
-							</label>
-							<div class="hidable">
-								<div class="alt-time-options">
-									<div class="settings-title">LT3 Times</div>
-									<div class="settings-inputs">
-										<input class="storable" id="alt-3-animation-time" type="number" placeholder="in-out" tabindex="18">
-										<input class="storable" id="alt-3-active-time" type="number" placeholder="active" tabindex="19">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-3-lock-active">
-											<div class="icon-btn icon icon-lock"></div>
-										</label>
-										<input class="storable" id="alt-3-inactive-time" type="number" placeholder="inactive" tabindex="20">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-3-oneshot">
-											<div class="icon-btn icon icon-oneshot"></div>
-										</label>
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-corner"></div>
+									<div class="number-input">
+										<input id="alt-3-corners" class="storable" min="0" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-3-border" id="alt-3-border-thickness">
+										<div class="icon-btn icon icon-thickness"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-3-border-thickness-amount" class="storable" min="1" max="10"
+											name="quantity" value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-3-border" id="alt-3-border-color">
+										<div class="icon-btn icon icon-pen"></div>
+									</label>
+									<div id="alt-3-style-border-color-appearance" class="border-color-appearance">
+										<div class="tool-tittle">Clr 3</div>
+										<input class="storable" id="alt-3-style-color-3"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 4</div>
+										<input class="storable" id="alt-3-style-color-4"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="first-edit-container">
+						<div class="logo-container" onclick="openLogoPopup('alt-3-logo-preview', 'alt-3-logo-default')">
+							<img id="alt-3-logo-preview" class="logo-storable alt-logo-preview">
+						</div>
+						<div class="textfields-container">
+							<input class="storable" type="text" id="alt-3-name" placeholder="Name" tabindex="8">
+							<div id="alt-3-name-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-3-name-transform" checked>
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-3-name-weight" checked>
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-3-name-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<input class="storable" type="text" id="alt-3-info" placeholder="Info" tabindex="9">
+							<div id="alt-3-info-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-3-info-transform">
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-3-info-weight">
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-3-info-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					<div class="panel-bottom">
+						<div id="alt-3-clean-inputs" class="clean">
+							<div class="icon icon-cross"></div>
+						</div>
+						<ul id="alt-3-memory-slots">
+							<li id="alt-3-slot-1">
+								<div class="slot-number">1</div>
+								<div class="slot-storable stored-name" id="alt-3-name-1"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-1"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-1"></div>
+							</li>
+							<li id="alt-3-slot-2">
+								<div class="slot-number">2</div>
+								<div class="slot-storable stored-name" id="alt-3-name-2"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-2"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-2"></div>
+							</li>
+							<li id="alt-3-slot-3">
+								<div class="slot-number">3</div>
+								<div class="slot-storable stored-name" id="alt-3-name-3"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-3"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-3"></div>
+							</li>
+							<li id="alt-3-slot-4">
+								<div class="slot-number">4</div>
+								<div class="slot-storable stored-name" id="alt-3-name-4"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-4"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-4"></div>
+							</li>
+							<li id="alt-3-slot-5">
+								<div class="slot-number">5</div>
+								<div class="slot-storable stored-name" id="alt-3-name-5"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-5"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-5"></div>
+							</li>
+							<li id="alt-3-slot-6">
+								<div class="slot-number">6</div>
+								<div class="slot-storable stored-name" id="alt-3-name-6"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-6"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-6"></div>
+							</li>
+							<li id="alt-3-slot-7">
+								<div class="slot-number">7</div>
+								<div class="slot-storable stored-name" id="alt-3-name-7"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-7"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-7"></div>
+							</li>
+							<li id="alt-3-slot-8">
+								<div class="slot-number">8</div>
+								<div class="slot-storable stored-name" id="alt-3-name-8"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-8"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-8"></div>
+							</li>
+							<li id="alt-3-slot-9">
+								<div class="slot-number">9</div>
+								<div class="slot-storable stored-name" id="alt-3-name-9"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-9"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-9"></div>
+							</li>
+							<li id="alt-3-slot-10">
+								<div class="slot-number">10</div>
+								<div class="slot-storable stored-name" id="alt-3-name-10"></div>
+								<div class="slot-storable stored-info" id="alt-3-info-10"></div>
+								<div class="slot-storable stored-logo" id="alt-3-logo-10"></div>
+							</li>
+						</ul>
+						<div class="time-bar">
+							<div id="alt-3-active-time-monitor">0</div>
+							<div id="alt-3-inactive-time-monitor">0</div>
+						</div>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-3-autotrigger">
+							<div class="icon-btn icon icon-autotrigger"></div>
+						</label>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-3-autoload">
+							<div class="icon-btn icon icon-sync"></div>
+						</label>
+						<label id="alt-3-custom-times" class="accordion">
+							<div class="icon-btn icon icon-clock"></div>
+						</label>
+						<div class="hidable">
+							<div class="alt-time-options">
+								<div class="settings-title">LT3 Times</div>
+								<div class="settings-inputs">
+									<input class="storable" id="alt-3-animation-time" type="number" placeholder="in-out"
+										tabindex="18">
+									<input class="storable" id="alt-3-active-time" type="number" placeholder="active"
+										tabindex="19">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-3-lock-active">
+										<div class="icon-btn icon icon-lock"></div>
+									</label>
+									<input class="storable" id="alt-3-inactive-time" type="number"
+										placeholder="inactive" tabindex="20">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-3-oneshot">
+										<div class="icon-btn icon icon-oneshot"></div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+			</div>
 
-				<div class="sortees" id="alt_4"> <!--// Painelzinho 4//-->
-					<div id="alt-4-config-content">
-						<label class="switch">
+			<div class="sortees" id="alt_4"> <!--// Painelzinho 4//-->
+				<div id="alt-4-config-content">
+					<label class="switch">
 						<input class="checkbox-storable" type="checkbox" id="painelzinhos-switch4">
 						<span class="slider round"></span>
-						</label>
-						<label class="config-btn preview-btn">
-							<input class="checkbox-storable" type="checkbox" id="alt-4-preview">
-							<div class="icon-btn icon icon-search"></div>
-						</label>
-						<div class="drag-handle">
-							<div class="alt-number-icon">4</div>
-							<div id="alt-4-title" class="renameable title-storable">Painelzinho 4</div>
+					</label>
+					<label class="config-btn preview-btn">
+						<input class="checkbox-storable" type="checkbox" id="alt-4-preview">
+						<div class="icon-btn icon icon-search"></div>
+					</label>
+					<div class="drag-handle">
+						<div class="alt-number-icon">4</div>
+						<div id="alt-4-title" class="renameable title-storable">Painelzinho 4</div>
+					</div>
+					<label class="accordion"></label>
+					<div class="hidable">
+						<div class="grid-container">
+							<div class="grid-row">
+								<div>
+									<div class="align-toggle">
+										<input class="radio-storable" id="alt-4-align-left" name="alt-4-align"
+											type="radio" value="left" checked />
+										<label for="alt-4-align-left" onclick="">
+											<div class="icon icon-aling-left"></div>
+										</label>
+										<input class="radio-storable" id="alt-4-align-center" name="alt-4-align"
+											type="radio" value="center" />
+										<label for="alt-4-align-center" onclick="">
+											<div class="icon icon-aling-center"></div>
+										</label>
+										<input class="radio-storable" id="alt-4-align-right" name="alt-4-align"
+											type="radio" value="right" />
+										<label for="alt-4-align-right" onclick="">
+											<div class="icon icon-aling-right"></div>
+										</label>
+									</div>
+								</div>
+								<div>
+									<div class="input-icon icon icon-paint-brush"></div>
+									<div class="number-input">
+										<input id="alt-4-style" class="storable" min="1" max="3" name="quantity"
+											value="1" type="number" placeholder="1" readonly>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<div class="input-icon icon icon-size"></div>
+									<div class="number-input">
+										<input id="alt-4-size" class="storable" min="10" max="50" name="quantity"
+											value="24" type="number" placeholder="24">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div class="margin-config group">
+									<div class="input-icon icon icon-position"></div>
+									<div class="number-input">
+										<input id="alt-4-margin-h" class="storable" min="0" max="100" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+									<div class="number-input input-no-icon">
+										<input id="alt-4-margin-v" class="storable" min="0" max="55" name="quantity"
+											value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+							</div>
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-text-height"></div>
+									<div class="number-input">
+										<input id="alt-4-inverse-ratio" class="storable" min="0" max="10"
+											name="quantity" value="9" type="number" placeholder="9">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<div class="input-icon icon icon-line-spacing"></div>
+									<div class="number-input">
+										<input id="alt-4-line-spacing" class="storable" min="-5" max="5" name="quantity"
+											value="2" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div class="font-config group">
+									<div class="input-icon icon icon-font"></div>
+									<select id="alt-4-font" class="font-storable">
+										<!--Lista de fontes-->
+									</select>
+								</div>
+							</div>
+							<div class="grid-row">
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-4-logo" checked>
+										<div class="icon-btn icon icon-image"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-4-logo-size" class="storable" min="-10" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-4-shadows">
+										<div class="icon-btn icon icon-shadow"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-4-shadow-amount" class="storable" min="1" max="10"
+											name="quantity" value="5" type="number" placeholder="5">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable" type="checkbox" id="alt-4-background" checked>
+										<div class="icon-btn icon icon-fill-drip"></div>
+									</label>
+									<div id="alt-4-style-color-appearance" class="fill-color-appearance">
+										<div class="tool-tittle">Clr 1</div>
+										<input class="storable" id="alt-4-style-color-1"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 2</div>
+										<input class="storable" id="alt-4-style-color-2"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+									</div>
+								</div>
+							</div>
+							<div class="grid-row">
+								<div>
+									<div class="input-icon icon icon-corner"></div>
+									<div class="number-input">
+										<input id="alt-4-corners" class="storable" min="0" max="10" name="quantity"
+											value="0" type="number" placeholder="0">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-4-border" id="alt-4-border-thickness">
+										<div class="icon-btn icon icon-thickness"></div>
+									</label>
+									<div class="number-input">
+										<input id="alt-4-border-thickness-amount" class="storable" min="1" max="10"
+											name="quantity" value="4" type="number" placeholder="4">
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+											class="down"></button>
+										<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+											class="up"></button>
+									</div>
+								</div>
+								<div>
+									<label class="config-btn">
+										<input class="checkbox-storable twin-checkbox" type="checkbox"
+											name="alt-4-border" id="alt-4-border-color">
+										<div class="icon-btn icon icon-pen"></div>
+									</label>
+									<div id="alt-4-style-border-color-appearance" class="border-color-appearance">
+										<div class="tool-tittle">Clr 3</div>
+										<input class="storable" id="alt-4-style-color-3"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+										<div class="tool-tittle">Clr 4</div>
+										<input class="storable" id="alt-4-style-color-4"
+											data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+											value="">
+									</div>
+								</div>
+							</div>
 						</div>
-						<label class="accordion"></label>
+					</div>
+					<div class="first-edit-container">
+						<div class="logo-container" onclick="openLogoPopup('alt-4-logo-preview', 'alt-4-logo-default')">
+							<img id="alt-4-logo-preview" class="logo-storable alt-logo-preview">
+						</div>
+						<div class="textfields-container">
+							<input class="storable" type="text" id="alt-4-name" placeholder="Name" tabindex="10">
+							<div id="alt-4-name-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-4-name-transform" checked>
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-4-name-weight" checked>
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-4-name-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<input class="storable" type="text" id="alt-4-info" placeholder="Info" tabindex="11">
+							<div id="alt-4-info-appearance">
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-4-info-transform">
+									<div class="icon-btn icon small icon-uppercase"></div>
+								</label>
+								<label class="config-btn small">
+									<input class="checkbox-storable" type="checkbox" id="alt-4-info-weight">
+									<div class="icon-btn icon small icon-bold"></div>
+								</label>
+								<input class="storable" id="alt-4-info-color"
+									data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}"
+									value="">
+							</div>
+							<div style="clear:both"></div>
+						</div>
+					</div>
+					<div class="panel-bottom">
+						<div id="alt-4-clean-inputs" class="clean">
+							<div class="icon icon-cross"></div>
+						</div>
+						<ul id="alt-4-memory-slots">
+							<li id="alt-4-slot-1">
+								<div class="slot-number">1</div>
+								<div class="slot-storable stored-name" id="alt-4-name-1"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-1"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-1"></div>
+							</li>
+							<li id="alt-4-slot-2">
+								<div class="slot-number">2</div>
+								<div class="slot-storable stored-name" id="alt-4-name-2"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-2"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-2"></div>
+							</li>
+							<li id="alt-4-slot-3">
+								<div class="slot-number">3</div>
+								<div class="slot-storable stored-name" id="alt-4-name-3"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-3"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-3"></div>
+							</li>
+							<li id="alt-4-slot-4">
+								<div class="slot-number">4</div>
+								<div class="slot-storable stored-name" id="alt-4-name-4"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-4"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-4"></div>
+							</li>
+							<li id="alt-4-slot-5">
+								<div class="slot-number">5</div>
+								<div class="slot-storable stored-name" id="alt-4-name-5"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-5"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-5"></div>
+							</li>
+							<li id="alt-4-slot-6">
+								<div class="slot-number">6</div>
+								<div class="slot-storable stored-name" id="alt-4-name-6"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-6"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-6"></div>
+							</li>
+							<li id="alt-4-slot-7">
+								<div class="slot-number">7</div>
+								<div class="slot-storable stored-name" id="alt-4-name-7"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-7"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-7"></div>
+							</li>
+							<li id="alt-4-slot-8">
+								<div class="slot-number">8</div>
+								<div class="slot-storable stored-name" id="alt-4-name-8"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-8"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-8"></div>
+							</li>
+							<li id="alt-4-slot-9">
+								<div class="slot-number">9</div>
+								<div class="slot-storable stored-name" id="alt-4-name-9"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-9"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-9"></div>
+							</li>
+							<li id="alt-4-slot-10">
+								<div class="slot-number">10</div>
+								<div class="slot-storable stored-name" id="alt-4-name-10"></div>
+								<div class="slot-storable stored-info" id="alt-4-info-10"></div>
+								<div class="slot-storable stored-logo" id="alt-4-logo-10"></div>
+							</li>
+						</ul>
+						<div class="time-bar">
+							<div id="alt-4-active-time-monitor">0</div>
+							<div id="alt-4-inactive-time-monitor">0</div>
+						</div>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-4-autotrigger">
+							<div class="icon-btn icon icon-autotrigger"></div>
+						</label>
+						<label class="config-btn">
+							<input class="checkbox-storable" type="checkbox" id="alt-4-autoload">
+							<div class="icon-btn icon icon-sync"></div>
+						</label>
+						<label id="alt-4-custom-times" class="accordion">
+							<div class="icon-btn icon icon-clock"></div>
+						</label>
 						<div class="hidable">
-							<div class="grid-container">
-								<div class="grid-row">
-									<div>
-										<div class="align-toggle">
-										<input class="radio-storable" id="alt-4-align-left" name="alt-4-align" type="radio" value="left" checked/>
-										<label for="alt-4-align-left" onclick=""><div class="icon icon-aling-left"></div></label>
-										<input class="radio-storable" id="alt-4-align-center" name="alt-4-align" type="radio" value="center" />
-										<label for="alt-4-align-center" onclick=""><div class="icon icon-aling-center"></div></label>
-										<input class="radio-storable" id="alt-4-align-right" name="alt-4-align" type="radio" value="right" />
-										<label for="alt-4-align-right" onclick=""><div class="icon icon-aling-right"></div></label>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-paint-brush"></div>
-										<div class="number-input">
-											<input id="alt-4-style" class="storable" min="1" max="3" name="quantity" value="1" type="number" placeholder="1" readonly>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-size"></div>
-										<div class="number-input">
-											<input id="alt-4-size" class="storable" min="10" max="50" name="quantity" value="24" type="number" placeholder="24">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>							
-									<div class="margin-config group">
-										<div class="input-icon icon icon-position"></div>
-										<div class="number-input">
-											<input id="alt-4-margin-h" class="storable" min="0" max="100" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-										<div class="number-input input-no-icon">
-											<input id="alt-4-margin-v" class="storable" min="0" max="55" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-text-height"></div>
-										<div class="number-input">
-											<input id="alt-4-inverse-ratio" class="storable" min="0" max="10" name="quantity" value="9" type="number" placeholder="9">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<div class="input-icon icon icon-line-spacing"></div>
-										<div class="number-input">
-											<input id="alt-4-line-spacing" class="storable" min="-5" max="5" name="quantity" value="2" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>									
-									<div class="font-config group">
-										<div class="input-icon icon icon-font"></div>
-										<select id="alt-4-font" class="font-storable">
-											<!--Lista de fontes-->
-										</select>
-									</div>
-								</div>
-								<div class="grid-row">
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-4-logo" checked>
-											<div class="icon-btn icon icon-image"></div>
-										</label>									
-										<div class="number-input">
-											<input id="alt-4-logo-size" class="storable" min="-10" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>										
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-4-shadows">
-											<div class="icon-btn icon icon-shadow"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-4-shadow-amount" class="storable" min="1" max="10" name="quantity" value="5" type="number" placeholder="5">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable" type="checkbox" id="alt-4-background" checked>
-											<div class="icon-btn icon icon-fill-drip"></div>
-										</label>
-										<div id="alt-4-style-color-appearance" class="fill-color-appearance">
-											<div class="tool-tittle">Clr 1</div>
-											<input class="storable" id="alt-4-style-color-1" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 2</div>
-											<input class="storable" id="alt-4-style-color-2" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
-									</div>
-								</div>
-								<div class="grid-row">
-									<div>
-										<div class="input-icon icon icon-corner"></div>
-										<div class="number-input">
-											<input id="alt-4-corners" class="storable" min="0" max="10" name="quantity" value="0" type="number" placeholder="0">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-4-border" id="alt-4-border-thickness">
-											<div class="icon-btn icon icon-thickness"></div>
-										</label>
-										<div class="number-input">
-											<input id="alt-4-border-thickness-amount" class="storable" min="1" max="10" name="quantity" value="4" type="number" placeholder="4">
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="down"></button>
-											<button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="up"></button>
-										</div>
-									</div>
-									<div>
-										<label class="config-btn">
-											<input class="checkbox-storable twin-checkbox" type="checkbox" name="alt-4-border" id="alt-4-border-color">
-											<div class="icon-btn icon icon-pen"></div>
-										</label>
-										<div id="alt-4-style-border-color-appearance" class="border-color-appearance">
-											<div class="tool-tittle">Clr 3</div>
-											<input class="storable" id="alt-4-style-color-3" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-											<div class="tool-tittle">Clr 4</div>
-											<input class="storable" id="alt-4-style-color-4" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-										</div>
-									</div>									
-								</div>
-							</div>					
-						</div>
-						<div class="first-edit-container">
-							<div class="logo-container" onclick="openLogoPopup('alt-4-logo-preview', 'alt-4-logo-default')">
-								<img id="alt-4-logo-preview" class="logo-storable alt-logo-preview" >
-							</div>
-							<div class="textfields-container">
-								<input class="storable" type="text" id="alt-4-name" placeholder="Name" tabindex="10">
-								<div id="alt-4-name-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-4-name-transform" checked>
-										<div class="icon-btn icon small icon-uppercase"></div>
+							<div class="alt-time-options">
+								<div class="settings-title">LT4 Times</div>
+								<div class="settings-inputs">
+									<input class="storable" id="alt-4-animation-time" type="number" placeholder="in-out"
+										tabindex="21">
+									<input class="storable" id="alt-4-active-time" type="number" placeholder="active"
+										tabindex="22">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-4-lock-active">
+										<div class="icon-btn icon icon-lock"></div>
 									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-4-name-weight" checked>
-										<div class="icon-btn icon small icon-bold"></div>
+									<input class="storable" id="alt-4-inactive-time" type="number"
+										placeholder="inactive" tabindex="23">
+									<label class="config-btn lock-input">
+										<input class="checkbox-storable" type="checkbox" id="alt-4-oneshot">
+										<div class="icon-btn icon icon-oneshot"></div>
 									</label>
-									<input class="storable" id="alt-4-name-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-								</div>
-								<input class="storable" type="text" id="alt-4-info" placeholder="Info" tabindex="11">
-								<div id="alt-4-info-appearance">
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-4-info-transform">
-										<div class="icon-btn icon small icon-uppercase"></div>
-									</label>
-									<label class="config-btn small">
-										<input class="checkbox-storable" type="checkbox" id="alt-4-info-weight">
-										<div class="icon-btn icon small icon-bold"></div>
-									</label>
-									<input class="storable" id="alt-4-info-color" data-jscolor="{width:100, padding:5, borderRadius:3, borderWidth:0, controlBorderWidth:0, backgroundColor:'#1f1e1f', position:'right', shadow:true, previewSize:60}" value="">
-								</div>	
-								<div style="clear:both"></div>
-							</div>
-						</div>
-						<div class="panel-bottom">
-							<div id="alt-4-clean-inputs" class="clean"><div class="icon icon-cross"></div></div>
-							<ul id="alt-4-memory-slots">
-								<li id="alt-4-slot-1"><div class="slot-number">1</div><div class="slot-storable stored-name" id="alt-4-name-1"></div><div class="slot-storable stored-info" id="alt-4-info-1"></div><div class="slot-storable stored-logo" id="alt-4-logo-1"></div></li>
-								<li id="alt-4-slot-2"><div class="slot-number">2</div><div class="slot-storable stored-name" id="alt-4-name-2"></div><div class="slot-storable stored-info" id="alt-4-info-2"></div><div class="slot-storable stored-logo" id="alt-4-logo-2"></div></li>
-								<li id="alt-4-slot-3"><div class="slot-number">3</div><div class="slot-storable stored-name" id="alt-4-name-3"></div><div class="slot-storable stored-info" id="alt-4-info-3"></div><div class="slot-storable stored-logo" id="alt-4-logo-3"></div></li>
-								<li id="alt-4-slot-4"><div class="slot-number">4</div><div class="slot-storable stored-name" id="alt-4-name-4"></div><div class="slot-storable stored-info" id="alt-4-info-4"></div><div class="slot-storable stored-logo" id="alt-4-logo-4"></div></li>
-								<li id="alt-4-slot-5"><div class="slot-number">5</div><div class="slot-storable stored-name" id="alt-4-name-5"></div><div class="slot-storable stored-info" id="alt-4-info-5"></div><div class="slot-storable stored-logo" id="alt-4-logo-5"></div></li>
-								<li id="alt-4-slot-6"><div class="slot-number">6</div><div class="slot-storable stored-name" id="alt-4-name-6"></div><div class="slot-storable stored-info" id="alt-4-info-6"></div><div class="slot-storable stored-logo" id="alt-4-logo-6"></div></li>
-								<li id="alt-4-slot-7"><div class="slot-number">7</div><div class="slot-storable stored-name" id="alt-4-name-7"></div><div class="slot-storable stored-info" id="alt-4-info-7"></div><div class="slot-storable stored-logo" id="alt-4-logo-7"></div></li>
-								<li id="alt-4-slot-8"><div class="slot-number">8</div><div class="slot-storable stored-name" id="alt-4-name-8"></div><div class="slot-storable stored-info" id="alt-4-info-8"></div><div class="slot-storable stored-logo" id="alt-4-logo-8"></div></li>
-								<li id="alt-4-slot-9"><div class="slot-number">9</div><div class="slot-storable stored-name" id="alt-4-name-9"></div><div class="slot-storable stored-info" id="alt-4-info-9"></div><div class="slot-storable stored-logo" id="alt-4-logo-9"></div></li>
-								<li id="alt-4-slot-10"><div class="slot-number">10</div><div class="slot-storable stored-name" id="alt-4-name-10"></div><div class="slot-storable stored-info" id="alt-4-info-10"></div><div class="slot-storable stored-logo" id="alt-4-logo-10"></div></li>
-							</ul>
-							<div class="time-bar">
-								<div id="alt-4-active-time-monitor">0</div>
-								<div id="alt-4-inactive-time-monitor">0</div>
-							</div>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-4-autotrigger">
-								<div class="icon-btn icon icon-autotrigger"></div>
-							</label>
-							<label class="config-btn">
-								<input class="checkbox-storable" type="checkbox" id="alt-4-autoload">
-								<div class="icon-btn icon icon-sync"></div>
-							</label>
-							<label id="alt-4-custom-times" class="accordion">
-								<div class="icon-btn icon icon-clock"></div>
-							</label>
-							<div class="hidable">
-								<div class="alt-time-options">
-									<div class="settings-title">LT4 Times</div>
-									<div class="settings-inputs">
-										<input class="storable" id="alt-4-animation-time" type="number" placeholder="in-out" tabindex="21">
-										<input class="storable" id="alt-4-active-time" type="number" placeholder="active" tabindex="22">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-4-lock-active">
-											<div class="icon-btn icon icon-lock"></div>
-										</label>
-										<input class="storable" id="alt-4-inactive-time" type="number" placeholder="inactive" tabindex="23">
-										<label class="config-btn lock-input">
-											<input class="checkbox-storable" type="checkbox" id="alt-4-oneshot">
-											<div class="icon-btn icon icon-oneshot"></div>
-										</label>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
-			</div>
-			<!-- Popup seleção de imagem -->
-			<div id="select-image" class="center hide" >
-				<div class="select-image-bg" onclick="cancelLogoPopup()"></div>
-				<div class="form-input">
-					<div class="file-btns">
-						<label for="logo-file">Escolha a imagem</label>
-						<input type="file" id="logo-file" accept="image/*" onchange="showPreview(this);">
-						<div class="btn-remove" onclick="removeLogoPopup()"><div class="icon-btn icon icon-trash"></div></div>
-					</div>
-					<div id="file-preview" class="no-image">
-						<img id="logo-file-preview">
-					</div>
-					<div class="file-btns">
-						<div class="btn-ok" onclick="okLogoPopup()">Ok</div>
-						<div class="btn-cancel" onclick="cancelLogoPopup()">Cancelar</div>
-					</div>
-				</div>
-			</div>
-			<!-- Popup exportação de dados -->
-			<div id="export-data" class="center hide" >
-				<div class="export-data-bg" onclick="okExportPopup()"></div>
-				<div class="form-input">
-					<div>
-						<h1>Copiado para a área de transferência</h1>
-						<p>Por motivos de segurança, os dados exportados foram copiados para a área de transferência. Cole-os em um editor de texto (por exemplo, Bloco de Notas) e salve-o como um arquivo TXT.</p>
-						<p>Se preferir, você pode copiá-lo manualmente:</p>
-						<textarea id="dataInput" rows="4" cols="50" onclick="this.focus();this.select()"></textarea>
-					</div>
-					<div class="export-btns">
-						<div class="btn-ok-export" onclick="okExportPopup()">Ok</div>
-					</div>
-				</div>
-			</div>
-			<!-- Popup reset de configurações -->
-			<div id="reset-all" class="center hide" >
-				<div class="reset-all-bg" onclick="cancelResetPopup()"></div>
-				<div class="form-input">
-					<div>
-						<h1>Redefinir todas as configurações</h1>
-						<p>Você está prestes a redefinir todas as configurações e slots de memória. Você tem certeza?</p>
-					</div>
-					<div class="reset-btns">
-						<div class="btn-ok-reset" onclick="okResetPopup()">Ok</div>
-						<div class="btn-cancel" onclick="cancelResetPopup()">Cancelar</div>
-					</div>
-				</div>
-			</div>
-			<!-- Lista de arquivos -->
-			<div id='fileNames'> </div>
-			<!-- Preview dos painelzinhos -->
-			<div id="alt-preview" class="active">
-				<label><div class="icon icon-search"></div></label>
-				<div id="toggle-preview" class="active"><div class="icon icon-chevron-down"></div></div>
-				<div class="embed-container">
-				    <iframe id="myiframe" src="./browser-source.html?mode=preview" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 
 		</div>
-		<!-- Script principal do painel -->
-		<script src="./js/control-panel.js"></script>
-		<script src="./js/controlUtils/defaults.js"></script>
+		<!-- Popup seleção de imagem -->
+		<div id="select-image" class="center hide">
+			<div class="select-image-bg" onclick="cancelLogoPopup()"></div>
+			<div class="form-input">
+				<div class="file-btns">
+					<label for="logo-file">Escolha a imagem</label>
+					<input type="file" id="logo-file" accept="image/*" onchange="showPreview(this);">
+					<div class="btn-remove" onclick="removeLogoPopup()">
+						<div class="icon-btn icon icon-trash"></div>
+					</div>
+				</div>
+				<div id="file-preview" class="no-image">
+					<img id="logo-file-preview">
+				</div>
+				<div class="file-btns">
+					<div class="btn-ok" onclick="okLogoPopup()">Ok</div>
+					<div class="btn-cancel" onclick="cancelLogoPopup()">Cancelar</div>
+				</div>
+			</div>
+		</div>
+		<!-- Popup exportação de dados -->
+		<div id="export-data" class="center hide">
+			<div class="export-data-bg" onclick="okExportPopup()"></div>
+			<div class="form-input">
+				<div>
+					<h1>Copiado para a área de transferência</h1>
+					<p>Por motivos de segurança, os dados exportados foram copiados para a área de transferência.
+						Cole-os em um editor de texto (por exemplo, Bloco de Notas) e salve-o como um arquivo TXT.</p>
+					<p>Se preferir, você pode copiá-lo manualmente:</p>
+					<textarea id="dataInput" rows="4" cols="50" onclick="this.focus();this.select()"></textarea>
+				</div>
+				<div class="export-btns">
+					<div class="btn-ok-export" onclick="okExportPopup()">Ok</div>
+				</div>
+			</div>
+		</div>
+		<!-- Popup reset de configurações -->
+		<div id="reset-all" class="center hide">
+			<div class="reset-all-bg" onclick="cancelResetPopup()"></div>
+			<div class="form-input">
+				<div>
+					<h1>Redefinir todas as configurações</h1>
+					<p>Você está prestes a redefinir todas as configurações e slots de memória. Você tem certeza?</p>
+				</div>
+				<div class="reset-btns">
+					<div class="btn-ok-reset" onclick="okResetPopup()">Ok</div>
+					<div class="btn-cancel" onclick="cancelResetPopup()">Cancelar</div>
+				</div>
+			</div>
+		</div>
+		<!-- Lista de arquivos -->
+		<div id='fileNames'> </div>
+		<!-- Preview dos painelzinhos -->
+		<div id="alt-preview" class="active">
+			<label>
+				<div class="icon icon-search"></div>
+			</label>
+			<div id="toggle-preview" class="active">
+				<div class="icon icon-chevron-down"></div>
+			</div>
+			<div class="embed-container">
+				<iframe id="myiframe" src="./browser-source.html?mode=preview" frameborder="0" allowfullscreen></iframe>
+			</div>
+		</div>
 
-	</body>
+	</div>
+	<!-- Script principal do painel -->
+	<script src="./js/control-panel.js"></script>
+	<script src="./js/controlUtils/defaults.js"></script>
+
+</body>
+
 </html>
