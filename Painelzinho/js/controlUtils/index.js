@@ -30,5 +30,4 @@ export * from './slots/slots';
 // raiz controlUtils
 export * from './channels';
 export * from './themeManager';
-
-
+export * from './panels';

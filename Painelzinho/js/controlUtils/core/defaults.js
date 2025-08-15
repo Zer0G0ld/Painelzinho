@@ -36,12 +36,11 @@ function getDefaultValuesMap(defaults) {
     background: defaults.background,
     "style-color-1": defaults.colors.primary1,
     "style-color-2": defaults.colors.primary2,
-    corners: defaults.corners,
-    "border-thickness": defaults.borderThickness.enabled,
-    "border-thickness-amount": defaults.borderThickness.amount,
-    "border-color": false, // ou pode colocar no DEFAULTS se quiser
     "style-color-3": defaults.colors.border1,
     "style-color-4": defaults.colors.border2,
+    "border-thickness": defaults.borderThickness.enabled,
+    "border-thickness-amount": defaults.borderThickness.amount,
+    "border-color": false, // pode ser movido para DEFAULTS se quiser
     "name-transform": defaults.name.transform,
     "name-weight": defaults.name.weight,
     "name-color": defaults.colors.name,
@@ -51,10 +50,13 @@ function getDefaultValuesMap(defaults) {
   };
 }
 
-function loadDefaultValues() {
-  const defaultValuesMap = getDefaultValuesMap(DEFAULTS);
-  Object.entries(defaultValuesMap).forEach(([suffix, value]) => {
-    const selector = `[id^=alt-][id$=-${suffix}]`;
+function loadDefaultValues(defaults = DEFAULTS) {
+  const valuesMap = getDefaultValuesMap(defaults);
+
+  Object.entries(valuesMap).forEach(([suffix, value]) => {
+    // Seleciona todos os inputs que correspondem ao padrão alt-{n}-{suffix}
+    const selector = `[id^="alt-"][id$="-${suffix}"]`;
+
     if (typeof value === "boolean") {
       $(selector).prop("checked", value);
     } else {

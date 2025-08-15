@@ -1,3 +1,4 @@
+// Painelzinho/js/controlUtils/core/slot-navigation.js
 // Função para pular para o próximo slot armazenado
 function jumpNextSlot(memory_slot, name, info, logo, alt_waiting_time) {
   let find_next = false;
