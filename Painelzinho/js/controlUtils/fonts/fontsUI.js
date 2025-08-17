@@ -41,8 +41,9 @@ function updatePanelHeights() {
   const globalConfig = document.getElementById("global-configuration");
   const moreSettings = document.getElementById("more-settings");
   const count = $("#custom-font-list ul li").length;
-  globalConfig.style.maxHeight = `${count * 28}px`;
-  moreSettings.style.maxHeight = `${count * 28}px`;
+  const ROW = 44;
+  globalConfig.style.maxHeight = `${count * ROW}px`;
+  moreSettings.style.maxHeight = `${count * ROW}px`;
 }
 
 // ------------------------

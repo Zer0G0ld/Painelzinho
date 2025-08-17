@@ -6,7 +6,7 @@
 --]]
 
 local obs = obslua
-local debug = false
+local debug_mode = true
 local hk = {}
 local hotkeyStates = {}  -- Armazena o estado ON/OFF de cada hotkey
 
@@ -18,6 +18,12 @@ local hotkeyLabels = {
     A_SWITCH_3 = "Painelzinho Switch #3",
     A_SWITCH_4 = "Painelzinho Switch #4"
 }
+
+local function log(msg)
+    if debug_mode then
+        obs.script_log(obs.LOG_INFO, msg)
+    end
+end
 
 -- Gera automaticamente os hotkeys LT1_SLT01 até LT4_SLT10
 for alt = 1, 4 do
@@ -36,27 +42,79 @@ end
 
 -- Atualiza o arquivo JS com os estados das hotkeys
 function update_hotkeys_js()
-    local output = assert(io.open(script_path() .. '../js/hotkeys.js', "w"))
+    local path = script_path() .. '/js/controlUtils/hotkeys/hotkeys.js'
+    local output, err = io.open(path, "w")
 
-    for key, _ in pairs(hotkeyLabels) do
-        local varName = "hotkey" .. key:gsub("_", "")  -- Formato: hotkeyA_SWITCH_1
-        local value = hotkeyStates[key] or 0
-        output:write(varName .. " = " .. value .. ";\n")
+    if not output then
+        log("Erro ao abrir o arquivo hotkeys.js: " .. tostring(err))
+        return
     end
 
+    -- Agrupadores
+    local switches = {}
+    local slots = {}
+
+    for key, _ in pairs(hotkeyLabels) do
+        local cleanKey = key:gsub("_", "")
+        local value = hotkeyStates[key] or 0
+
+        if key:match("^A_SWITCH") then
+            switches[cleanKey] = value
+        elseif key:match("^LT%d+_SLT%d+") then
+            slots[cleanKey] = value
+        end
+    end
+
+    -- Ordena
+    local function sortedPairs(t)
+        local keys = {}
+        for k in pairs(t) do table.insert(keys, k) end
+        table.sort(keys)
+        local i = 0
+        return function()
+            i = i + 1
+            if keys[i] then
+                return keys[i], t[keys[i]]
+            end
+        end
+    end
+
+    -- Escreve no JS
+    output:write("export const hotkeys = {\n")
+    output:write("  switches: {\n")
+    for k, v in sortedPairs(switches) do
+        output:write(string.format("    %s: %d,\n", k, v))
+    end
+    output:write("  },\n")
+
+    output:write("  slots: {\n")
+    for k, v in sortedPairs(slots) do
+        output:write(string.format("    %s: %d,\n", k, v))
+    end
+    output:write("  }\n")
+
+    output:write("};\n")
+
     output:close()
+    log("hotkeys.js atualizado com sucesso")
 end
+
 
 -- Lógica quando uma hotkey é pressionada
 local function onHotKey(action)
-    if debug then obs.script_log(obs.LOG_INFO, string.format("Hotkey: %s", action)) end
+    if debug then
+        obs.script_log(obs.LOG_INFO, string.format("Hotkey: %s", action))
+    end
 
     if hotkeyStates[action] == nil then
         hotkeyStates[action] = 0
+        log("Hotkey "..action.." inicializada com 0")
     end
 
     hotkeyStates[action] = (hotkeyStates[action] == 0) and 1 or 0
+    log("Hotkey "..action.." agora tem estado "..hotkeyStates[action])
     update_hotkeys_js()
+    log("hotkeys.js atualizada")
 end
 
 -- Ordena chaves alfanumericamente
@@ -75,10 +133,12 @@ end
 
 -- Carregado ao iniciar o script
 function script_load(settings)
+    log("Carregando hotkeys...")
     for name, label in pairsByKeys(hotkeyLabels) do
         hk[name] = obs.obs_hotkey_register_frontend(name, label, function(pressed)
             if pressed then onHotKey(name) end
         end)
+        log("Hotkey registrada: "..name.." - "..label)
         local hotkeyArray = obs.obs_data_get_array(settings, name)
         obs.obs_hotkey_load(hk[name], hotkeyArray)
         obs.obs_data_array_release(hotkeyArray)
@@ -88,6 +148,7 @@ function script_load(settings)
     end
 
     update_hotkeys_js()
+    log("Script carregado, hotkeys inicializadas")
 end
 
 function script_save(settings)

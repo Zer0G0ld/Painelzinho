@@ -1,37 +1,56 @@
 // appearance.js
-function getAppearance() {
-  [1,2,3,4].forEach(i => {
-    window[`alt_${i}_style`] = $(`#alt-${i}-style`).val() || default_style;
-    $(`#alt-${i}-style`).val(window[`alt_${i}_style`]);
 
-    const inverse_ratio = $(`#alt-${i}-inverse-ratio`).val() || default_inverse_ratio;
-    window[`alt_${i}_inverse_ratio`] = inverse_ratio;
-    window[`alt_${i}_name_size`] = 1 + inverse_ratio * 0.1;
-    window[`alt_${i}_info_size`] = 2 - inverse_ratio * 0.1;
+// Estado global de aparência por slot
+const slotAppearance = {};
 
-    window[`alt_${i}_line_spacing`] = $(`#alt-${i}-line-spacing`).val() || default_line_spacing;
-    window[`alt_${i}_size`] = $(`#alt-${i}-size`).val() || default_size;
-    window[`alt_${i}_logo_size`] = Number($(`#alt-${i}-logo-size`).val()) * 0.25 + 3.5 || default_logo_size_em;
-    window[`alt_${i}_shadow_amount`] = $(`#alt-${i}-shadow-amount`).val() * 0.1 || default_shadow_amount_em;
-    window[`alt_${i}_corners`] = Number($(`#alt-${i}-corners`).val()) * 0.25 || default_corners;
-    window[`alt_${i}_border_thickness_amount`] = $(`#alt-${i}-border-thickness-amount`).val() || default_border_thickness_amount;
-    window[`alt_${i}_margin_h`] = $(`#alt-${i}-margin-h`).val() || default_margin_h;
-    window[`alt_${i}_margin_v`] = $(`#alt-${i}-margin-v`).val() || default_margin_v;
-  });
+// Carrega aparência de todos os slots
+function getAppearance(totalSlots = 4) {
+  for (let i = 1; i <= totalSlots; i++) {
+    const slotId = `alt-${i}`;
 
-  styleRestrictions();
+    const style = $(`#${slotId}-style`).val() || default_style;
+    const inverseRatio = Number($(`#${slotId}-inverse-ratio`).val()) || default_inverse_ratio;
+    const lineSpacing = Number($(`#${slotId}-line-spacing`).val()) || default_line_spacing;
+    const size = Number($(`#${slotId}-size`).val()) || default_size;
+    const logoSize = Number($(`#${slotId}-logo-size`).val()) * 0.25 + 3.5 || default_logo_size_em;
+    const shadow = Number($(`#${slotId}-shadow-amount`).val()) * 0.1 || default_shadow_amount_em;
+    const corners = Number($(`#${slotId}-corners`).val()) * 0.25 || default_corners;
+    const borderThickness = Number($(`#${slotId}-border-thickness-amount`).val()) || default_border_thickness_amount;
+    const marginH = Number($(`#${slotId}-margin-h`).val()) || default_margin_h;
+    const marginV = Number($(`#${slotId}-margin-v`).val()) || default_margin_v;
+
+    slotAppearance[i] = {
+      style,
+      inverseRatio,
+      lineSpacing,
+      size,
+      logoSize,
+      shadow,
+      corners,
+      borderThickness,
+      marginH,
+      marginV,
+      nameSize: 1 + inverseRatio * 0.1,
+      infoSize: 2 - inverseRatio * 0.1
+    };
+  }
+
+  styleRestrictions(slotAppearance);
 }
 
-function styleRestrictions() {
-  [1,2,3,4].forEach(i => {
-    const styleValue = window[`alt_${i}_style`];
-    const alignCenter = document.getElementById(`alt-${i}-align-center`);
-    const alignLeft = $(`#alt-${i}-align-left`);
-    const logo = document.getElementById(`alt-${i}-logo`);
-    const logoSize = document.getElementById(`alt-${i}-logo-size`);
-    const borderColor = $(`#alt-${i}-style-border-color-appearance > :nth-child(3)`);
+// Aplica restrições de estilo
+function styleRestrictions(slots) {
+  for (const [i, slot] of Object.entries(slots)) {
+    const slotNum = i;
+    const style = slot.style;
 
-    switch (styleValue) {
+    const alignCenter = document.getElementById(`alt-${slotNum}-align-center`);
+    const alignLeft = $(`#alt-${slotNum}-align-left`);
+    const logo = document.getElementById(`alt-${slotNum}-logo`);
+    const logoSize = document.getElementById(`alt-${slotNum}-logo-size`);
+    const borderColor = $(`#alt-${slotNum}-style-border-color-appearance > :nth-child(3)`);
+
+    switch (style) {
       case "1":
         alignCenter.disabled = true;
         if (alignCenter.checked) alignLeft.prop("checked", true).change();
@@ -43,7 +62,7 @@ function styleRestrictions() {
         alignCenter.disabled = false;
         logo.disabled = true;
         logoSize.disabled = false;
-        if (logo.checked) $(`#alt-${i}-logo`).prop("checked", false).change();
+        if (logo.checked) $(`#alt-${slotNum}-logo`).prop("checked", false).change();
         borderColor.removeClass("disabled");
         break;
       case "3":
@@ -54,7 +73,7 @@ function styleRestrictions() {
         borderColor.removeClass("disabled");
         break;
     }
-  });
+  }
 }
 
-export { getAppearance, styleRestrictions };
+export { getAppearance, styleRestrictions, slotAppearance };

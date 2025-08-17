@@ -1,37 +1,58 @@
 // slots.js
-function loadSlot(name, info, logo, name_to_load, info_to_load, logo_to_load, alt_waiting_time, from_hotkey = true) {
+import { hotkeys } from "../hotkeys/hotkeys.js";
+import { refreshData } from "../../control-panel.js";
+
+// Carrega dados em um slot específico
+function loadSlot(nameSelector, infoSelector, logoSelector, slotIndex = 1, altWaitingTime = 0, fromHotkey = true) {
+  const altPrefix = nameSelector.replace("#alt-", "").replace("-name", "").toUpperCase();
+  const slotId = `${altPrefix}SLOT${slotIndex}`;
+  const slotValue = hotkeys.slots[slotId] || {};
+
   setTimeout(() => {
-    const default_logo = logo.replace("-preview", "-default");
-    const default_logo_value = $(default_logo).attr("src");
+    const defaultLogoSelector = logoSelector.replace("-preview", "-default");
+    const defaultLogoValue = $(defaultLogoSelector).attr("src");
 
-    $(name + ":text").val(name_to_load);
-    $(info + ":text").val(info_to_load);
-    if (logo_to_load === "default") logo_to_load = default_logo_value;
-    $(logo).attr("src", logo_to_load);
+    $(nameSelector + ":text").val(slotValue.name || "").change();
+    $(infoSelector + ":text").val(slotValue.info || "").change();
+    $(logoSelector).attr("src", slotValue.logo === "default" ? defaultLogoValue : slotValue.logo || defaultLogoValue).change();
+
     refreshData();
-  }, alt_waiting_time * 1000);
+  }, altWaitingTime * 1000);
 
-  const auto_trigger = name.replace("#", "").replace("-name", "-autotrigger");
-  const alt_switch = name.replace("#alt-", "").replace("-name", "");
+  if (fromHotkey) {
+    const autoTriggerId = nameSelector.replace("#", "").replace("-name", "-autotrigger");
+    const altSwitch = nameSelector.replace("#alt-", "").replace("-name", "");
 
-  if (from_hotkey &&
-      document.getElementById(auto_trigger).checked &&
-      $(`#painelzinhos-switch${alt_switch}`).is(":not(:checked)")) {
-    $(`#painelzinhos-switch${alt_switch}`).prop("checked", true).change();
+    if (document.getElementById(autoTriggerId)?.checked &&
+        $(`#painelzinhos-switch${altSwitch}`).is(":not(:checked)")) {
+      $(`#painelzinhos-switch${altSwitch}`).prop("checked", true).change();
+    }
   }
 }
 
-// Limpar inputs
-function cleanInputs(slotNum) {
-  $(`#alt-${slotNum}-name:text`).val("").change();
-  $(`#alt-${slotNum}-info:text`).val("").change();
-  const alt_logo_default = $(`#alt-${slotNum}-logo-default`).attr("src");
-  $(`#alt-${slotNum}-logo-preview`).attr("src", alt_logo_default).change();
+// Limpa inputs de um slot específico
+function cleanSlot(slotNum, slotIndex = 1) {
+  const nameSelector = `#alt-${slotNum}-name:text`;
+  const infoSelector = `#alt-${slotNum}-info:text`;
+  const logoSelector = `#alt-${slotNum}-logo-preview`;
+  const logoDefaultSelector = `#alt-${slotNum}-logo-default`;
+
+  $(nameSelector).val("").change();
+  $(infoSelector).val("").change();
+  $(logoSelector).attr("src", $(logoDefaultSelector).attr("src")).change();
+
+  // Atualiza hotkeys.slots
+  const slotId = `ALT${slotNum}SLOT${slotIndex}`;
+  hotkeys.slots[slotId] = { name: "", info: "", logo: "default" };
 }
 
-// Inicializa eventos
-[1,2,3,4].forEach(i => {
-  $(`#alt-${i}-clean-inputs`).click(() => cleanInputs(i));
-});
+// Inicializa eventos de limpeza para todos os slots e ALTs
+function initSlotCleaners(totalAlts = 4, slotsPerAlt = 10) {
+  for (let alt = 1; alt <= totalAlts; alt++) {
+    for (let slot = 1; slot <= slotsPerAlt; slot++) {
+      $(`#alt-${alt}-clean-inputs-slot${slot}`).off("click").on("click", () => cleanSlot(alt, slot));
+    }
+  }
+}
 
-export { loadSlot, cleanInputs };
+export { loadSlot, cleanSlot, initSlotCleaners };

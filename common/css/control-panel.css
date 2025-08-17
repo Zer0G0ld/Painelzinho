@@ -1,0 +1,620 @@
+/* ===============================
+   CONTROL PANEL CSS 
+=================================*/
+
+/* ===============================
+   VARIÁVEIS GLOBAIS
+=================================*/
+:root {
+  --main-color: #00aaff;
+  --secondary-color: #2c2c2c;
+  --accent-color: #ffaa00;
+  --background-color: #1e1e1e;
+  --panel-radius: 10px;
+  --scrollbar-width: 8px;
+  --scrollbar-radius: 6px;
+  --font-family: "Segoe UI", Roboto, -apple-system, sans-serif;
+  --transition-speed: 0.3s;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+
+  /* Paleta para blocos internos */
+  --cp-bg: #0c1022;
+  --cp-surface: #111836;
+  --cp-border: #273158;
+  --cp-text: #e9edff;
+  --cp-muted: #9aa6cc;
+  --cp-accent: #6ea8ff;
+  --cp-accent-10: rgba(110, 168, 255, 0.15);
+}
+
+.config-btn:hover {
+  background-color: var(--cp-accent-10);
+  cursor: pointer;
+}
+.config-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background var(--transition-speed);
+}
+
+.config-btn input[type="checkbox"] {
+  display: none;
+}
+.config-btn .icon-btn {
+  pointer-events: none;
+}
+
+/* ===============================
+   RESET / BASE
+=================================*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*:focus {
+  outline: none !important;
+}
+
+/* ===============================
+   BODY / PANELS
+=================================*/
+body.painelzinhos-panel {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: #fff;
+  user-select: none;
+  overflow-x: hidden;
+  padding: 10px;
+}
+
+.static-panel-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 100%;
+}
+
+#sortable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sortees {
+  background-color: var(--secondary-color);
+  border-radius: var(--panel-radius);
+  padding: 12px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.sortees:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+/* ===============================
+   TITULOS / ICONES
+=================================*/
+.main-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--main-color);
+}
+
+.main-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alt-number-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 16px;
+}
+
+/* ===============================
+   SWITCHES
+=================================*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #666;
+  border-radius: 24px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--main-color);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* ===============================
+   INPUTS / SELECTS / TEXTAREA
+=================================*/
+input.storable,
+select,
+textarea {
+  border-radius: 6px;
+  background: var(--cp-bg);
+  border: 1px solid var(--cp-border);
+  color: var(--cp-text);
+  padding: 6px 8px;
+  font-size: 13px;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+input.storable:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--cp-accent);
+  box-shadow: 0 0 0 3px var(--cp-accent-10);
+  outline: none;
+}
+
+/* Remove setinhas dos number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ===============================
+   BUTTONS
+=================================*/
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  color: inherit;
+  font: inherit;
+  transition: background var(--transition-speed), transform 0.12s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   TABS
+=================================*/
+.tab {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.tab button {
+  flex: 1;
+  background-color: #2a2a2a;
+  border: none;
+  border-radius: var(--panel-radius);
+  color: #fff;
+  padding: 6px;
+  cursor: pointer;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+.tab button.tablinks {
+  flex: 1;
+  font-size: 13px;
+}
+.tab button.tablinks.active {
+  font-weight: bold;
+}
+.tab button:hover {
+  background-color: var(--cp-accent-10);
+  color: var(--cp-accent);
+}
+.tab button.active {
+  background-color: var(--cp-bg);
+  color: var(--cp-accent);
+  border: 1px solid var(--cp-border);
+  border-bottom: none;
+}
+
+.tabcontent {
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+.tabcontent.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   POPUPS
+=================================*/
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+.popup.show,
+.popup.active {
+  display: flex;
+  opacity: 1;
+}
+
+.popup-content {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: var(--panel-radius);
+  box-shadow: 0 8px 20px var(--shadow-color);
+  width: 90%;
+  max-width: 400px;
+  transition: transform var(--transition-speed);
+}
+
+.popup-backdrop,
+.popup-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.file-input-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.file-input-group input[type="file"] {
+  display: none;
+}
+.file-input-group label.btn-select {
+  cursor: pointer;
+  background: var(--cp-bg);
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  transition: background var(--transition-speed);
+}
+.file-input-group label.btn-select:hover {
+  background: var(--cp-accent-10);
+}
+.file-input-group .btn-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--cp-border);
+  background: var(--cp-bg);
+  transition: background var(--transition-speed);
+}
+.file-input-group .btn-remove:hover {
+  background: var(--cp-accent-10);
+}
+
+.file-preview {
+  margin-top: 6px;
+  width: 100%;
+  height: 120px;
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cp-bg);
+  overflow: hidden;
+}
+.file-preview.no-image::after {
+  content: "Nenhuma imagem selecionada";
+  color: var(--cp-muted);
+  font-size: 12px;
+}
+.file-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ===============================
+   POPUP BUTTONS
+=================================*/
+.popup-actions button {
+  margin-right: 6px;
+  padding: 6px 12px;
+  border-radius: var(--panel-radius);
+  border: 1px solid var(--cp-border);
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+.popup-actions button:hover {
+  background: var(--cp-accent-10);
+}
+
+.btn-select,
+.btn-remove,
+.btn-ok,
+.btn-cancel {
+  background-color: var(--cp-bg);
+  border-radius: var(--panel-radius);
+  padding: 6px 10px;
+  border: 1px solid var(--cp-border);
+  transition: background var(--transition-speed);
+}
+
+.btn-select:hover,
+.btn-remove:hover,
+.btn-ok:hover,
+.btn-cancel:hover {
+  background-color: var(--cp-accent-10);
+}
+
+/* ===============================
+   LOGOS / TEMPLATES
+=================================*/
+.logo-container {
+  position: relative;
+  border: 1px solid var(--cp-border);
+  border-radius: var(--panel-radius);
+  background: var(--cp-bg);
+  overflow: hidden;
+  cursor: pointer;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, transform 0.12s;
+}
+
+.logo-container:hover {
+  border-color: var(--cp-accent);
+  transform: scale(1.03);
+}
+
+.logo-container img {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+}
+
+.logo-numbers {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 12px;
+  color: var(--cp-muted);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 5px;
+  border-radius: 6px;
+}
+
+/* ===============================
+   TEMPLATES / PAINÉIS INTERNOS
+=================================*/
+.alt-config {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.drag-handle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: grab;
+}
+.renameable {
+  flex: 1;
+  color: var(--cp-text);
+}
+.title-storable {
+  font-weight: 600;
+}
+.accordion {
+  cursor: pointer;
+  width: 100%;
+  height: 24px;
+  background: var(--cp-surface);
+  border-radius: var(--panel-radius);
+  transition: background 0.3s;
+}
+.accordion:hover {
+  background: var(--cp-accent-10);
+}
+.hidable {
+  display: none;
+}
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+.panel-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.panel-row input[type="radio"] {
+  display: none;
+}
+.panel-row input[type="radio"] + label {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  background: var(--cp-bg);
+  border: 1px solid var(--cp-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-speed);
+}
+.panel-row input[type="radio"]:checked + label {
+  background: var(--cp-accent-10);
+  border-color: var(--cp-accent);
+}
+.panel-row input[type="radio"] + label .icon {
+  font-size: 14px;
+  color: var(--cp-text);
+}
+
+.input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+/* Step buttons */
+.step-buttons {
+  display: flex;
+  gap: 2px;
+}
+.step-buttons button {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--cp-border);
+  background: var(--cp-bg);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+.step-buttons button:hover {
+  background: var(--cp-accent-10);
+}
+
+/* ===============================
+   PREVIEW
+=================================*/
+#alt-preview {
+  position: relative;
+  background: var(--cp-surface);
+  border-radius: var(--panel-radius);
+  overflow: hidden;
+  margin-top: 10px;
+}
+#alt-preview .toggle {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  background: var(--cp-bg);
+  border: 1px solid var(--cp-border);
+  transition: background var(--transition-speed);
+}
+#alt-preview .toggle:hover {
+  background: var(--cp-accent-10);
+}
+#alt-preview iframe {
+  width: 100%;
+  height: 240px;
+  border: none;
+  border-radius: var(--panel-radius);
+}
+/* ===============================
+   OUTROS BLOCO DE CONFIGURAÇÕES
+=================================*/
+.settings-block {
+  padding: 6px;
+  background: var(--cp-bg);
+  border-radius: var(--panel-radius);
+  margin-bottom: 6px;
+}
+.settings-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: var(--main-color);
+}
+.settings-inputs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.select-settings-storable {
+  background: var(--cp-bg);
+  border: 1px solid var(--cp-border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: var(--cp-text);
+}
+
+.bottom-options,
+.default-options,
+.logos-options {
+  margin-top: 6px;
+}

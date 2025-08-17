@@ -1,12 +1,11 @@
 // Painelzinho/js/control-panel.js
-import * as controlUtils from './controlUtils.bundle.js';
+import * as controlUtils from "./controlUtils.bundle.js";
 
-$(function () {
-  console.log("Painel carregado com jQuery!");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Painel carregado com JS puro!");
 
   // calcula próximo índice do painel
-  const nextIndex = document.querySelectorAll('#sortable .sortees').length + 1;
-  //const controlUtils = window.controlUtils;
+  const nextIndex = document.querySelectorAll("#sortable .sortees").length + 1;
 
   // ------------------------
   // Funções internas
@@ -14,6 +13,7 @@ $(function () {
   function checkAltSwitch(i, masterSwitch) {
     const switchEl = document.getElementById(`painelzinhos-switch${i}`);
     const configEl = document.getElementById(`alt-${i}-config-content`);
+    if (!switchEl || !configEl) return; // proteção extra
 
     const activeMonitor = window[`alt_${i}_active_time_monitor`];
     const inactiveMonitor = window[`alt_${i}_inactive_time_monitor`];
@@ -40,75 +40,82 @@ $(function () {
         configEl.classList.remove("active");
         if (autoload && jumpnext) {
           window[`alt_${i}_jumpnext`] = false;
-          jumpNextSlot(`#alt-${i}-memory-slots`, `#alt-${i}-name`, `#alt-${i}-info`, `#alt-${i}-logo-preview`, waitingTime);
+          controlUtils.jumpNextSlot(
+            `#alt-${i}-memory-slots`,
+            `#alt-${i}-name`,
+            `#alt-${i}-info`,
+            `#alt-${i}-logo-preview`,
+            waitingTime
+          );
         }
       }
     } else {
       configEl.className = "";
       if (turnoff && autoload && jumpnext) {
         window[`alt_${i}_jumpnext`] = false;
-        jumpNextSlot(`#alt-${i}-memory-slots`, `#alt-${i}-name`, `#alt-${i}-info`, `#alt-${i}-logo-preview`, waitingTime);
+        controlUtils.jumpNextSlot(
+          `#alt-${i}-memory-slots`,
+          `#alt-${i}-name`,
+          `#alt-${i}-info`,
+          `#alt-${i}-logo-preview`,
+          waitingTime
+        );
       }
     }
   }
 
   function checkSwitches() {
-    const masterSwitch = document.getElementById("painelzinhos-masterswitch").checked;
+    const masterSwitchEl = document.getElementById("painelzinhos-masterswitch");
+    if (!masterSwitchEl) return;
+    const masterSwitch = masterSwitchEl.checked;
     window.masterSwitchIsOn = masterSwitch;
 
-    document.getElementById("alt-main-config-content").classList.toggle("active", masterSwitch);
+    const mainConfigEl = document.getElementById("alt-main-config-content");
+    mainConfigEl?.classList.toggle("active", masterSwitch);
 
     for (let i = 1; i <= 4; i++) checkAltSwitch(i, masterSwitch);
   }
 
-  function refreshData() {
-    console.log("refreshData");
-
-    checkLogos();
-    Array.from({ length: 4 }, (_, i) => i + 1).forEach(i =>
-      checkSlots(`#alt-${i}-memory-slots`, `#alt-${i}-name`, `#alt-${i}-info`, `#alt-${i}-logo-preview`)
-    );
-
-    getAppearance();
-    checkSwitches();
-    function_send();
-  }
-
   function checkUpdates() {
-    [checkHotkeys, updateHotkeys].forEach(task => task());
+    [controlUtils.checkHotkeys, controlUtils.updateHotkeys].forEach((task) =>
+      task()
+    );
   }
 
   // Contador global de painéis (inicia com os já existentes)
-  let painelCounter = document.querySelectorAll('#alt-panel .sortees').length || 1;
+  let painelCounter =
+    document.querySelectorAll("#alt-panel .sortees").length || 1;
 
   // Função para criar um novo painel
   function criarNovoPainel() {
-    const template = document.getElementById('painel-template');
+    const template = document.getElementById("painel-template");
+    if (!template) return;
+
     const clone = template.content.cloneNode(true);
 
     // Incrementa contador
     painelCounter++;
 
     // Ajusta atributos clonados
-    const sorte = clone.querySelector('.sortees');
+    const sorte = clone.querySelector(".sortees");
     sorte.dataset.altIndex = painelCounter;
 
-    const numberIcon = clone.querySelector('.alt-number-icon');
+    const numberIcon = clone.querySelector(".alt-number-icon");
     numberIcon.textContent = painelCounter;
 
-    const title = clone.querySelector('.renameable');
+    const title = clone.querySelector(".renameable");
     title.textContent = `Painelzinho ${painelCounter}`;
 
     // Atualiza name dos radios para não conflitar
     const radios = clone.querySelectorAll('input[type="radio"]');
-    radios.forEach(radio => {
+    radios.forEach((radio) => {
       const baseName = radio.name;
       radio.name = `${baseName}-${painelCounter}`;
     });
 
     // Adiciona clone ao container
-    const container = document.getElementById('alt-panel');
-    container.appendChild(clone);
+    const container = document.getElementById("alt-panel");
+    container?.appendChild(clone);
 
     // Inicializa os utilitários do painel recém-criado
     controlUtils.loadData();
@@ -117,16 +124,14 @@ $(function () {
   }
 
   // Cria botão para adicionar painel
-  const btnAddPainel = document.createElement('button');
+  const btnAddPainel = document.createElement("button");
   btnAddPainel.textContent = "Adicionar Painel";
   btnAddPainel.style.margin = "10px";
   btnAddPainel.onclick = criarNovoPainel;
 
   // Adiciona botão no topo após o DOM estar pronto
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('alt-panel');
-    container.prepend(btnAddPainel);
-  });
+  const panelContainer = document.getElementById("alt-panel");
+  panelContainer?.prepend(btnAddPainel);
 
   // inicializações de utilitários
   [
@@ -136,20 +141,22 @@ $(function () {
     controlUtils.updateCustomFontList,
     controlUtils.checkSwitches,
     controlUtils.saveData,
-  ].forEach(fn => fn());
+  ].forEach((fn) => fn());
   refreshData();
   checkUpdates();
 
   // ------------------------
-  // Delegação para botões step up/down
+  // Delegação para botões step up/down (mesmo para elementos criados depois)
   // ------------------------
-  document.getElementById('sortable').addEventListener('click', e => {
-    const stepBtn = e.target.closest('button');
+  document.addEventListener("click", (e) => {
+    const stepBtn = e.target.closest("#sortable button");
     if (!stepBtn) return;
-    const numberInput = stepBtn.parentNode.querySelector('input[type=number]');
+
+    const numberInput = stepBtn.parentNode.querySelector("input[type=number]");
     if (!numberInput) return;
-    if (stepBtn.classList.contains('up')) numberInput.stepUp();
-    if (stepBtn.classList.contains('down')) numberInput.stepDown();
+
+    if (stepBtn.classList.contains("up")) numberInput.stepUp();
+    if (stepBtn.classList.contains("down")) numberInput.stepDown();
   });
 
   // atualizações periódicas
@@ -158,21 +165,28 @@ $(function () {
     controlUtils.updateHotkeys();
   }, 200);
 
-  // ready
-  $(document).ready(() => $("#defaultTab").click());
+  // "Clique" inicial na primeira aba
+  const defaultTab = document.getElementById("defaultTab");
+  if (defaultTab) defaultTab.click();
+
   // Sistema de Tabs
-  document.querySelectorAll(".tablinks").forEach(btn => {
+  document.querySelectorAll(".tablinks").forEach((btn) => {
     btn.addEventListener("click", function () {
       const tabName = this.getAttribute("data-tab");
 
       // Esconde todos os conteúdos
-      document.querySelectorAll(".tabcontent").forEach(tc => tc.style.display = "none");
+      document
+        .querySelectorAll(".tabcontent")
+        .forEach((tc) => (tc.style.display = "none"));
 
       // Remove classe ativa dos botões
-      document.querySelectorAll(".tablinks").forEach(tl => tl.classList.remove("active"));
+      document
+        .querySelectorAll(".tablinks")
+        .forEach((tl) => tl.classList.remove("active"));
 
       // Mostra a aba clicada
-      document.getElementById(`tab-${tabName}`).style.display = "block";
+      const tabEl = document.getElementById(`tab-${tabName}`);
+      if (tabEl) tabEl.style.display = "block";
 
       // Marca o botão como ativo
       this.classList.add("active");
@@ -182,5 +196,22 @@ $(function () {
   // Ativa a primeira aba por padrão
   const firstTab = document.querySelector(".tablinks");
   if (firstTab) firstTab.click();
-
 });
+
+export function refreshData() {
+  console.log("refreshData");
+
+  controlUtils.checkLogos();
+  for (let i = 1; i <= 4; i++) {
+    controlUtils.checkSlots(
+      `#alt-${i}-memory-slots`,
+      `#alt-${i}-name`,
+      `#alt-${i}-info`,
+      `#alt-${i}-logo-preview`
+    );
+  }
+
+  controlUtils.getAppearance();
+  controlUtils.checkSwitches();
+  controlUtils.function_send();
+}

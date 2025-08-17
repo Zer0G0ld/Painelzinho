@@ -35,18 +35,27 @@ function openTab(element, cityName) {
   }
 
   // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById("tab-" + cityName).style.display = "block";
+  // Remove a classe 'active' de todas as tabs
+  Array.from(document.getElementsByClassName("tabcontent")).forEach((tab) =>
+    tab.classList.remove("active")
+  );
+
+  // Adiciona a classe 'active' na tab atual
+  document.getElementById("tab-" + cityName).classList.add("active");
+
   element.className += " active";
   updateMoreMaxHeight();
 }
 
 function settingsTooltips() {
   const tooltip = {
-    global_animation_time: "Length of the in and out animation.<br>Default: 4 sec.",
+    global_animation_time:
+      "Length of the in and out animation.<br>Default: 4 sec.",
     global_active_time: "How long the LT is active.<br>Default: 25 sec.",
     global_inactive_time: "How long the LT is inactive.<br>Default: 420 sec.",
     lock_active: "Lock the active state: Always active.",
-    oneshot: "Oneshot: Turns off the LT Switch when it goes into inactive state.",
+    oneshot:
+      "Oneshot: Turns off the LT Switch when it goes into inactive state.",
     preview: "Show/hide the LT in the preview window",
     align_left: "Left alignment.",
     align_center: "Center alignment.",
@@ -68,19 +77,26 @@ function settingsTooltips() {
     uppercase: "Enable/disable uppercase.",
     bold: "Enable/disable bold.",
     clean: "Clear the text fields and set the logo to default.",
-    autotrigger: "Autotrigger: Turns on the switch automatically when a slot memory is loaded.",
-    autoload: "Autoload: Loads automatically the next memory slot every time it goes to the inactive state. Ready to display in the next cycle.",
+    autotrigger:
+      "Autotrigger: Turns on the switch automatically when a slot memory is loaded.",
+    autoload:
+      "Autoload: Loads automatically the next memory slot every time it goes to the inactive state. Ready to display in the next cycle.",
     custom_times: "Show/hide custom time settings.",
     animation_time: "Length of the in and out animation.",
     active_time: "How long the LT is active.",
     inactive_time: "How long the LT is inactive.",
     preview_window: "Show/hide preview window.",
     custom_fonts: "Add fonts from Google Fonts.",
-    default_logos: "Change the default logos of each LT.<br>Make sure to copy the logo files into the logos folder.<br>You can use JPG, PNG, TIFF, GIF, etc.<br>With transparency or animated.",
+    default_logos:
+      "Change the default logos of each LT.<br>Make sure to copy the logo files into the logos folder.<br>You can use JPG, PNG, TIFF, GIF, etc.<br>With transparency or animated.",
   };
 
   // Globals
-  ["global-animation-time", "global-active-time", "global-inactive-time"].forEach(id => {
+  [
+    "global-animation-time",
+    "global-active-time",
+    "global-inactive-time",
+  ].forEach((id) => {
     $(`#${id}`).attr("title", tooltip[id.replace(/-/g, "_")]);
   });
 
@@ -92,19 +108,19 @@ function settingsTooltips() {
       "animation-time": "animation_time",
       "active-time": "active_time",
       "inactive-time": "inactive_time",
-      "preview": "preview",
-      "font": "font",
-      "logo": "logo",
+      preview: "preview",
+      font: "font",
+      logo: "logo",
       "logo-size": "logo_size",
-      "shadows": "shadow",
+      shadows: "shadow",
       "shadow-amount": "shadow_opacity",
-      "background": "fill_colors",
-      "corners": "corners",
+      background: "fill_colors",
+      corners: "corners",
       "border-thickness-amount": "borders_thinkness",
       "clean-inputs": "clean",
-      "autotrigger": "autotrigger",
-      "autoload": "autoload",
-      "custom-times": "custom_times"
+      autotrigger: "autotrigger",
+      autoload: "autoload",
+      "custom-times": "custom_times",
     };
 
     Object.entries(singleSelectors).forEach(([sel, tip]) => {
@@ -112,19 +128,30 @@ function settingsTooltips() {
     });
 
     // Alignment radios
-    ["left", "center", "right"].forEach(pos => {
+    ["left", "center", "right"].forEach((pos) => {
       $(`${prefix}align-${pos}`).next().attr("title", tooltip[`align_${pos}`]);
     });
 
     // Style, size, margin, line spacing
-    ["style", "size", "margin-h", "inverse-ratio", "line-spacing"].forEach(sel => {
-      $(`${prefix}${sel}`).parent().parent().attr("title", tooltip[{
-        "style":"style","size":"size","margin-h":"margin","inverse-ratio":"text_size","line-spacing":"line_spacing"
-      }[sel]]);
-    });
+    ["style", "size", "margin-h", "inverse-ratio", "line-spacing"].forEach(
+      (sel) => {
+        $(`${prefix}${sel}`).parent().parent().attr(
+          "title",
+          tooltip[
+            {
+              style: "style",
+              size: "size",
+              "margin-h": "margin",
+              "inverse-ratio": "text_size",
+              "line-spacing": "line_spacing",
+            }[sel]
+          ]
+        );
+      }
+    );
 
     // Borders checkbox
-    ["border-color", "border-thickness"].forEach(sel => {
+    ["border-color", "border-thickness"].forEach((sel) => {
       $(`${prefix}${sel}`).parent().attr("title", tooltip.borders);
     });
   }

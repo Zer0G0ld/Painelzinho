@@ -1,26 +1,33 @@
 // settings.js
-import { broadcastChannels } from '../channels.js';
+import { broadcastChannels } from "../channels.js";
+import { slotAppearance } from "./appearance.js"; // usa o objeto centralizado
 
-function function_send() {
-  const global_lock_active = !!document.getElementById("global-lock-active").checked;
+function function_send(totalSlots = 4) {
+  const globalLockActive = !!document.getElementById("global-lock-active").checked;
 
-  for (let i = 1; i <= 4; i++) {
-    window[`alt_${i}_lock_active`] = !!document.getElementById(`alt-${i}-lock-active`).checked;
-  }
-
+  // Monta dados globais
   const data = {
     global_animation_time: $("#global-animation-time").val(),
-    global_active_time: global_lock_active ? Infinity : $("#global-active-time").val(),
+    global_active_time: globalLockActive ? Infinity : $("#global-active-time").val(),
     global_inactive_time: $("#global-inactive-time").val(),
+    slots: {}
   };
 
-  const slotKeys = ["switch","style","name","info","logo_image","animation_time"];
-  for (let i = 1; i <= 4; i++) {
-    slotKeys.forEach(key => {
-      data[`alt_${i}_${key}`] = window[`alt_${i}_${key}`];
-    });
+  // Monta dados por slot
+  for (let i = 1; i <= totalSlots; i++) {
+    const slotData = {
+      lock_active: !!document.getElementById(`alt-${i}-lock-active`)?.checked,
+      switch: !!document.getElementById(`painelzinhos-switch${i}`)?.checked,
+      style: slotAppearance[i]?.style || "1",
+      name: $(`#alt-${i}-name`).val() || "",
+      info: $(`#alt-${i}-info`).val() || "",
+      logo_image: $(`#alt-${i}-logo-preview`).attr("src") || "",
+      animation_time: $(`#alt-${i}-animation-time`).val() || 0
+    };
+    data.slots[i] = slotData;
   }
 
+  // Envia via broadcast
   broadcastChannels.send.postMessage(data);
 }
 

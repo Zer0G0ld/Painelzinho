@@ -1,0 +1,646 @@
+/* -------------------------------
+   VARIÁVEIS GLOBAIS
+--------------------------------*/
+:root {
+  --main-color: #00aaff;
+  --secondary-color: #2c2c2c;
+  --accent-color: #ffaa00;
+  --background-color: #1e1e1e;
+  --panel-radius: 10px;
+  --scrollbar-width: 8px;
+  --scrollbar-radius: 6px;
+  --font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+  --transition-speed: 0.3s;
+  --shadow-color: rgba(0,0,0,0.5);
+}
+
+/* -------------------------------
+   RESET E BASE
+--------------------------------*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus { outline: none !important; }
+
+body.painelzinhos-panel {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: #fff;
+  user-select: none;
+  overflow-x: hidden;
+  padding: 10px;
+}
+
+/* Scrollbar personalizada */
+.panel::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+.panel::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+  border-radius: var(--scrollbar-radius);
+}
+
+/* -------------------------------
+   CONTAINERS
+--------------------------------*/
+.static-panel-top {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 100%;
+}
+
+#sortable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Painéis individuais */
+.sortees {
+  background-color: var(--secondary-color);
+  border-radius: var(--panel-radius);
+  padding: 12px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+.sortees:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+/* -------------------------------
+   TITULOS E ICONES
+--------------------------------*/
+.main-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--main-color);
+}
+
+.main-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alt-number-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--main-color);
+  color: var(--main-color);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 16px;
+}
+
+/* -------------------------------
+   INPUTS E SELECTS
+--------------------------------*/
+input.storable, select {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 13px;
+  transition: border var(--transition-speed), background var(--transition-speed);
+}
+
+input.storable:focus, select:focus {
+  border-color: var(--main-color);
+  background-color: #333;
+}
+
+/* -------------------------------
+   SWITCHES
+--------------------------------*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #666;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px; bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider { background-color: var(--main-color); }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* -------------------------------
+   ACORDIONS
+--------------------------------*/
+.accordion {
+  cursor: pointer;
+  float: right;
+  transition: 0.4s;
+}
+
+.accordion:after {
+  content: "▼";
+  font-size: 12px;
+  color: var(--main-color);
+  margin-left: 5px;
+  display: inline-block;
+  transition: transform var(--transition-speed);
+}
+.accordion.active:after { transform: rotate(180deg); }
+
+/* -------------------------------
+   TABS
+--------------------------------*/
+.tab {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.tab button {
+  flex: 1;
+  background-color: #2a2a2a;
+  border: none;
+  border-radius: var(--panel-radius);
+  color: #fff;
+  padding: 6px;
+  cursor: pointer;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+.tab button.active, .tab button:hover {
+  background-color: var(--main-color);
+  color: #000;
+}
+
+/* -------------------------------
+   POPUPS
+--------------------------------*/
+.popup {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: var(--panel-radius);
+  box-shadow: 0 8px 20px var(--shadow-color);
+  transition: transform var(--transition-speed);
+  z-index: 999;
+  width: 90%;
+  max-width: 400px;
+}
+
+.popup.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Painéis criados dinamicamente */
+#sortable .sortees {
+  background-color: #2c2c2c;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+#sortable .sortees:hover {
+  transform: translateY(-2px);
+}
+
+/* Logos dentro do template */
+#default-logos .logo-container {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  padding: 4px;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+}
+#default-logos .logo-container img {
+  height: 30px;
+  margin-right: 8px;
+}
+
+.hidable {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.hidable.active {
+  max-height: 1000px; /* ou algo grande o suficiente para abrir todo conteúdo */
+}
+
+.tabcontent { display: none; }
+.tabcontent.active { display: block; }
+.tablinks.active { background-color: #0a84ff; color: white; } /* exemplo de destaque */
+/* POPUPS */
+.popup {
+  display: none;        /* sempre escondido por padrão */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+.popup.show {
+  display: flex;       /* mostra o popup */
+  opacity: 1;
+}
+
+/* Preview de logo */
+#file-preview {
+  display: none;       /* escondido por padrão */
+}
+#file-preview.show {
+  display: block;
+}
+#file-preview.no-image img {
+  display: none;       /* se não tiver imagem, esconde */
+}
+
+/* ====== Painelzinho – Global Configuration (Time Options) ====== */
+
+/* Paleta (ajuste à vontade) */
+#global-configuration {
+  --cp-bg:        #0c1022;
+  --cp-surface:   #111836;
+  --cp-border:    #273158;
+  --cp-text:      #e9edff;
+  --cp-muted:     #9aa6cc;
+  --cp-accent:    #6ea8ff;
+  --cp-accent-10: rgba(110,168,255,.15);
+
+  /* container elegante */
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.02)), var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  overflow: hidden;                 /* pra animar max-height via JS */
+  transition: max-height .3s ease, box-shadow .2s ease;
+  margin-bottom: 12px;              /* elimina margin negativa anterior */
+}
+
+/* Bloco padrão de settings */
+#global-configuration .settings-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Título do bloco */
+#global-configuration .settings-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cp-muted);
+  padding-left: 2px;
+}
+
+/* Grade dos inputs do bloco Tempos Globais:
+   in-out | active | [lock] | inactive | [oneshot] */
+#global-configuration #time-options .settings-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 42px 1fr 42px; /* 42px = botão de ícone */
+  gap: 10px;
+  align-items: center;
+}
+
+/* Inputs numéricos base */
+#global-configuration #time-options input[type="number"].storable {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--cp-border);
+  border-radius: 10px;
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+#global-configuration #time-options input[type="number"].storable::placeholder {
+  color: var(--cp-muted);
+}
+#global-configuration #time-options input[type="number"].storable:focus {
+  border-color: var(--cp-accent);
+  box-shadow: 0 0 0 3px var(--cp-accent-10);
+}
+
+/* Remove setinhas dos number (cross-browser básico) */
+#global-configuration input[type="number"]::-webkit-outer-spin-button,
+#global-configuration input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+#global-configuration input[type="number"] { -moz-appearance: textfield; }
+
+/* Botões de toggle (lock / oneshot) */
+#global-configuration .config-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 40px;
+  border: 1px solid var(--cp-border);
+  border-radius: 10px;
+  background: var(--cp-bg);
+  cursor: pointer;
+  transition: transform .12s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+#global-configuration .config-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+
+/* Esconde o checkbox nativo */
+#global-configuration .config-btn > input[type="checkbox"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Ícone (usa suas masks já existentes em .icon-*) */
+#global-configuration .config-btn .icon-btn {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--cp-muted);           /* usa currentColor nas masks */
+}
+
+/* Estado ativo do toggle (requer Chrome/Safari/FF modernos) */
+#global-configuration .config-btn:has(input:checked) {
+  background: var(--cp-accent);
+  border-color: var(--cp-accent);
+  box-shadow: 0 0 0 3px var(--cp-accent-10) inset;
+}
+#global-configuration .config-btn:has(input:checked) .icon-btn {
+  color: #0b1020; /* ou #fff, se preferir mais contraste */
+}
+
+/* Ajustes finos dos grupos subsequentes (mantém flex quando existir) */
+#global-configuration #theme-options,
+#global-configuration .logos-options,
+#global-configuration .default-options,
+#global-configuration .bottom-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Select de tema ocupa a largura toda do grupo de tema */
+#global-configuration #theme-options #theme { width: 100%; text-transform: capitalize; }
+
+/* Responsivo: quebra grid de tempos em telas menores */
+@media (max-width: 640px) {
+  #global-configuration #time-options .settings-inputs {
+    grid-template-columns: 1fr 42px 1fr 42px; /* joga "in-out" pra linha de cima sozinho */
+  }
+  /* opcional: deixa “in-out” ocupar 2 colunas pra folga */
+  #global-configuration #global-animation-time {
+    grid-column: span 2;
+  }
+}
+
+/* Suaviza animação do acordeão controlado por JS */
+#global-configuration.hidable { will-change: max-height; }
+
+/* ====== Painelzinho – More Settings (Tabs) ====== */
+
+#more-settings {
+  --cp-bg:        #0c1022;
+  --cp-surface:   #111836;
+  --cp-border:    #273158;
+  --cp-text:      #e9edff;
+  --cp-muted:     #9aa6cc;
+  --cp-accent:    #6ea8ff;
+  --cp-accent-10: rgba(110,168,255,.15);
+
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.02)), var(--cp-surface);
+  border: 1px solid var(--cp-border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 12px;
+
+  overflow: hidden; /* controla com accordion.js */
+  transition: max-height .3s ease;
+}
+
+/* Tabs (menu superior) */
+#more-settings .tab {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--cp-border);
+  padding-bottom: 6px;
+}
+
+#more-settings .tab button {
+  flex: 1;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  color: var(--cp-muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: color .2s ease, background .2s ease;
+}
+
+#more-settings .tab button:hover {
+  color: var(--cp-accent);
+  background: var(--cp-accent-10);
+}
+
+#more-settings .tab button.active {
+  color: var(--cp-accent);
+  background: var(--cp-bg);
+  border: 1px solid var(--cp-border);
+  border-bottom: none; /* encaixe visual */
+}
+
+/* Conteúdo de cada aba */
+#more-settings .tabcontent {
+  display: none;
+  animation: fadeIn .25s ease;
+}
+#more-settings .tabcontent.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajuste para blocos internos (já tínhamos usado padrão) */
+#more-settings .settings-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cp-muted);
+  margin-bottom: 6px;
+}
+
+#more-settings .settings-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Select bonito */
+#more-settings select {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid var(--cp-border);
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+#more-settings select:focus {
+  border-color: var(--cp-accent);
+  box-shadow: 0 0 0 3px var(--cp-accent-10);
+}
+
+/* Checkboxes (default-options) */
+#more-settings .settings-inputs label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--cp-text);
+  cursor: pointer;
+}
+#more-settings input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--cp-accent);
+  cursor: pointer;
+}
+
+/* Botões do System tab */
+#more-settings .btn-settings,
+#more-settings .import-file-btn label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--cp-border);
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  transition: background .2s, transform .12s;
+}
+#more-settings .btn-settings:hover,
+#more-settings .import-file-btn label:hover {
+  background: var(--cp-accent-10);
+  color: var(--cp-accent);
+  transform: translateY(-1px);
+}
+
+/* Input file escondido */
+#more-settings .import-file-btn input[type="file"] {
+  display: none;
+}
+
+/* Logos grid */
+#more-settings .logos-options .settings-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: 10px;
+}
+#more-settings .logo-container {
+  position: relative;
+  border: 1px solid var(--cp-border);
+  border-radius: 10px;
+  background: var(--cp-bg);
+  overflow: hidden;
+  cursor: pointer;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .2s, transform .12s;
+}
+#more-settings .logo-container:hover {
+  border-color: var(--cp-accent);
+  transform: scale(1.03);
+}
+#more-settings .logo-container .logo-numbers {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: 12px;
+  color: var(--cp-muted);
+  background: rgba(0,0,0,.4);
+  padding: 2px 5px;
+  border-radius: 6px;
+}
+#more-settings .logo-container img {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+}
+
+
+/* -------------------------------
+   RESPONSIVIDADE
+--------------------------------*/
+@media (max-width: 480px) {
+  .static-panel-top {
+    width: 100%;
+    padding: 5px;
+  }
+  .settings-inputs {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .tab {
+    flex-direction: column;
+  }
+  input.storable, select {
+    width: 100%;
+  }
+}

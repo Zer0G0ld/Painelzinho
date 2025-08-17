@@ -1,237 +1,387 @@
-<!-- Control-Panel -->
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <!--Animated Painelzinhos v1.6-->
+    <!--Author: Zer0G0ld-->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Painel de Controle</title>
+    
+    <!-- Reset e Configs -->
+    <link rel="stylesheet" href="../common/css/reset.css">
+    <link rel="stylesheet" href="../common/css/responsive.css">
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="../common/css/control-panel.css">
+    <link rel="stylesheet" href="../common/css/cp-icons.css">
 
-<head>
-  <!--Animated Painelzinhos v1.6-->
-  <!--Author: Zer0G0ld-->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Painel de Controle</title>
-  <link rel="stylesheet" href="../common/css/style-control_panel.css">
-  <link rel="stylesheet" href="../common/css/cp-icons.css">
-  <script src="../common/js/jquery.js"></script>
-  <script src="../common/js/jscolor.js"></script>
-  <script src="../common/js/hotkeys.js"></script>
-  <script src="../common/js/jquery-ui.js"></script>
-  <script src="./js/controlUtils.bundle.js"></script> <!-- bundle com todos os utils -->
-  <script type="module" src="js/control-panel.js"></script> <!-- Script principal do painel -->
-</head>
+    <!-- Módulos -->
+    <!--<link rel="stylesheet" href="../common/css/modules/accordion.css">
+    <link rel="stylesheet" href="../common/css/modules/popup.css">-->
+  </head>
 
-<body class="painelzinhos-panel panel">
-  <div id="alt-panel" class="static-panel-top">
+  <body class="painelzinhos-panel panel">
+    <div id="alt-panel" class="static-panel-top">
+      <div id="sortable"></div>
 
-    <!-- Configurações principais -->
-    <section id="main-config">
-      <label class="switch">
-        <input type="checkbox" class="checkbox-storable" id="painelzinhos-masterswitch">
-        <span class="slider round"></span>
-      </label>
+      <!-- Configurações principais -->
+      <section id="main-config">
+        <label class="switch">
+          <input
+            type="checkbox"
+            class="checkbox-storable"
+            id="painelzinhos-masterswitch"
+          />
+          <span class="slider round"></span>
+        </label>
 
-      <div class="main-title">
-        <div class="main-icon icon icon-settings"></div>
-        <div>Configurações principais</div>
-      </div>
-
-      <div id="global-configuration" class="hidable">
-        <!-- Tempos Globais -->
-        <div id="time-options" class="settings-block">
-          <div class="settings-title">Tempos Globais</div>
-          <div class="settings-inputs">
-            <input class="storable" id="global-animation-time" type="number" placeholder="in-out" tabindex="1">
-            <input class="storable" id="global-active-time" type="number" placeholder="active" tabindex="2">
-            <label class="config-btn lock-input">
-              <input type="checkbox" class="checkbox-storable" id="global-lock-active">
-              <div class="icon-btn icon icon-lock"></div>
-            </label>
-            <input class="storable" id="global-inactive-time" type="number" placeholder="inactive" tabindex="3">
-            <label class="config-btn lock-input">
-              <input type="checkbox" class="checkbox-storable" id="global-oneshot">
-              <div class="icon-btn icon icon-oneshot"></div>
-            </label>
-          </div>
+        <div class="main-title">
+          <div class="main-icon icon icon-settings"></div>
+          <div>Configurações principais</div>
         </div>
 
-        <!-- Mais configurações / Tabs -->
-        <div id="more-settings" class="hide-more">
-          <div class="tab">
-            <button class="tablinks" data-tab="appearance">Aparência</button>
-            <button class="tablinks" data-tab="customs">Personalizações</button>
-            <button class="tablinks" data-tab="system">Sistema</button>
+        <div id="global-configuration" class="hidable">
+          <!-- Tempos Globais -->
+          <div id="time-options" class="settings-block">
+            <div class="settings-title">Tempos Globais</div>
+            <div class="settings-inputs">
+              <input
+                class="storable"
+                id="global-animation-time"
+                type="number"
+                placeholder="in-out"
+                tabindex="1"
+              />
+              <input
+                class="storable"
+                id="global-active-time"
+                type="number"
+                placeholder="active"
+                tabindex="2"
+              />
+              <label class="config-btn lock-input">
+                <input
+                  type="checkbox"
+                  class="checkbox-storable"
+                  id="global-lock-active"
+                />
+                <div class="icon-btn icon icon-lock"></div>
+              </label>
+              <input
+                class="storable"
+                id="global-inactive-time"
+                type="number"
+                placeholder="inactive"
+                tabindex="3"
+              />
+              <label class="config-btn lock-input">
+                <input
+                  type="checkbox"
+                  class="checkbox-storable"
+                  id="global-oneshot"
+                />
+                <div class="icon-btn icon icon-oneshot"></div>
+              </label>
+            </div>
           </div>
 
-          <!-- Aparência -->
-          <div id="tab-appearance" class="tabcontent">
-            <div id="theme-options" class="settings-block">
-              <div class="settings-title">Tema</div>
-              <div class="settings-inputs">
-                <select id="theme" class="select-settings-storable" data-action="changeTheme"></select>
-              </div>
+          <!-- Mais configurações / Tabs -->
+          <div id="more-settings" class="hide-more">
+            <div class="tab">
+              <button class="tablinks" data-tab="appearance">Aparência</button>
+              <button class="tablinks" data-tab="customs">
+                Personalizações
+              </button>
+              <button class="tablinks" data-tab="system">Sistema</button>
             </div>
-            <div class="default-options settings-block">
-              <div class="settings-inputs">
-                <label><input type="checkbox" class="checkbox-storable" id="set-preview">Ativar janela de visualização</label>
-                <label><input type="checkbox" class="checkbox-storable" id="set-slot-numbers">Ocultar números dos slots</label>
-                <label><input type="checkbox" class="checkbox-storable" id="set-switch-position">Interruptores à esquerda</label>
-                <label><input type="checkbox" class="checkbox-storable" id="set-tooltips">Mostrar dicas de ferramentas</label>
-              </div>
-            </div>
-          </div>
 
-          <!-- Personalizações -->
-          <div id="tab-customs" class="tabcontent">
-            <div id="fonts-options" class="settings-block">
-              <div class="settings-title">Fonte personalizada</div>
-              <div class="settings-inputs">
-                <input id="new-font-name" placeholder="Font Family" tabindex="51">
-                <input id="new-font-url" placeholder="@import url" tabindex="52">
-                <div id="add-new-font" class="add" data-action="addFont">
-                  <div class="icon icon-plus-square"></div>
+            <!-- Aparência -->
+            <div id="tab-appearance" class="tabcontent">
+              <div id="theme-options" class="settings-block">
+                <div class="settings-title">Tema</div>
+                <div class="settings-inputs">
+                  <select
+                    id="theme"
+                    class="select-settings-storable"
+                    data-action="changeTheme"
+                  ></select>
+                </div>
+              </div>
+              <div class="default-options settings-block">
+                <div class="settings-inputs">
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="checkbox-storable"
+                      id="set-preview"
+                    />Ativar janela de visualização</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="checkbox-storable"
+                      id="set-slot-numbers"
+                    />Ocultar números dos slots</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="checkbox-storable"
+                      id="set-switch-position"
+                    />Interruptores à esquerda</label
+                  >
+                  <label
+                    ><input
+                      type="checkbox"
+                      class="checkbox-storable"
+                      id="set-tooltips"
+                    />Mostrar dicas de ferramentas</label
+                  >
                 </div>
               </div>
             </div>
-            <div id="custom-font-list"><ul></ul></div>
-            <div class="logos-options settings-block">
-              <div class="settings-title">Logotipos padrão</div>
-              <div class="settings-inputs" id="default-logos"></div>
-            </div>
-          </div>
 
-          <!-- Sistema -->
-          <div id="tab-system" class="tabcontent">
-            <div class="bottom-options settings-block">
-              <div class="settings-title">Dados de backup</div>
-              <div class="settings-inputs">
-                <div class="import-file-btn">
-                  <label for="importFile">Importar</label>
-                  <input id="importFile" type="file" />
+            <!-- Personalizações -->
+            <div id="tab-customs" class="tabcontent">
+              <div id="fonts-options" class="settings-block">
+                <div class="settings-title">Fonte personalizada</div>
+                <div class="settings-inputs">
+                  <input
+                    id="new-font-name"
+                    placeholder="Font Family"
+                    tabindex="51"
+                  />
+                  <input
+                    id="new-font-url"
+                    placeholder="@import url"
+                    tabindex="52"
+                  />
+                  <div id="add-new-font" class="add" data-action="addFont">
+                    <div class="icon icon-plus-square"></div>
+                  </div>
                 </div>
-                <div class="btn-settings" data-action="exportData">Exportar</div>
-                <div class="btn-settings" data-action="openResetPopup">Redefinir</div>
+              </div>
+              <div id="custom-font-list"><ul></ul></div>
+              <div class="logos-options settings-block">
+                <div class="settings-title">Logotipos padrão</div>
+                <div class="settings-inputs" id="default-logos"></div>
+              </div>
+            </div>
+
+            <!-- Sistema -->
+            <div id="tab-system" class="tabcontent">
+              <div class="bottom-options settings-block">
+                <div class="settings-title">Dados de backup</div>
+                <div class="settings-inputs">
+                  <div class="import-file-btn">
+                    <label for="importFile">Importar</label>
+                    <input id="importFile" type="file" />
+                  </div>
+                  <div class="btn-settings" data-action="exportData">
+                    Exportar
+                  </div>
+                  <div class="btn-settings" data-action="openResetPopup">
+                    Redefinir
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Templates -->
-    <template id="logo-template">
-      <div class="logo-container default">
-        <div class="logo-numbers"></div>
-        <img class="logo-storable alt-logo-default">
-      </div>
-    </template>
+      <!-- Templates -->
+      <template id="logo-template">
+        <div class="logo-container default">
+          <div class="logo-numbers"></div>
+          <img class="logo-storable alt-logo-default" />
+        </div>
+      </template>
 
-    <template id="painel-template">
-      <div class="sortees" data-alt-index="1">
-        <div class="alt-config">
-          <label class="switch">
-            <input type="checkbox" class="checkbox-storable">
-            <span class="slider round"></span>
-          </label>
-          <label class="config-btn preview-btn">
-            <input type="checkbox" class="checkbox-storable">
-            <div class="icon-btn icon icon-search"></div>
-          </label>
-          <div class="drag-handle">
-            <div class="alt-number-icon">1</div>
-            <div class="renameable title-storable">Painelzinho 1</div>
-          </div>
-          <label class="accordion"></label>
-          <div class="hidable">
-            <div class="panel-grid">
-              <!-- Alinhamento -->
-              <div class="panel-row align-config">
-                <input type="radio" name="align" value="left" checked>
-                <label><div class="icon icon-align-left"></div></label>
-                <input type="radio" name="align" value="center">
-                <label><div class="icon icon-align-center"></div></label>
-                <input type="radio" name="align" value="right">
-                <label><div class="icon icon-align-right"></div></label>
-              </div>
-              <!-- Style e tamanho -->
-              <div class="panel-row number-group">
-                <div class="input-icon icon icon-paint-brush"></div>
-                <input type="number" class="storable" min="1" max="3" value="1" readonly>
-                <div class="step-buttons"><button class="up" data-step="up"></button><button class="down" data-step="down"></button></div>
-                <div class="input-icon icon icon-size"></div>
-                <input type="number" class="storable" min="10" max="50" value="24">
-                <div class="step-buttons"><button class="up" data-step="up"></button><button class="down" data-step="down"></button></div>
-              </div>
-              <!-- Margens -->
-              <div class="panel-row margin-config">
-                <input type="number" class="storable" min="0" max="100" value="4">
-                <input type="number" class="storable" min="0" max="55" value="4">
-              </div>
-              <!-- Logo, sombras, cores -->
-              <div class="panel-row visual-config">
-                <input type="checkbox" class="checkbox-storable" checked>
-                <input type="number" class="storable" min="-10" max="10" value="0">
-                <input type="checkbox" class="checkbox-storable">
-                <input type="number" class="storable" min="1" max="10" value="5">
-              </div>
-              <!-- Campos de texto -->
-              <div class="panel-row text-fields">
-                <input type="text" class="storable" placeholder="Name">
-                <input type="text" class="storable" placeholder="Info">
+      <template id="painel-template">
+        <div class="sortees" data-alt-index="1">
+          <div class="alt-config">
+            <label class="switch">
+              <input type="checkbox" class="checkbox-storable" />
+              <span class="slider round"></span>
+            </label>
+            <label class="config-btn preview-btn">
+              <input type="checkbox" class="checkbox-storable" />
+              <div class="icon-btn icon icon-search"></div>
+            </label>
+            <div class="drag-handle">
+              <div class="alt-number-icon">1</div>
+              <div class="renameable title-storable">Painelzinho 1</div>
+            </div>
+            <label class="accordion"></label>
+            <div class="hidable">
+              <div class="panel-grid">
+                <!-- Alinhamento -->
+                <div class="panel-row align-config">
+                  <input type="radio" name="align" value="left" checked />
+                  <label><div class="icon icon-align-left"></div></label>
+                  <input type="radio" name="align" value="center" />
+                  <label><div class="icon icon-align-center"></div></label>
+                  <input type="radio" name="align" value="right" />
+                  <label><div class="icon icon-align-right"></div></label>
+                </div>
+                <!-- Style e tamanho -->
+                <div class="panel-row number-group">
+                  <div class="input-icon icon icon-paint-brush"></div>
+                  <input
+                    type="number"
+                    class="storable"
+                    min="1"
+                    max="3"
+                    value="1"
+                    readonly
+                  />
+                  <div class="step-buttons">
+                    <button class="up" data-step="up"></button
+                    ><button class="down" data-step="down"></button>
+                  </div>
+                  <div class="input-icon icon icon-size"></div>
+                  <input
+                    type="number"
+                    class="storable"
+                    min="10"
+                    max="50"
+                    value="24"
+                  />
+                  <div class="step-buttons">
+                    <button class="up" data-step="up"></button
+                    ><button class="down" data-step="down"></button>
+                  </div>
+                </div>
+                <!-- Margens -->
+                <div class="panel-row margin-config">
+                  <input
+                    type="number"
+                    class="storable"
+                    min="0"
+                    max="100"
+                    value="4"
+                  />
+                  <input
+                    type="number"
+                    class="storable"
+                    min="0"
+                    max="55"
+                    value="4"
+                  />
+                </div>
+                <!-- Logo, sombras, cores -->
+                <div class="panel-row visual-config">
+                  <input type="checkbox" class="checkbox-storable" checked />
+                  <input
+                    type="number"
+                    class="storable"
+                    min="-10"
+                    max="10"
+                    value="0"
+                  />
+                  <input type="checkbox" class="checkbox-storable" />
+                  <input
+                    type="number"
+                    class="storable"
+                    min="1"
+                    max="10"
+                    value="5"
+                  />
+                </div>
+                <!-- Campos de texto -->
+                <div class="panel-row text-fields">
+                  <input type="text" class="storable" placeholder="Name" />
+                  <input type="text" class="storable" placeholder="Info" />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </template>
+      </template>
 
-    <!-- Popups -->
-    <div id="select-image" class="popup hide">
-      <div class="popup-backdrop"></div>
-      <div class="popup-content">
-        <div class="file-input-group">
-          <label for="logo-file" class="btn-select">Escolha a imagem</label>
-          <input type="file" id="logo-file" accept="image/*" class="file-input">
-          <button type="button" class="btn-remove"><div class="icon icon-trash"></div></button>
+      <!-- Popups -->
+      <div id="select-image" class="popup hide">
+        <div class="popup-backdrop"></div>
+        <div class="popup-content">
+          <div class="file-input-group">
+            <label for="logo-file" class="btn-select">Escolha a imagem</label>
+            <input
+              type="file"
+              id="logo-file"
+              accept="image/*"
+              class="file-input"
+            />
+            <button type="button" class="btn-remove">
+              <div class="icon icon-trash"></div>
+            </button>
+          </div>
+          <div id="file-preview" class="file-preview no-image">
+            <img id="logo-file-preview" alt="Pré-visualização da imagem" />
+          </div>
+          <div class="popup-actions">
+            <button type="button" class="btn-ok">Ok</button>
+            <button type="button" class="btn-cancel">Cancelar</button>
+          </div>
         </div>
-        <div id="file-preview" class="file-preview no-image">
-          <img id="logo-file-preview" alt="Pré-visualização da imagem">
+      </div>
+
+      <div id="export-data" class="popup center hide">
+        <div class="popup-bg" data-action="close"></div>
+        <div class="popup-content form-input">
+          <h2>Copiado para a área de transferência</h2>
+          <p>Cole em um editor de texto e salve como TXT.</p>
+          <textarea
+            id="export-text"
+            rows="4"
+            cols="50"
+            readonly
+            onclick="this.select()"
+          ></textarea>
+          <div class="popup-actions export-btns">
+            <button class="btn-ok-export" data-action="ok">Ok</button>
+          </div>
         </div>
-        <div class="popup-actions">
-          <button type="button" class="btn-ok">Ok</button>
-          <button type="button" class="btn-cancel">Cancelar</button>
+      </div>
+
+      <div id="reset-all" class="popup center hide">
+        <div class="popup-bg" data-action="close"></div>
+        <div class="popup-content form-input">
+          <h2>Redefinir todas as configurações</h2>
+          <p>
+            Você está prestes a redefinir todas as configurações e slots de
+            memória. Tem certeza?
+          </p>
+          <div class="popup-actions reset-btns">
+            <button class="btn-ok-reset" data-action="ok">Ok</button>
+            <button class="btn-cancel" data-action="cancel">Cancelar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div id="alt-preview" class="preview active">
+        <div class="toggle active" id="toggle-preview">
+          <div class="icon icon-chevron-down"></div>
+        </div>
+        <div class="embed-container">
+          <iframe
+            id="myiframe"
+            src="./browser-source.html?mode=preview"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>
 
-    <div id="export-data" class="popup center hide">
-      <div class="popup-bg" data-action="close"></div>
-      <div class="popup-content form-input">
-        <h2>Copiado para a área de transferência</h2>
-        <p>Cole em um editor de texto e salve como TXT.</p>
-        <textarea id="export-text" rows="4" cols="50" readonly onclick="this.select()"></textarea>
-        <div class="popup-actions export-btns"><button class="btn-ok-export" data-action="ok">Ok</button></div>
-      </div>
-    </div>
-
-    <div id="reset-all" class="popup center hide">
-      <div class="popup-bg" data-action="close"></div>
-      <div class="popup-content form-input">
-        <h2>Redefinir todas as configurações</h2>
-        <p>Você está prestes a redefinir todas as configurações e slots de memória. Tem certeza?</p>
-        <div class="popup-actions reset-btns">
-          <button class="btn-ok-reset" data-action="ok">Ok</button>
-          <button class="btn-cancel" data-action="cancel">Cancelar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Preview -->
-    <div id="alt-preview" class="preview active">
-      <div class="toggle active" id="toggle-preview"><div class="icon icon-chevron-down"></div></div>
-      <div class="embed-container">
-        <iframe id="myiframe" src="./browser-source.html?mode=preview" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-
-  </div>
-</body>
+        <!-- JS -->
+    <script src="../common/js/jscolor.js"></script>
+    <script type="module" src="./js/controlUtils/hotkeys/hotkeys.js"></script>
+    <script type="module" src="./js/control-panel.js"></script>
+  </body>
 </html>

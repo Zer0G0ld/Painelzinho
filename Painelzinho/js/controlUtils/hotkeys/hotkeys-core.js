@@ -1,76 +1,51 @@
 // hotkeys-core.js
+import { hotkeys } from "./hotkeys";
+import { checkSlots } from "../memory/memory-slots.js";
 
-// Reload do hotkeys.js atualizado pelo Lua
+// Atualiza o script de hotkeys (carregado pelo Lua)
 function updateHotkeys() {
   const src = "../common/js/hotkeys.js";
   $('script[src="' + src + '"]').remove();
-  const head = document.getElementsByTagName("head")[0];
   const script = document.createElement("script");
   script.src = src;
-  head.appendChild(script);
+  document.head.appendChild(script);
 }
 
-// Dados de switches e memory slots
+// Estrutura de switches
 const hotkeySwitches = [
-  { hotkey: "hotkeyMasterSwitch", oldHotkey: "hotkeyMasterSwitchOld", id: "painelzinhos-masterswitch" },
-  { hotkey: "hotkeySwitch1", oldHotkey: "hotkeySwitch1Old", id: "painelzinhos-switch1" },
-  { hotkey: "hotkeySwitch2", oldHotkey: "hotkeySwitch2Old", id: "painelzinhos-switch2" },
-  { hotkey: "hotkeySwitch3", oldHotkey: "hotkeySwitch3Old", id: "painelzinhos-switch3" },
-  { hotkey: "hotkeySwitch4", oldHotkey: "hotkeySwitch4Old", id: "painelzinhos-switch4" },
+  { id: "painelzinhos-masterswitch", key: "MASTER" },
+  { id: "painelzinhos-switch1", key: "SWITCH1" },
+  { id: "painelzinhos-switch2", key: "SWITCH2" },
+  { id: "painelzinhos-switch3", key: "SWITCH3" },
+  { id: "painelzinhos-switch4", key: "SWITCH4" },
 ];
 
-const memorySlots = [
-  {
-    prefix: "#alt-1",
-    hotkeys: Array.from({length:10}, (_,i) => ({
-      hotkey: `hotkeyAlt1Slot${i+1}`,
-      oldHotkey: `hotkeyAlt1Slot${i+1}Old`,
-      index: i + 1
-    }))
-  },
-  {
-    prefix: "#alt-2",
-    hotkeys: Array.from({length:10}, (_,i) => ({
-      hotkey: `hotkeyAlt2Slot${i+1}`,
-      oldHotkey: `hotkeyAlt2Slot${i+1}Old`,
-      index: i + 1
-    }))
-  },
-  {
-    prefix: "#alt-3",
-    hotkeys: Array.from({length:10}, (_,i) => ({
-      hotkey: `hotkeyAlt3Slot${i+1}`,
-      oldHotkey: `hotkeyAlt3Slot${i+1}Old`,
-      index: i + 1
-    }))
-  },
-  {
-    prefix: "#alt-4",
-    hotkeys: Array.from({length:10}, (_,i) => ({
-      hotkey: `hotkeyAlt4Slot${i+1}`,
-      oldHotkey: `hotkeyAlt4Slot${i+1}Old`,
-      index: i + 1
-    }))
-  }
-];
+// Estrutura de memory slots
+const memorySlotsGroups = Array.from({ length: 4 }, (_, g) => ({
+  prefix: `#alt-${g + 1}`,
+  slots: Array.from({ length: 10 }, (_, i) => ({
+    key: `ALT${g + 1}SLOT${i + 1}`,
+    index: i + 1
+  }))
+}));
 
-// Função genérica para processar memory slots
+// Função para processar memory slots automaticamente
 function checkMemorySlots() {
-  memorySlots.forEach(slotGroup => {
-    slotGroup.hotkeys.forEach(({ hotkey, oldHotkey, index }) => {
-      if (window[hotkey] !== window[oldHotkey]) {
-        loadSlot(
-          `${slotGroup.prefix}-name`,
-          `${slotGroup.prefix}-info`,
-          `${slotGroup.prefix}-logo-preview`,
-          $(`${slotGroup.prefix}-name-${index}`).text(),
-          $(`${slotGroup.prefix}-info-${index}`).text(),
-          $(`${slotGroup.prefix}-logo-${index}`).text(),
-          0
-        );
-        window[oldHotkey] = window[hotkey];
-      }
+  memorySlotsGroups.forEach(group => {
+    group.slots.forEach(({ key, index }) => {
+      const slotValue = hotkeys.slots[key] || 0;
+      const $slotName = $(`${group.prefix}-name-${index}`);
+      const $slotInfo = $(`${group.prefix}-info-${index}`);
+      const $slotLogo = $(`${group.prefix}-logo-${index}`);
+
+      // Atualiza a UI do slot
+      checkSlots(group.prefix + "-memory-slots", group.prefix + "-name", group.prefix + "-info", group.prefix + "-logo-preview");
+
+      // Marca slot ativo ou não
+      if (slotValue) $(`#${key.toLowerCase()}`).addClass("active-slot");
+      else $(`#${key.toLowerCase()}`).removeClass("active-slot");
     });
   });
 }
-export { updateHotkeys, checkMemorySlots, hotkeySwitches, memorySlots };
+
+export { updateHotkeys, checkMemorySlots, hotkeySwitches, memorySlotsGroups };

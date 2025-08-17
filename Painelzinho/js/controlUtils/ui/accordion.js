@@ -3,7 +3,9 @@ function initAccordionHandlers() {
     el.addEventListener("click", function () {
       this.classList.toggle("active");
       const hidable = this.nextElementSibling;
-      hidable.style.maxHeight = hidable.style.maxHeight ? null : hidable.scrollHeight + "px";
+
+      // Adiciona/remover classe CSS
+      hidable.classList.toggle("active");
     })
   );
 
@@ -17,7 +19,8 @@ function initAccordionHandlers() {
         hideMore.style.maxHeight = hideMore.scrollHeight + "px";
         const globalConfig = document.getElementById("global-configuration");
         let currentHeight = parseInt(globalConfig.style.maxHeight) || 0;
-        globalConfig.style.maxHeight = currentHeight + hideMore.scrollHeight + "px";
+        globalConfig.style.maxHeight =
+          currentHeight + hideMore.scrollHeight + "px";
       }
     })
   );

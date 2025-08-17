@@ -1,0 +1,97 @@
+/* reset.css | Zer0Painelzinho Reset Base */
+
+/* -------------------------------
+   BOX-SIZING GLOBAL
+--------------------------------*/
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* -------------------------------
+   BODY E TIPOGRAFIA
+--------------------------------*/
+html, body {
+  font-size: 100%;
+  font-family: var(--font-family, sans-serif);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: inherit;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+/* -------------------------------
+   LISTAS
+--------------------------------*/
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* -------------------------------
+   LINKS
+--------------------------------*/
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* -------------------------------
+   BOTÕES, INPUTS E FORMULÁRIOS
+--------------------------------*/
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+}
+
+/* -------------------------------
+   IMAGENS E VÍDEOS
+--------------------------------*/
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* -------------------------------
+   BLOCKQUOTE / QUOTES
+--------------------------------*/
+blockquote, q {
+  quotes: none;
+}
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: '';
+}
+
+/* -------------------------------
+   TABELAS
+--------------------------------*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* -------------------------------
+   HELPER CLASSES
+--------------------------------*/
+.hidden {
+  display: none !important;
+}

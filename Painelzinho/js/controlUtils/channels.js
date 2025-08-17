@@ -5,34 +5,44 @@ const broadcastChannels = {
   fonts: new BroadcastChannel("obs-painelzinho-fonts"),
 };
 
-// Inicializa listener para receber dados do browser-source.js
-function initChannelListeners(refreshData, checkSwitches, function_send_font) {
-  broadcastChannels.receive.onmessage = function(ev) {
-    const received_data = ev.data;
+/**
+ * Inicializa listeners para receber dados do browser-source.js
+ * @param {Function} refreshData - função para atualizar o painel
+ * @param {Function} checkSwitches - função para atualizar switches
+ * @param {Function} function_send_font - função para enviar fontes
+ * @param {Number} totalSlots - quantidade de slots (default: 4)
+ */
+function initChannelListeners(refreshData, checkSwitches, function_send_font, totalSlots = 4) {
+  broadcastChannels.receive.onmessage = (ev) => {
+    const data = ev.data;
 
-    if (received_data.resend) {
+    if (data.resend) {
       refreshData();
       function_send_font();
       return;
     }
 
-    for (let i = 1; i <= 4; i++) {
-      window[`alt_${i}_active_time_monitor`] = received_data[`activeTime${i}_to_send`];
-      window[`alt_${i}_inactive_time_monitor`] = received_data[`inactiveTime${i}_to_send`];
+    for (let i = 1; i <= totalSlots; i++) {
+      const activeTime = data[`activeTime${i}_to_send`] ?? 0;
+      const inactiveTime = data[`inactiveTime${i}_to_send`] ?? 0;
 
-      document.getElementById(`alt-${i}-active-time-monitor`).innerHTML =
-        window[`alt_${i}_active_time_monitor`];
-      document.getElementById(`alt-${i}-inactive-time-monitor`).innerHTML =
-        window[`alt_${i}_inactive_time_monitor`];
+      // Atualiza elementos do DOM
+      const activeEl = document.getElementById(`alt-${i}-active-time-monitor`);
+      const inactiveEl = document.getElementById(`alt-${i}-inactive-time-monitor`);
 
-      if (received_data[`alt_${i}_turnoff`] && $(`#painelzinhos-switch${i}`).is(":checked")) {
-        $(`#painelzinhos-switch${i}`).prop("checked", false).change();
+      if (activeEl) activeEl.textContent = activeTime;
+      if (inactiveEl) inactiveEl.textContent = inactiveTime;
+
+      // Atualiza switches conforme a informação recebida
+      const turnOff = data[`alt_${i}_turnoff`];
+      const switchEl = $(`#painelzinhos-switch${i}`);
+      if (turnOff && switchEl.is(":checked")) {
+        switchEl.prop("checked", false).change();
       }
     }
 
     checkSwitches();
   };
 }
-
 
 export { broadcastChannels, initChannelListeners };
